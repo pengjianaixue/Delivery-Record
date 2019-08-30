@@ -8,6 +8,9 @@
     <ClCompile Include="deliveryrecord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IniFileTemplateHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -38,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="deliveryrecord.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="IniFileTemplateHandler.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

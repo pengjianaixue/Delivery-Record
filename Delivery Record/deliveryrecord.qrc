@@ -1,4 +1,7 @@
 <RCC>
-    <qresource prefix="DeliveryRecord">
-    </qresource>
+  <qresource prefix="DeliveryRecord">
+    <file>Resources/password normal.png</file>
+    <file>Resources/update.png</file>
+    <file>Resources/user-name.png</file>
+  </qresource>
 </RCC>
