@@ -42,6 +42,10 @@ void DeliveryRecord::InitUI()
 		}
 		else if (item.first == "password")
 		{
+			/*QCryptographicHash HashPassword(QCryptographicHash::Md5);
+			HashPassword.addData(item.second.toStdString().c_str(), item.second.toStdString().length());*/
+			/*std::hash<QString> HashPassword;
+			int n =  HashPassword(item.second);*/
 			ui.lineEdit_password->setText(item.second);
 		}
 	}
