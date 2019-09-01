@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="DeliveryRecord">
+    <file>Resources/section.png</file>
     <file>Resources/password normal.png</file>
     <file>Resources/update.png</file>
     <file>Resources/user-name.png</file>

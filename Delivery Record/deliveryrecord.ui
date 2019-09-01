@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
-    <height>417</height>
+    <width>863</width>
+    <height>604</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,122 +16,27 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <widget class="QTableWidget" name="tablewideget_deliverytable"/>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
-          <item>
-           <widget class="QLabel" name="Lable_username">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>30</width>
-              <height>5</height>
-             </size>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;user name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(:/DeliveryRecord/Resources/user-name.png);</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="Lable_password">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>30</width>
-              <height>5</height>
-             </size>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;password&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(:/DeliveryRecord/Resources/password normal.png);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QLineEdit" name="lineEdit_username">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="accessibleDescription">
-             <string>please input username</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_password">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="accessibleDescription">
-             <string>please input password</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <widget class="QProgressBar" name="progressBar_update">
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QTableWidget" name="tablewideget_deliverytable"/>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QProgressBar" name="progressBar_update">
-          <property name="value">
-           <number>24</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_update">
-          <property name="text">
-           <string>update</string>
-          </property>
-          <property name="icon">
-           <iconset resource="deliveryrecord.qrc">
-            <normaloff>:/DeliveryRecord/Resources/update.png</normaloff>:/DeliveryRecord/Resources/update.png</iconset>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QPushButton" name="pushButton_update">
+        <property name="text">
+         <string>update</string>
+        </property>
+        <property name="icon">
+         <iconset resource="deliveryrecord.qrc">
+          <normaloff>:/DeliveryRecord/Resources/update.png</normaloff>:/DeliveryRecord/Resources/update.png</iconset>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -142,8 +47,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>608</width>
-     <height>22</height>
+     <width>863</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOperation">

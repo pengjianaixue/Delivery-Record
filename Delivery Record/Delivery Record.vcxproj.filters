@@ -11,6 +11,9 @@
     <ClCompile Include="IniFileTemplateHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="configure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -46,9 +49,15 @@
     <QtMoc Include="IniFileTemplateHandler.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="configure.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="deliveryrecord.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="configure.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

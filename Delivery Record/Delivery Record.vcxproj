@@ -99,7 +99,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_UITOOLS_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB;QT_XML_LIB;QT_NETWORK_LIB;%(PreprocessorDefinitions)</Define>
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
@@ -137,7 +137,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
       <Define>QT_CORE_LIB;QT_GUI_LIB;QT_UITOOLS_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB;QT_XML_LIB;UNICODE;_UNICODE;WIN32;WIN64;QT_NETWORK_LIB;%(PreprocessorDefinitions)</Define>
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
@@ -172,7 +172,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_UITOOLS_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB;QT_XML_LIB;QT_NETWORK_LIB;%(PreprocessorDefinitions)</Define>
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
@@ -210,7 +210,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
       <Define>QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_UITOOLS_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB;QT_XML_LIB;UNICODE;_UNICODE;WIN32;WIN64;QT_NETWORK_LIB;%(PreprocessorDefinitions)</Define>
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
@@ -224,6 +224,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="configure.cpp" />
     <ClCompile Include="IniFileTemplateHandler.cpp" />
     <ClCompile Include="deliveryrecord.cpp" />
     <ClCompile Include="main.cpp" />
@@ -235,16 +236,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="IniFileTemplateHandler.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtUiTools;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork</IncludePath>
-    </QtMoc>
+    <QtMoc Include="IniFileTemplateHandler.h" />
     <QtMoc Include="deliveryrecord.h" />
+    <QtMoc Include="configure.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="configure.ui" />
     <QtUic Include="deliveryrecord.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +259,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="1" lreleaseOptions="" Qt5Version_x0020_Win32="5.9.7_win32" Qt5Version_x0020_x64="5.12.0" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="1" lreleaseOptions="" Qt5Version_x0020_Win32="5.9.7_win32" Qt5Version_x0020_x64="5.12" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

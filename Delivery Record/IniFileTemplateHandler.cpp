@@ -9,7 +9,6 @@ IniFileTemplateHandler::IniFileTemplateHandler(QString iniFilePath)
 
 IniFileTemplateHandler::~IniFileTemplateHandler()
 {
-
 }
 
 bool IniFileTemplateHandler::writeValueDictToIni(VALUELISTDIC valueDict)

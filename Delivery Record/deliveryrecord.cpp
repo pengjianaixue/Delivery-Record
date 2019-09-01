@@ -10,7 +10,7 @@ DeliveryRecord::DeliveryRecord(QWidget *parent)
 
 void DeliveryRecord::resizeEvent(QResizeEvent *event)
 { 
-	
+	      
 	
 }
 	
@@ -21,9 +21,9 @@ void DeliveryRecord::InitUI()
 {
 	ui.progressBar_update->hide();
 	ui.horizontalLayout_2->insertSpacerItem(1,new QSpacerItem(20, 20, QSizePolicy::Expanding));
-	ui.lineEdit_password->setEchoMode(QLineEdit::Password);
-	ui.lineEdit_password->setPlaceholderText("please input password");
-	ui.lineEdit_username->setPlaceholderText("please input username");
+	//ui.lineEdit_password->setEchoMode(QLineEdit::Password);
+	//ui.lineEdit_password->setPlaceholderText("please input password");
+	//ui.lineEdit_username->setPlaceholderText("please input username");
 	IniFileTemplateHandler initIniReader("./RecordTemp.ini");
 	IniFileTemplateHandler::VALUELISTDIC iniFileValue =  initIniReader.fetchValueDictFromIni();
 	QStringList deliveryInfoWord;
@@ -34,21 +34,7 @@ void DeliveryRecord::InitUI()
 			deliveryInfoWord.append(item.first);
 		}
 	}
-	for (auto &item : iniFileValue["user configure"])
-	{
-		if (item.first == "user name")
-		{
-			ui.lineEdit_username->setText(item.second);
-		}
-		else if (item.first == "password")
-		{
-			/*QCryptographicHash HashPassword(QCryptographicHash::Md5);
-			HashPassword.addData(item.second.toStdString().c_str(), item.second.toStdString().length());*/
-			/*std::hash<QString> HashPassword;
-			int n =  HashPassword(item.second);*/
-			ui.lineEdit_password->setText(item.second);
-		}
-	}
+	
 	ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	ui.tablewideget_deliverytable->setColumnCount(1);
 	ui.tablewideget_deliverytable->setRowCount(deliveryInfoWord.size());
@@ -60,5 +46,15 @@ void DeliveryRecord::InitUI()
 	ui.tablewideget_deliverytable->setItemDelegateForColumn(1, nullptr);
 	ui.tablewideget_deliverytable->horizontalHeader()->setStretchLastSection(true);
 	ui.tablewideget_deliverytable->verticalHeader()->setStretchLastSection(true);
+	connectSlots();
 
+}
+void DeliveryRecord::openConfigurDialog(bool open)
+{
+	this->configurUi.show();
+}
+
+void DeliveryRecord::connectSlots()
+{
+	connect(this->ui.actionconfiguration, &QAction::triggered, this, &DeliveryRecord::openConfigurDialog);
 }
