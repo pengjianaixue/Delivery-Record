@@ -14,6 +14,15 @@
     <ClCompile Include="configure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QTextEditDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlWirter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -50,6 +59,15 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="configure.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QTextEditDelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="XmlReader.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="XmlWirter.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

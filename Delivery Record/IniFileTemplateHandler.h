@@ -2,18 +2,20 @@
 #include "qobject.h"
 #include <QFile>
 #include <memory>
-class IniFileTemplateHandler :public QObject
+class IniFileProcesser :public QObject
 {
 	Q_OBJECT
 public:
 	using VALUELISTDIC = QMap<QString, std::list<std::pair<QString, QString>>>;
 public:
-	IniFileTemplateHandler(QString iniFilePath = "./Template.ini");
-	~IniFileTemplateHandler();
+	IniFileProcesser(QString iniFilePath = "./Template.ini");
+	~IniFileProcesser();
 	VALUELISTDIC fetchValueDictFromIni();
-	bool writeValueDictToIni(VALUELISTDIC valueDict);
-	QString fetchSpecGroupAndKeyValue(QString group, QString key);
-	int  fetchAnGroupValue(QString group);
+	bool writeDictValueToIni(const VALUELISTDIC &valueDict);
+	bool writeGroupValueToIni(const QString &groupName, const QStringList &valueAndKeyList , const QString &SplitSymbol);
+	QString fetchSpecGroupAndKeyValue(const QString &group, const QString &key);
+	QStringList  fetchAnGroupValue(const QString &group);
+	int			 getGroupKeycount(const QString &group);
 	
 private:
 	std::shared_ptr<QSettings>  m_SettingsFile = {nullptr};

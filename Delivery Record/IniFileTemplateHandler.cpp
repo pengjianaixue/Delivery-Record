@@ -2,21 +2,34 @@
 #include "IniFileTemplateHandler.h"
 
 
-IniFileTemplateHandler::IniFileTemplateHandler(QString iniFilePath)
+IniFileProcesser::IniFileProcesser(QString iniFilePath)
 {
 	m_SettingsFile = std::make_shared<QSettings>(iniFilePath, QSettings::IniFormat);
 }
 
-IniFileTemplateHandler::~IniFileTemplateHandler()
+IniFileProcesser::~IniFileProcesser()
 {
 }
 
-bool IniFileTemplateHandler::writeValueDictToIni(VALUELISTDIC valueDict)
+bool IniFileProcesser::writeDictValueToIni(const VALUELISTDIC &valueDict)
 {
+
 	return false;
 }
 
-QString IniFileTemplateHandler::fetchSpecGroupAndKeyValue(QString group, QString key)
+bool IniFileProcesser::writeGroupValueToIni(const QString &groupName, const QStringList &valueAndKeyList, const QString &SplitSymbol)
+{
+	m_SettingsFile->beginWriteArray(groupName);
+	for (auto &item: valueAndKeyList)
+	{
+		QStringList keyvaule = item.split(SplitSymbol);
+		m_SettingsFile->setValue(keyvaule[0], keyvaule[1]);
+	}
+	m_SettingsFile->endArray();
+	return true;
+}
+
+QString IniFileProcesser::fetchSpecGroupAndKeyValue(const QString &group, const QString &key)
 {
 	m_SettingsFile->beginGroup(group);
 	QString value = m_SettingsFile->value(key).toString();
@@ -24,7 +37,15 @@ QString IniFileTemplateHandler::fetchSpecGroupAndKeyValue(QString group, QString
 	return value;
 }
 
-int IniFileTemplateHandler::fetchAnGroupValue(QString group)
+int IniFileProcesser::getGroupKeycount(const QString &group)
+{
+	m_SettingsFile->beginGroup(group);
+	int keynum = m_SettingsFile->childKeys().length();
+	m_SettingsFile->endGroup();
+	return keynum;
+}
+
+QStringList IniFileProcesser::fetchAnGroupValue(const QString &group)
 {
 	m_SettingsFile->beginGroup(group);
 	QStringList  valuelist;
@@ -33,10 +54,10 @@ int IniFileTemplateHandler::fetchAnGroupValue(QString group)
 		valuelist.append(m_SettingsFile->value(item).toString());
 	}
 	m_SettingsFile->endGroup();
-	return 0;
+	return valuelist;
 }
 
-IniFileTemplateHandler::VALUELISTDIC IniFileTemplateHandler::fetchValueDictFromIni()
+IniFileProcesser::VALUELISTDIC IniFileProcesser::fetchValueDictFromIni()
 {
 	VALUELISTDIC vaulelistdict;
 	QStringList Grounps  = m_SettingsFile->childGroups();

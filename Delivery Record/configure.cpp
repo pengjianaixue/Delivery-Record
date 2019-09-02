@@ -2,7 +2,7 @@
 #include "configure.h"
 
 dialog_UserConfigure::dialog_UserConfigure(QWidget *parent)
-	: QWidget(parent)
+	: QDialog(parent)
 {
 	ui.setupUi(this);
 	initUi();
@@ -13,14 +13,31 @@ dialog_UserConfigure::~dialog_UserConfigure()
 
 }
 
+void dialog_UserConfigure::connectslots()
+{
+	this->connect(this->ui.okButton,&QPushButton::clicked,this, &dialog_UserConfigure::submitButtonClick);
+	this->connect(this->ui.cancelButton, &QPushButton::clicked, this, &dialog_UserConfigure::cancelButtonClick);
+}
+
+void dialog_UserConfigure::submitButtonClick()
+{
+
+	this->close();
+}
+
+void dialog_UserConfigure::cancelButtonClick()
+{
+	this->close();
+}
+
 void dialog_UserConfigure::initUi()
 {
 	ui.lineEdit_password->setEchoMode(QLineEdit::Password);
 	ui.lineEdit_password->setPlaceholderText("please input password");
 	ui.lineEdit_username->setPlaceholderText("please input username");
 	ui.lineEdit_editsection->setPlaceholderText("Pelse input table order");
-	IniFileTemplateHandler initIniReader("./RecordTemp.ini");
-	IniFileTemplateHandler::VALUELISTDIC iniFileValue = initIniReader.fetchValueDictFromIni();
+	IniFileProcesser initIniReader("./RecordTemp.ini");
+	IniFileProcesser::VALUELISTDIC iniFileValue = initIniReader.fetchValueDictFromIni();
 	for (auto &item : iniFileValue["user configure"])
 	{
 		if (item.first == "user name")
@@ -44,5 +61,6 @@ void dialog_UserConfigure::initUi()
 		}
 
 	}
+	connectslots();
 	
 }

@@ -48,7 +48,7 @@
      <x>0</x>
      <y>0</y>
      <width>863</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOperation">
@@ -67,14 +67,24 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionconfiguration"/>
+   <addaction name="actionclean_contents"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionclean_contents">
+   <property name="icon">
+    <iconset resource="deliveryrecord.qrc">
+     <normaloff>:/DeliveryRecord/Resources/clean.png</normaloff>:/DeliveryRecord/Resources/clean.png</iconset>
+   </property>
    <property name="text">
     <string>clean contents</string>
    </property>
   </action>
   <action name="actionconfiguration">
+   <property name="icon">
+    <iconset resource="deliveryrecord.qrc">
+     <normaloff>:/DeliveryRecord/Resources/configure.png</normaloff>:/DeliveryRecord/Resources/configure.png</iconset>
+   </property>
    <property name="text">
     <string>configuration</string>
    </property>
