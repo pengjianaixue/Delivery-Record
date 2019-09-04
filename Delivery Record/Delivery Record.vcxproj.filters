@@ -87,4 +87,7 @@
   <ItemGroup>
     <ResourceCompile Include="Delivery Record.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

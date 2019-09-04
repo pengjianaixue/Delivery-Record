@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="DeliveryRecord">
+    <file>Resources/hide.png</file>
     <file>Resources/configure.png</file>
     <file>Resources/clean.png</file>
     <file>Resources/section.png</file>

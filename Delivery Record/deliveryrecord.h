@@ -17,19 +17,25 @@ public:
 private:
 	void resizeEvent(QResizeEvent * event) override;
 	void initUI();
+	void init();
 	bool saveTableContents();
 	void connectSlots();
+	bool callUpdateWikiPyScript();
 
 private slots:
 	void openConfigurDialog(bool open);
-	bool UpdateTableContents();
-
+	bool updateTableContents();
+	void readPyScriptOutputToDisplay();
+	void hideDisplayTextBrowse();
+	void cleanTableContents();
+	
 private:
 	Ui::DeliveryRecordClass					ui;
 	dialog_UserConfigure					*configurUi = {nullptr};
 	std::shared_ptr<QTextEditDelegate>		m_pInputTextEditorDelegate = std::make_shared<QTextEditDelegate>(this);
 	std::shared_ptr<XmlWirter>				m_XmlWirter = std::make_shared<XmlWirter>(this);
 	std::shared_ptr<XmlReader>				m_XmlReader = std::make_shared<XmlReader>(this);
+	std::shared_ptr<QProcess>				m_pyCallProcess = std::make_shared<QProcess>();
 	QString									m_strXmlFilePath;
 	
 };

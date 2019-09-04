@@ -10,12 +10,17 @@ class dialog_UserConfigure : public QDialog
 public:
 	dialog_UserConfigure(QWidget *parent = Q_NULLPTR);
 	~dialog_UserConfigure();
+protected:
+	void showEvent(QShowEvent *showevent) override;
 private slots:
 	void initUi();
 	void connectslots();
 	void submitButtonClick();
 	void cancelButtonClick();
-
+	bool passwordEncryptionProcess(QString &paswordstr);
+	bool passwordDecodeProcess(QString &paswordstr);
 private:
 	Ui::Configure ui;
+	std::map<QString,QString>  m_editSubmitContentsMap;
+	
 };

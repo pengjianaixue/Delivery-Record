@@ -12,7 +12,7 @@ public:
 	//API
 	bool emptyXmlDoc();
 	void fileStructInit(const QString &rootname);
-	bool writeAncategoryData(const QString &categoryName, const QString &childName, const QStringList &attriNameList, const QStringList &valueList);
+	bool writeAncategoryData(const QString &categoryName, const QString &childName, const QStringList &attriNameList, const QList<QStringList> &valueList);
 	bool saveToFile(const QString& FilePath);
 private:
 	pugi::xml_document	m_PugiXmlDocument;

@@ -41,8 +41,8 @@ Return:bool
 bool XmlReader::getAnSpecialCategoryValue(const QString	&categoryName, const QString  &childName, const QStringList &attriNameList, QList<QList<std::pair<QString,QString>>> &valueList)
 {
 	pugi::xml_node nodeRoot = m_PugiXmlDocument.child(m_strRootName.toStdString().c_str());
-	pugi::xml_node node = nodeRoot.child(categoryName.toStdString().c_str());
-	for (pugi::xml_node node = node.first_child(); node; node = node.next_sibling())
+	pugi::xml_node nodechild = nodeRoot.child(categoryName.toStdString().c_str());
+	for (pugi::xml_node node = nodechild.first_child(); node; node = node.next_sibling())
 	{
 		QList<std::pair<QString, QString>>  attriValue;
 		if (childName != node.name())
@@ -56,5 +56,5 @@ bool XmlReader::getAnSpecialCategoryValue(const QString	&categoryName, const QSt
 		valueList.append(attriValue);
 		attriValue.clear();
 	}
-	return false;
+	return true;
 }

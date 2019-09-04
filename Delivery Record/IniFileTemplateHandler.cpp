@@ -17,15 +17,14 @@ bool IniFileProcesser::writeDictValueToIni(const VALUELISTDIC &valueDict)
 	return false;
 }
 
-bool IniFileProcesser::writeGroupValueToIni(const QString &groupName, const QStringList &valueAndKeyList, const QString &SplitSymbol)
+bool IniFileProcesser::writeGroupValueToIni(const QString &groupName, const QList<std::pair<QString, QString>> &valueAndKeyList)
 {
-	m_SettingsFile->beginWriteArray(groupName);
+	m_SettingsFile->beginGroup(groupName);
 	for (auto &item: valueAndKeyList)
 	{
-		QStringList keyvaule = item.split(SplitSymbol);
-		m_SettingsFile->setValue(keyvaule[0], keyvaule[1]);
+		m_SettingsFile->setValue(item.first, item.second);
 	}
-	m_SettingsFile->endArray();
+	m_SettingsFile->endGroup();
 	return true;
 }
 

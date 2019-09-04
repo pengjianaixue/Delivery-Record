@@ -12,7 +12,7 @@ public:
 	~IniFileProcesser();
 	VALUELISTDIC fetchValueDictFromIni();
 	bool writeDictValueToIni(const VALUELISTDIC &valueDict);
-	bool writeGroupValueToIni(const QString &groupName, const QStringList &valueAndKeyList , const QString &SplitSymbol);
+	bool writeGroupValueToIni(const QString &groupName, const QList<std::pair<QString,QString>> &valueAndKeyList);
 	QString fetchSpecGroupAndKeyValue(const QString &group, const QString &key);
 	QStringList  fetchAnGroupValue(const QString &group);
 	int			 getGroupKeycount(const QString &group);
