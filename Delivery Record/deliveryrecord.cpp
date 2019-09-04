@@ -116,10 +116,6 @@ bool DeliveryRecord::callUpdateWikiPyScript()
 	return true;
 }
 
-bool DeliveryRecord::updateTableContents()
-{
-	return false;
-}
 
 void DeliveryRecord::readPyScriptOutputToDisplay()
 {

@@ -24,7 +24,6 @@ private:
 
 private slots:
 	void openConfigurDialog(bool open);
-	bool updateTableContents();
 	void readPyScriptOutputToDisplay();
 	void hideDisplayTextBrowse();
 	void cleanTableContents();
