@@ -10,6 +10,7 @@ class dialog_UserConfigure : public QDialog
 public:
 	dialog_UserConfigure(QWidget *parent = Q_NULLPTR);
 	~dialog_UserConfigure();
+	bool isEnableEmail() const;
 protected:
 	void showEvent(QShowEvent *showevent) override;
 private slots:

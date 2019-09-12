@@ -44,6 +44,17 @@ int IniFileProcesser::getGroupKeycount(const QString &group)
 	return keynum;
 }
 
+bool IniFileProcesser::deleteGroupContents(const QString & group)
+{
+	m_SettingsFile->beginGroup(group);
+	Q_FOREACH(QString item, m_SettingsFile->childKeys())
+	{
+		m_SettingsFile->remove(item);
+	}
+	m_SettingsFile->endGroup();
+	return true;
+}
+
 QStringList IniFileProcesser::fetchAnGroupValue(const QString &group)
 {
 	m_SettingsFile->beginGroup(group);

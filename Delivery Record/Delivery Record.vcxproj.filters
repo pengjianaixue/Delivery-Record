@@ -23,6 +23,9 @@
     <ClCompile Include="XmlWirter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="processrunwiththread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -68,6 +71,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="XmlWirter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="processrunwiththread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

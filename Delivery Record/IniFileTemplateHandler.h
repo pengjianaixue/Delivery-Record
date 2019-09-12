@@ -16,6 +16,7 @@ public:
 	QString fetchSpecGroupAndKeyValue(const QString &group, const QString &key);
 	QStringList  fetchAnGroupValue(const QString &group);
 	int			 getGroupKeycount(const QString &group);
+	bool         deleteGroupContents(const QString &group);
 	
 private:
 	std::shared_ptr<QSettings>  m_SettingsFile = {nullptr};

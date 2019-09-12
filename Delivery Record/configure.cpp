@@ -17,6 +17,11 @@ dialog_UserConfigure::~dialog_UserConfigure()
 	}
 }
 
+bool dialog_UserConfigure::isEnableEmail() const
+{
+	return m_isSendEmail;
+}
+
 void dialog_UserConfigure::showEvent(QShowEvent *showevent)
 {
 	ui.lineEdit_username->setText(m_editSubmitContentsMap["username"]);
@@ -43,7 +48,7 @@ void dialog_UserConfigure::connectslots()
 void dialog_UserConfigure::submitButtonClick()
 {
 	m_editSubmitContentsMap.clear();
-	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text() });
+	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text()});
 	QString passwordEncStr = ui.lineEdit_password->text();
 	passwordEncryptionProcess(passwordEncStr);
 	m_editSubmitContentsMap.insert({ "password",passwordEncStr});
@@ -67,6 +72,7 @@ void dialog_UserConfigure::submitButtonClick()
 		iniList.append({ item.first ,item.second });
 	}
 	IniFileProcesser iniFileWirter("./RecordTemp.ini");
+	iniFileWirter.deleteGroupContents("user_configure");
 	iniFileWirter.writeGroupValueToIni("user_configure", iniList);
 	this->close();
 }

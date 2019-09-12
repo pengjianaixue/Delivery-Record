@@ -11,6 +11,11 @@ DeliveryRecord::DeliveryRecord(QWidget *parent)
 DeliveryRecord::~DeliveryRecord()
 {
 	delete configurUi;
+	if (m_pyProcessRunThread.isRunning())
+	{
+		m_pyProcessRunThread.terminate();
+	}
+	m_pyCallProcess->terminateProcess();
 }
 
 void DeliveryRecord::resizeEvent(QResizeEvent *event)
@@ -63,7 +68,7 @@ void DeliveryRecord::initUI()
 void DeliveryRecord::init()
 {
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
-	m_pyCallProcess->setProcessChannelMode(QProcess::ProcessChannelMode::MergedChannels);
+	m_pyProcessRunThread.start();
 	initUI();
 }
 bool DeliveryRecord::saveTableContents()
@@ -79,9 +84,21 @@ bool DeliveryRecord::saveTableContents()
 	m_XmlWirter->emptyXmlDoc();
 	m_XmlWirter->fileStructInit("root");
 	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList("Value"), valueStringList);
+	QList<QString> cmdStringList;
 	if (m_XmlWirter->saveToFile(m_strXmlFilePath))
 	{
+
+		cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_note_record.exe");
 		callUpdateWikiPyScript();
+		//m_pyProcessWaitThread = std::make_shared<std::thread>([&](){m_pyCallProcess->waitForFinished(); m_updateisfinied = true; });
+		if (configurUi->isEnableEmail())
+		{
+
+			cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
+		}
+		m_pyCallProcess->moveToThread(&m_pyProcessRunThread);
+		emit s_runCallPyScriptSolt(cmdStringList);
+		//m_pyCallProcess->runCommandList(cmdStringList);
 	}
 	else
 	{
@@ -99,8 +116,11 @@ void DeliveryRecord::connectSlots()
 {
 	connect(this->ui.actionconfiguration, &QAction::triggered, this, &DeliveryRecord::openConfigurDialog);
 	connect(this->ui.pushButton_update, &QPushButton::clicked, this, &DeliveryRecord::saveTableContents);
-	connect(this->m_pyCallProcess.get(), &QProcess::readyReadStandardOutput, this, &DeliveryRecord::readPyScriptOutputToDisplay);
-	connect(this->m_pyCallProcess.get(), &QProcess::readyReadStandardError, this, &DeliveryRecord::readPyScriptOutputToDisplay);
+	connect(this->m_pyCallProcess.get(), &processRunWithThread::s_ProcessMsgReaded, this, &DeliveryRecord::readPyScriptOutputToDisplay);
+	connect(this, &DeliveryRecord::s_runCallPyScriptSolt, this->m_pyCallProcess.get(), &processRunWithThread::runCommandList);
+	//connect(this->m_pyCallProcess.get(), &QProcess::readyReadStandardError, this, &DeliveryRecord::readPyScriptOutputToDisplay);
+	//connect(this->m_pyCallProcess.get(), SIGNAL(&QProcess::finished(int, QProcess::ExitStatus)), this, SLOT(&DeliveryRecord::updateIsFinished(int, QProcess::ExitStatus)));
+	//connect(this->m_pyCallProcess.get(), &QProcess::errorOccurred, this, &DeliveryRecord::updateIsFinished);
 	connect(this->ui.pushButton_hidedispaly, &QPushButton::clicked, this, &DeliveryRecord::hideDisplayTextBrowse);
 	connect(this->ui.actionclean_contents, &QAction::triggered, this, &DeliveryRecord::cleanTableContents);
 }
@@ -108,24 +128,19 @@ void DeliveryRecord::connectSlots()
 bool DeliveryRecord::callUpdateWikiPyScript()
 {
 	this->ui.textBrowser_updateInfor->clear();
-	QString pythonFilePath = R"(")" + QApplication::applicationDirPath() + R"(")"  + "/Delivery_note_record.exe";
-	QString cmdstr = pythonFilePath;
-	m_pyCallProcess->start(cmdstr);
 	this->ui.widget_displayinfor->show();
 	this->ui.textBrowser_updateInfor->insertPlainText("Start run python script...\r\n");
 	return true;
 }
 
 
-void DeliveryRecord::readPyScriptOutputToDisplay()
+void DeliveryRecord::readPyScriptOutputToDisplay(QString cmdProcessMsg)
 {
 	if (this->ui.widget_displayinfor->isHidden())
 	{
 		this->ui.widget_displayinfor->show();
 	}
-	QByteArray baStandardoutpt = m_pyCallProcess->readAllStandardOutput();
-	QString msg = QString::fromLocal8Bit(baStandardoutpt);
-	this->ui.textBrowser_updateInfor->insertPlainText(msg);
+	this->ui.textBrowser_updateInfor->insertPlainText(cmdProcessMsg);
 }
 
 void DeliveryRecord::hideDisplayTextBrowse()
@@ -140,4 +155,5 @@ void DeliveryRecord::cleanTableContents()
 		this->ui.tablewideget_deliverytable->item(i, 0)->setText("");
 	}
 }
+
 

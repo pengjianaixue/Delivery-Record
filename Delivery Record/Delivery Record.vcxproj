@@ -229,6 +229,7 @@
     <ClCompile Include="IniFileTemplateHandler.cpp" />
     <ClCompile Include="deliveryrecord.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="processrunwiththread.cpp" />
     <ClCompile Include="QTextEditDelegate.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -246,6 +247,7 @@
     <QtMoc Include="deliveryrecord.h" />
     <QtMoc Include="configure.h" />
     <QtMoc Include="QTextEditDelegate.h" />
+    <QtMoc Include="processrunwiththread.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

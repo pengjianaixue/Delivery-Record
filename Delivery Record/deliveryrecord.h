@@ -1,12 +1,14 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include <thread>
 #include "ui_deliveryrecord.h"
 #include "IniFileTemplateHandler.h"
 #include "configure.h"
 #include "QTextEditDelegate.h"
 #include "XmlWirter.h"
 #include "XmlReader.h"
+#include "processRunWithThread.h"
 class DeliveryRecord : public QMainWindow
 {
 	Q_OBJECT
@@ -14,17 +16,19 @@ class DeliveryRecord : public QMainWindow
 public:
 	DeliveryRecord(QWidget *parent = Q_NULLPTR);
 	~DeliveryRecord();
-private:
+protected:
 	void resizeEvent(QResizeEvent * event) override;
+private:
 	void initUI();
 	void init();
 	bool saveTableContents();
 	void connectSlots();
 	bool callUpdateWikiPyScript();
-
+signals:
+	bool s_runCallPyScriptSolt(QList<QString>);
 private slots:
 	void openConfigurDialog(bool open);
-	void readPyScriptOutputToDisplay();
+	void readPyScriptOutputToDisplay(QString cmdProcessMsg);
 	void hideDisplayTextBrowse();
 	void cleanTableContents();
 	
@@ -34,7 +38,10 @@ private:
 	std::shared_ptr<QTextEditDelegate>		m_pInputTextEditorDelegate = std::make_shared<QTextEditDelegate>(this);
 	std::shared_ptr<XmlWirter>				m_XmlWirter = std::make_shared<XmlWirter>(this);
 	std::shared_ptr<XmlReader>				m_XmlReader = std::make_shared<XmlReader>(this);
-	std::shared_ptr<QProcess>				m_pyCallProcess = std::make_shared<QProcess>();
+	std::shared_ptr<processRunWithThread>	m_pyCallProcess = { std::make_shared<processRunWithThread>(nullptr)}; //= std::make_shared<QProcess>();
+	QThread									m_pyProcessRunThread;
+	//std::shared_ptr<QProcess>				m_emialSendPyCallProcess = std::make_shared<QProcess>();
 	QString									m_strXmlFilePath;
-	
+	volatile bool							m_updateisfinied = {false};
+
 };
