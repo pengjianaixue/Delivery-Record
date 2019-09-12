@@ -2,20 +2,26 @@
 
 #include <QObject>
 
-class processRunWithThread : public QObject
+class processRunWithThread : public QThread
 {
 	Q_OBJECT
 
 public:
-	processRunWithThread(QObject *parent);
+	processRunWithThread(QThread *parent);
 	~processRunWithThread();
 	void terminateProcess();
+	void registerrunCommandList(const QList<QString> &cmdList);
 public slots:
-	bool runCommandList(QList<QString> cmdList);
+	
 private slots:
 	void emitProcessMsg();
 signals:
 	void s_ProcessMsgReaded(QString);
+protected:
+	void run() override;
 private:
-	QProcess		m_runCmdProcess;
+	QProcess				*m_runCmdProcess = {nullptr};
+	QList<QString>			m_cmdList;
+	volatile bool			m_isStop = { false };
+	QMutex					m_mutex;
 };

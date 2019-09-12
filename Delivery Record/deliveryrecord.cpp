@@ -11,10 +11,6 @@ DeliveryRecord::DeliveryRecord(QWidget *parent)
 DeliveryRecord::~DeliveryRecord()
 {
 	delete configurUi;
-	if (m_pyProcessRunThread.isRunning())
-	{
-		m_pyProcessRunThread.terminate();
-	}
 	m_pyCallProcess->terminateProcess();
 }
 
@@ -68,7 +64,6 @@ void DeliveryRecord::initUI()
 void DeliveryRecord::init()
 {
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
-	m_pyProcessRunThread.start();
 	initUI();
 }
 bool DeliveryRecord::saveTableContents()
@@ -96,8 +91,9 @@ bool DeliveryRecord::saveTableContents()
 
 			cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
 		}
-		m_pyCallProcess->moveToThread(&m_pyProcessRunThread);
-		emit s_runCallPyScriptSolt(cmdStringList);
+		m_pyCallProcess->registerrunCommandList(cmdStringList);
+		m_pyCallProcess->start();
+		//emit s_runCallPyScriptSolt(cmdStringList);
 		//m_pyCallProcess->runCommandList(cmdStringList);
 	}
 	else
@@ -117,7 +113,7 @@ void DeliveryRecord::connectSlots()
 	connect(this->ui.actionconfiguration, &QAction::triggered, this, &DeliveryRecord::openConfigurDialog);
 	connect(this->ui.pushButton_update, &QPushButton::clicked, this, &DeliveryRecord::saveTableContents);
 	connect(this->m_pyCallProcess.get(), &processRunWithThread::s_ProcessMsgReaded, this, &DeliveryRecord::readPyScriptOutputToDisplay);
-	connect(this, &DeliveryRecord::s_runCallPyScriptSolt, this->m_pyCallProcess.get(), &processRunWithThread::runCommandList);
+	//connect(this, &DeliveryRecord::s_runCallPyScriptSolt, this->m_pyCallProcess.get(), &processRunWithThread::runCommandList);
 	//connect(this->m_pyCallProcess.get(), &QProcess::readyReadStandardError, this, &DeliveryRecord::readPyScriptOutputToDisplay);
 	//connect(this->m_pyCallProcess.get(), SIGNAL(&QProcess::finished(int, QProcess::ExitStatus)), this, SLOT(&DeliveryRecord::updateIsFinished(int, QProcess::ExitStatus)));
 	//connect(this->m_pyCallProcess.get(), &QProcess::errorOccurred, this, &DeliveryRecord::updateIsFinished);

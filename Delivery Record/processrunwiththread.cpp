@@ -1,36 +1,60 @@
 #include "stdafx.h"
 #include "processrunwiththread.h"
 
-processRunWithThread::processRunWithThread(QObject *parent)
-	: QObject(parent)
+processRunWithThread::processRunWithThread(QThread *parent)
+	: QThread(parent)
 {
-	m_runCmdProcess.setProcessChannelMode(QProcess::ProcessChannelMode::MergedChannels);
-	connect(&this->m_runCmdProcess, &QProcess::readyReadStandardOutput, this, &processRunWithThread::emitProcessMsg);
+	
 }
 
 processRunWithThread::~processRunWithThread()
 {
-	m_runCmdProcess.terminate();
+	m_isStop = true;
+	wait();
 }
 void processRunWithThread::emitProcessMsg()
 {
-	QByteArray baStandardoutpt = this->m_runCmdProcess.readAllStandardOutput();
-	QString msg = QString::fromLocal8Bit(baStandardoutpt);
-	emit s_ProcessMsgReaded(msg);
-	return;
-}
-bool processRunWithThread::runCommandList(QList<QString> cmdList)
-{
-	for (auto &cmditem: cmdList)
+	if (this->m_runCmdProcess)
 	{
-		m_runCmdProcess.start(cmditem);
-		m_runCmdProcess.waitForFinished();
+		QByteArray baStandardoutpt = this->m_runCmdProcess->readAllStandardOutput();
+		QString msg = QString::fromLocal8Bit(baStandardoutpt);
+		emit s_ProcessMsgReaded(msg);
+		return;
 	}
-	return true;
+	
 }
-
 void processRunWithThread::terminateProcess()
 {
-	m_runCmdProcess.terminate();
+	if (m_runCmdProcess)
+	{
+		m_runCmdProcess->terminate();
+	}
+	return;
+}
+
+void processRunWithThread::registerrunCommandList(const QList<QString>& cmdList)
+{
+	QMutexLocker locker(&m_mutex);
+	m_cmdList = cmdList;
+	return;
+}
+
+void processRunWithThread::run()
+{
+
+	m_runCmdProcess = new QProcess;
+	m_runCmdProcess->deleteLater();
+	m_runCmdProcess->setProcessChannelMode(QProcess::ProcessChannelMode::MergedChannels);
+	connect(this->m_runCmdProcess, &QProcess::readyReadStandardOutput, this, &processRunWithThread::emitProcessMsg);
+	while (!m_isStop)
+	{
+		QMutexLocker locker(&m_mutex);
+		for (auto &cmditem : m_cmdList)
+		{
+			m_runCmdProcess->start(cmditem);
+			m_runCmdProcess->waitForFinished();
+		}
+		m_cmdList.clear();
+	}	
 	return;
 }
