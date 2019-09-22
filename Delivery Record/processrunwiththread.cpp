@@ -1,18 +1,20 @@
 #include "stdafx.h"
 #include "processrunwiththread.h"
 
-processRunWithThread::processRunWithThread(QThread *parent)
-	: QThread(parent)
+subProcessRunner::subProcessRunner(QObject *parent)
+	: QObject(parent)
 {
-	
+	m_runCmdProcess = new QProcess(this);
+	m_runCmdProcess->setParent(this);
+	m_runCmdProcess->setProcessChannelMode(QProcess::ProcessChannelMode::MergedChannels);
+	connect(this->m_runCmdProcess, &QProcess::readyReadStandardOutput, this, &subProcessRunner::emitProcessMsg);
 }
 
-processRunWithThread::~processRunWithThread()
+subProcessRunner::~subProcessRunner()
 {
-	m_isStop = true;
-	wait();
+	m_runCmdProcess->deleteLater();
 }
-void processRunWithThread::emitProcessMsg()
+void subProcessRunner::emitProcessMsg()
 {
 	if (this->m_runCmdProcess)
 	{
@@ -23,7 +25,7 @@ void processRunWithThread::emitProcessMsg()
 	}
 	
 }
-void processRunWithThread::terminateProcess()
+void subProcessRunner::terminateProcess()
 {
 	if (m_runCmdProcess)
 	{
@@ -31,30 +33,13 @@ void processRunWithThread::terminateProcess()
 	}
 	return;
 }
-
-void processRunWithThread::registerrunCommandList(const QList<QString>& cmdList)
-{
-	QMutexLocker locker(&m_mutex);
-	m_cmdList = cmdList;
-	return;
-}
-
-void processRunWithThread::run()
+void subProcessRunner::run(const QList<QString>& cmdList)
 {
 
-	m_runCmdProcess = new QProcess;
-	m_runCmdProcess->deleteLater();
-	m_runCmdProcess->setProcessChannelMode(QProcess::ProcessChannelMode::MergedChannels);
-	connect(this->m_runCmdProcess, &QProcess::readyReadStandardOutput, this, &processRunWithThread::emitProcessMsg);
-	while (!m_isStop)
+	for (auto &cmditem : cmdList)
 	{
-		QMutexLocker locker(&m_mutex);
-		for (auto &cmditem : m_cmdList)
-		{
-			m_runCmdProcess->start(cmditem);
-			m_runCmdProcess->waitForFinished();
-		}
-		m_cmdList.clear();
-	}	
+		m_runCmdProcess->start(cmditem);
+		m_runCmdProcess->waitForFinished();
+	}
 	return;
 }

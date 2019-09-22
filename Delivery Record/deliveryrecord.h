@@ -38,9 +38,10 @@ private:
 	std::shared_ptr<QTextEditDelegate>		m_pInputTextEditorDelegate = std::make_shared<QTextEditDelegate>(this);
 	std::shared_ptr<XmlWirter>				m_XmlWirter = std::make_shared<XmlWirter>(this);
 	std::shared_ptr<XmlReader>				m_XmlReader = std::make_shared<XmlReader>(this);
-	std::shared_ptr<processRunWithThread>	m_pyCallProcess = { std::make_shared<processRunWithThread>(nullptr)}; //= std::make_shared<QProcess>();
+	std::shared_ptr<subProcessRunner>		m_pyCallProcess = { std::make_shared<subProcessRunner>(nullptr)}; //= std::make_shared<QProcess>();
 	//std::shared_ptr<QProcess>				m_emialSendPyCallProcess = std::make_shared<QProcess>();
 	QString									m_strXmlFilePath;
 	volatile bool							m_updateisfinied = {false};
+	QThread									m_pyRunThread;
 
 };
