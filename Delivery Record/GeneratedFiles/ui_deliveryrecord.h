@@ -48,6 +48,7 @@ public:
     QTextBrowser *textBrowser_updateInfor;
     QHBoxLayout *horizontalLayout_2;
     QProgressBar *progressBar_update;
+    QPushButton *pushButton_logview;
     QPushButton *pushButton_update;
     QMenuBar *menuBar;
     QMenu *menuOperation;
@@ -142,11 +143,19 @@ public:
 
         horizontalLayout_2->addWidget(progressBar_update);
 
+        pushButton_logview = new QPushButton(centralWidget);
+        pushButton_logview->setObjectName(QStringLiteral("pushButton_logview"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/DeliveryRecord/Resources/visual.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_logview->setIcon(icon3);
+
+        horizontalLayout_2->addWidget(pushButton_logview);
+
         pushButton_update = new QPushButton(centralWidget);
         pushButton_update->setObjectName(QStringLiteral("pushButton_update"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/DeliveryRecord/Resources/update.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_update->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/DeliveryRecord/Resources/update.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_update->setIcon(icon4);
 
         horizontalLayout_2->addWidget(pushButton_update);
 
@@ -184,6 +193,7 @@ public:
         actionclean_contents->setText(QApplication::translate("DeliveryRecordClass", "clean contents", Q_NULLPTR));
         actionconfiguration->setText(QApplication::translate("DeliveryRecordClass", "configuration", Q_NULLPTR));
         pushButton_hidedispaly->setText(QString());
+        pushButton_logview->setText(QApplication::translate("DeliveryRecordClass", "Logview", Q_NULLPTR));
         pushButton_update->setText(QApplication::translate("DeliveryRecordClass", "update", Q_NULLPTR));
         menuOperation->setTitle(QApplication::translate("DeliveryRecordClass", "Operation", Q_NULLPTR));
     } // retranslateUi

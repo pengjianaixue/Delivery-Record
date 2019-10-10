@@ -22,6 +22,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -46,6 +48,8 @@ public:
     QRadioButton *radioButton_enableSendEmail;
     QWidget *widget_email;
     QGridLayout *gridLayout;
+    QSplitter *splitter;
+    QWidget *widget;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
     QLabel *Lable_email_sender;
@@ -59,6 +63,7 @@ public:
     QComboBox *comboBox_emailrecviers;
     QPushButton *pushButton_addEmailRecvier;
     QPushButton *pushButton_removeEmailRecvier;
+    QTableWidget *tableWidget_emailcontents;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *spacer;
     QPushButton *okButton;
@@ -68,7 +73,7 @@ public:
     {
         if (Configure->objectName().isEmpty())
             Configure->setObjectName(QStringLiteral("Configure"));
-        Configure->resize(610, 335);
+        Configure->resize(885, 530);
         gridLayout_2 = new QGridLayout(Configure);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -155,27 +160,35 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        horizontalLayout_2 = new QHBoxLayout();
+        splitter = new QSplitter(widget_email);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setOrientation(Qt::Vertical);
+        widget = new QWidget(splitter);
+        widget->setObjectName(QStringLiteral("widget"));
+        horizontalLayout_2 = new QHBoxLayout(widget);
         horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        Lable_email_sender = new QLabel(widget_email);
+        Lable_email_sender = new QLabel(widget);
         Lable_email_sender->setObjectName(QStringLiteral("Lable_email_sender"));
         Lable_email_sender->setMinimumSize(QSize(30, 0));
         Lable_email_sender->setStyleSheet(QStringLiteral("image: url(:/DeliveryRecord/Resources/email_account_suser.png);"));
 
         verticalLayout->addWidget(Lable_email_sender);
 
-        Lable_editsection_DelieveryComments = new QLabel(widget_email);
+        Lable_editsection_DelieveryComments = new QLabel(widget);
         Lable_editsection_DelieveryComments->setObjectName(QStringLiteral("Lable_editsection_DelieveryComments"));
         Lable_editsection_DelieveryComments->setMinimumSize(QSize(30, 0));
-        Lable_editsection_DelieveryComments->setStyleSheet(QStringLiteral("image: url(:/DeliveryRecord/Resources/comments.png);"));
+        Lable_editsection_DelieveryComments->setAutoFillBackground(true);
+        Lable_editsection_DelieveryComments->setStyleSheet(QStringLiteral("image: url(:/DeliveryRecord/Resources/Subject one.png);"));
 
         verticalLayout->addWidget(Lable_editsection_DelieveryComments);
 
-        Lable_editsection_EmailRecviers = new QLabel(widget_email);
+        Lable_editsection_EmailRecviers = new QLabel(widget);
         Lable_editsection_EmailRecviers->setObjectName(QStringLiteral("Lable_editsection_EmailRecviers"));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -196,12 +209,12 @@ public:
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        lineEdit_emailsender = new QLineEdit(widget_email);
+        lineEdit_emailsender = new QLineEdit(widget);
         lineEdit_emailsender->setObjectName(QStringLiteral("lineEdit_emailsender"));
 
         verticalLayout_5->addWidget(lineEdit_emailsender);
 
-        lineEdit_emailcomments = new QLineEdit(widget_email);
+        lineEdit_emailcomments = new QLineEdit(widget);
         lineEdit_emailcomments->setObjectName(QStringLiteral("lineEdit_emailcomments"));
 
         verticalLayout_5->addWidget(lineEdit_emailcomments);
@@ -212,7 +225,7 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        comboBox_emailrecviers = new QComboBox(widget_email);
+        comboBox_emailrecviers = new QComboBox(widget);
         comboBox_emailrecviers->setObjectName(QStringLiteral("comboBox_emailrecviers"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
@@ -222,7 +235,7 @@ public:
 
         horizontalLayout_5->addWidget(comboBox_emailrecviers);
 
-        pushButton_addEmailRecvier = new QPushButton(widget_email);
+        pushButton_addEmailRecvier = new QPushButton(widget);
         pushButton_addEmailRecvier->setObjectName(QStringLiteral("pushButton_addEmailRecvier"));
         sizePolicy1.setHeightForWidth(pushButton_addEmailRecvier->sizePolicy().hasHeightForWidth());
         pushButton_addEmailRecvier->setSizePolicy(sizePolicy1);
@@ -233,7 +246,7 @@ public:
 
         horizontalLayout_5->addWidget(pushButton_addEmailRecvier);
 
-        pushButton_removeEmailRecvier = new QPushButton(widget_email);
+        pushButton_removeEmailRecvier = new QPushButton(widget);
         pushButton_removeEmailRecvier->setObjectName(QStringLiteral("pushButton_removeEmailRecvier"));
         sizePolicy1.setHeightForWidth(pushButton_removeEmailRecvier->sizePolicy().hasHeightForWidth());
         pushButton_removeEmailRecvier->setSizePolicy(sizePolicy1);
@@ -255,8 +268,12 @@ public:
 
         horizontalLayout_2->addLayout(verticalLayout_8);
 
+        splitter->addWidget(widget);
+        tableWidget_emailcontents = new QTableWidget(splitter);
+        tableWidget_emailcontents->setObjectName(QStringLiteral("tableWidget_emailcontents"));
+        splitter->addWidget(tableWidget_emailcontents);
 
-        gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
+        gridLayout->addWidget(splitter, 0, 0, 1, 1);
 
 
         verticalLayout_6->addWidget(widget_email);

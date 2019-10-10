@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="DeliveryRecord">
+    <file>Resources/release-notes.png</file>
+    <file>Resources/visual.png</file>
+    <file>Resources/Subject one.png</file>
     <file>Resources/email_send.png</file>
     <file>Resources/add.png</file>
     <file>Resources/remove.png</file>

@@ -12,7 +12,7 @@ DeliveryRecord::~DeliveryRecord()
 {
 	delete configurUi;
 	m_pyCallProcess->terminateProcess();
-	m_pyRunThread.wait();
+	m_pyRunThread.terminate();
 }
 
 void DeliveryRecord::resizeEvent(QResizeEvent *event)
@@ -23,6 +23,8 @@ void DeliveryRecord::resizeEvent(QResizeEvent *event)
 void DeliveryRecord::initUI()
 {
 	ui.progressBar_update->hide();
+	this->ui.progressBar_update->setRange(0, 100);
+	this->ui.progressBar_update->setStyle(QStyleFactory::create("WindowsVista"));
 	this->configurUi->hide();
 	this->ui.widget_displayinfor->hide();
 	ui.horizontalLayout_2->insertSpacerItem(1,new QSpacerItem(20, 20, QSizePolicy::Expanding));
@@ -65,6 +67,8 @@ void DeliveryRecord::initUI()
 void DeliveryRecord::init()
 {
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
+	m_pyCallProcess->moveToThread(&m_pyRunThread);
+	m_pyRunThread.start();
 	initUI();
 }
 bool DeliveryRecord::saveTableContents()
@@ -77,8 +81,13 @@ bool DeliveryRecord::saveTableContents()
 		valueStringList.append(valueList);
 		valueList.clear();
 	}
-	m_XmlWirter->emptyXmlDoc();
-	m_XmlWirter->fileStructInit("root");
+	if (!m_XmlWirter->loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	{
+		m_XmlWirter->emptyXmlDoc();
+		m_XmlWirter->fileStructInit("root");
+	}
+	m_XmlWirter->setCurrentNode("root");
+	m_XmlWirter->removeChild("Delivery_Infor");
 	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList("Value"), valueStringList);
 	QList<QString> cmdStringList;
 	if (m_XmlWirter->saveToFile(m_strXmlFilePath))
@@ -86,18 +95,12 @@ bool DeliveryRecord::saveTableContents()
 
 		cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_note_record.exe");
 		callUpdateWikiPyScript();
-		if (configurUi->isEnableEmail())
+		/*if (configurUi->isEnableEmail())
 		{
-
 			cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
-		}
-		if (!m_pyRunThread.isFinished())
-		{
-			m_pyRunThread.wait();
-		}
-		m_pyCallProcess->moveToThread(&m_pyRunThread);
-		m_pyRunThread.start();
+		}*/
 		emit s_runCallPyScriptSolt(cmdStringList);
+		ui.progressBar_update->show();
 	}
 	else
 	{
@@ -115,19 +118,17 @@ void DeliveryRecord::connectSlots()
 {
 	connect(this->ui.actionconfiguration, &QAction::triggered, this, &DeliveryRecord::openConfigurDialog);
 	connect(this->ui.pushButton_update, &QPushButton::clicked, this, &DeliveryRecord::saveTableContents);
-	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_ProcessMsgReaded, this, &DeliveryRecord::readPyScriptOutputToDisplay);
+	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_processMsgReaded, this, &DeliveryRecord::readPyScriptOutputToDisplay);
 	connect(this, &DeliveryRecord::s_runCallPyScriptSolt, this->m_pyCallProcess.get(), &subProcessRunner::run);
-	//connect(this->m_pyCallProcess.get(), &QProcess::readyReadStandardError, this, &DeliveryRecord::readPyScriptOutputToDisplay);
-	//connect(this->m_pyCallProcess.get(), SIGNAL(&QProcess::finished(int, QProcess::ExitStatus)), this, SLOT(&DeliveryRecord::updateIsFinished(int, QProcess::ExitStatus)));
-	//connect(this->m_pyCallProcess.get(), &QProcess::errorOccurred, this, &DeliveryRecord::updateIsFinished);
+	connect(this->ui.pushButton_logview, &QPushButton::clicked, this, [=] {this->ui.widget_displayinfor->show(); this->ui.pushButton_logview->hide(); });
 	connect(this->ui.pushButton_hidedispaly, &QPushButton::clicked, this, &DeliveryRecord::hideDisplayTextBrowse);
 	connect(this->ui.actionclean_contents, &QAction::triggered, this, &DeliveryRecord::cleanTableContents);
+	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_runFinished, this, &DeliveryRecord::fetchPyScriptRunResult);
 }
 
 bool DeliveryRecord::callUpdateWikiPyScript()
 {
 	this->ui.textBrowser_updateInfor->clear();
-	this->ui.widget_displayinfor->show();
 	this->ui.textBrowser_updateInfor->insertPlainText("Start run python script...\r\n");
 	return true;
 }
@@ -135,16 +136,15 @@ bool DeliveryRecord::callUpdateWikiPyScript()
 
 void DeliveryRecord::readPyScriptOutputToDisplay(QString cmdProcessMsg)
 {
-	if (this->ui.widget_displayinfor->isHidden())
-	{
-		this->ui.widget_displayinfor->show();
-	}
+	
 	this->ui.textBrowser_updateInfor->insertPlainText(cmdProcessMsg);
 }
 
 void DeliveryRecord::hideDisplayTextBrowse()
 {
+
 	this->ui.widget_displayinfor->hide();
+	this->ui.pushButton_logview->show();
 }
 
 void DeliveryRecord::cleanTableContents()
@@ -153,6 +153,47 @@ void DeliveryRecord::cleanTableContents()
 	{
 		this->ui.tablewideget_deliverytable->item(i, 0)->setText("");
 	}
+}
+
+void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
+{
+	
+	if (cmditem.contains(QStringRef(&QString("Delivery_note_record.exe"))))
+	{
+		if (this->ui.textBrowser_updateInfor->toPlainText().contains(QStringRef(&QString("Update success"))))
+		{
+			QList<QString> cmdStringList;
+			if (configurUi->isEnableEmail())
+			{
+				this->ui.progressBar_update->setValue(ui.progressBar_update->value() + 50);
+				cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
+				emit s_runCallPyScriptSolt(cmdStringList);
+			}
+			else
+			{
+				this->ui.progressBar_update->setValue(100);
+			}
+		}
+		else
+		{
+			QMessageBox::critical(this, "update error", "update the wiki website failed,please contact administrator");
+			this->ui.progressBar_update->hide();
+		}
+	}
+	if (cmditem.contains(QStringRef(&QString("Delivery_Record_Notify_EmailSend.exe"))))
+	{
+		if (this->ui.textBrowser_updateInfor->toPlainText().contains(QStringRef(&QString("mail send success"))))
+		{
+			this->ui.progressBar_update->setValue(100);
+
+		}
+		else
+		{
+			QMessageBox::critical(this, "update error", "send email failed,please contact administrator");
+			this->ui.progressBar_update->hide();
+		}
+	}
+	
 }
 
 

@@ -88,6 +88,17 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_logview">
+        <property name="text">
+         <string>Logview</string>
+        </property>
+        <property name="icon">
+         <iconset resource="deliveryrecord.qrc">
+          <normaloff>:/DeliveryRecord/Resources/visual.png</normaloff>:/DeliveryRecord/Resources/visual.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton_update">
         <property name="text">
          <string>update</string>

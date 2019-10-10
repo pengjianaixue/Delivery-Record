@@ -20,7 +20,7 @@ void subProcessRunner::emitProcessMsg()
 	{
 		QByteArray baStandardoutpt = this->m_runCmdProcess->readAllStandardOutput();
 		QString msg = QString::fromLocal8Bit(baStandardoutpt);
-		emit s_ProcessMsgReaded(msg);
+		emit s_processMsgReaded(msg);
 		return;
 	}
 	
@@ -35,11 +35,11 @@ void subProcessRunner::terminateProcess()
 }
 void subProcessRunner::run(const QList<QString>& cmdList)
 {
-
 	for (auto &cmditem : cmdList)
 	{
 		m_runCmdProcess->start(cmditem);
 		m_runCmdProcess->waitForFinished();
+		emit s_runFinished(cmditem);
 	}
 	return;
 }

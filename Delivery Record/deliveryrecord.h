@@ -31,6 +31,7 @@ private slots:
 	void readPyScriptOutputToDisplay(QString cmdProcessMsg);
 	void hideDisplayTextBrowse();
 	void cleanTableContents();
+	void fetchPyScriptRunResult(const QString &cmditem);
 	
 private:
 	Ui::DeliveryRecordClass					ui;

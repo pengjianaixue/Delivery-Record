@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 	qRegisterMetaType<QList<QString>>();
 	QApplication::setStyle(QStyleFactory::create("Fusion"));
+	qDebug() << QStyleFactory::keys();
 	DeliveryRecord w;
 	w.setWindowTitle("Delivery Record");
 	w.show();

@@ -24,6 +24,28 @@ bool dialog_UserConfigure::isEnableEmail() const
 
 void dialog_UserConfigure::showEvent(QShowEvent *showevent)
 {
+	XmlReader::VALUEPAIRLIST emailInforList;
+	if(m_xmlReader.openFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	{
+		m_xmlReader.setRootName();
+		m_xmlReader.getAnSpecialCategoryValue("Delivery_Email_Infor", "Delivery_Email_Content", 
+			QStringList() << "Title" << "Contents", emailInforList);
+		if (!emailInforList.isEmpty())
+		{
+			int rowconunter = 0;
+			int colcounter = 0;
+			for (auto &item: emailInforList)
+			{
+				for (auto &childitem : item)
+				{
+					this->ui.tableWidget_emailcontents->setItem(rowconunter, colcounter,new QTableWidgetItem(childitem.second));
+					++colcounter;
+				}
+				++rowconunter;
+				colcounter = 0;
+			}
+		}
+	}
 	ui.lineEdit_username->setText(m_editSubmitContentsMap["username"]);
 	QString passwordDecodestr = m_editSubmitContentsMap["password"];
 	passwordDecodeProcess(passwordDecodestr);
@@ -47,6 +69,32 @@ void dialog_UserConfigure::connectslots()
 
 void dialog_UserConfigure::submitButtonClick()
 {
+	if (!m_xmlWirter.loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	{
+		m_xmlWirter.emptyXmlDoc();
+		m_xmlWirter.fileStructInit("root");
+	}
+	m_xmlWirter.setCurrentNode("root");
+	QStringList attruiItemList;
+	attruiItemList << "Title" <<"Contents";
+	QList<QStringList> vauleList;
+	for (size_t i = 0; i < ui.tableWidget_emailcontents->rowCount(); i++)
+	{
+		if (ui.tableWidget_emailcontents->item(i,0) 
+			&& ui.tableWidget_emailcontents->item(i, 1)
+			&& !ui.tableWidget_emailcontents->item(i, 0)->text().isEmpty()  
+			&& !ui.tableWidget_emailcontents->item(i, 1)->text().isEmpty()
+			)
+		{
+			QStringList itemtext;
+			itemtext << ui.tableWidget_emailcontents->item(i, 0)->text();
+			itemtext << ui.tableWidget_emailcontents->item(i, 1)->text();
+			vauleList.append(itemtext);
+		}
+	}
+	m_xmlWirter.removeChild("Delivery_Email_Infor");
+	m_xmlWirter.writeAncategoryData("Delivery_Email_Infor","Delivery_Email_Content", attruiItemList, vauleList);
+	m_xmlWirter.saveToFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml");
 	m_editSubmitContentsMap.clear();
 	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text()});
 	QString passwordEncStr = ui.lineEdit_password->text();
@@ -79,7 +127,6 @@ void dialog_UserConfigure::submitButtonClick()
 
 void dialog_UserConfigure::cancelButtonClick()
 {
-	
 	this->close();
 }
 
@@ -115,12 +162,27 @@ void dialog_UserConfigure::emialRadioPushbuttonCliked()
 	if (ui.radioButton_enableSendEmail->isChecked())
 	{
 		m_isSendEmail = true;
+		this->resize(900, 700);
+		QRect rect = (static_cast<QWidget*>(parent()))->geometry();
+		int x = rect.x() + rect.width() / 2 - this->width() / 2;
+		int y = rect.y() + rect.height() / 2 - this->height()/2;
+		this->move(x,y);
 		ui.widget_email->show();
+		
 	}
 	else
 	{
 		m_isSendEmail = false;
 		ui.widget_email->hide();
+		this->resize(300, 50);
+		//QRect emailFrame;
+		//emailFrame.setHeight(50);
+		//emailFrame.setWidth(300);
+		//this->setGeometry(emailFrame);
+		QRect rect = (static_cast<QWidget*>(parent()))->geometry();
+		int x = rect.x() + rect.width() / 2 - this->width() / 2;
+		int y = rect.y() + rect.height() / 2 - this->height() / 2;
+		this->move(x, y);
 	}
 }
 
@@ -128,7 +190,9 @@ void dialog_UserConfigure::emialRadioPushbuttonCliked()
 void dialog_UserConfigure::initUi()
 {
 	ui.widget_email->hide();
-	this->resize(QSize(this->geometry().width(),this->geometry().height()));
+	ui.splitter->setStretchFactor(0,1);
+	ui.splitter->setStretchFactor(1, 9);
+	this->resize(300, 50);
 	ui.comboBox_emailrecviers->setEditable(true);
 	ui.lineEdit_password->setEchoMode(QLineEdit::Password);
 	ui.lineEdit_password->setPlaceholderText("please input password");
@@ -144,6 +208,16 @@ void dialog_UserConfigure::initUi()
 	{
 		ui.comboBox_emailrecviers->addItem(m_editSubmitContentsMap[QString("recvier_") + QString::number(i)]);
 	}
+	this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	this->ui.tableWidget_emailcontents->setColumnCount(2);
+	QStringList horizontalHeader;
+	horizontalHeader << "Email Title" << "Email Contents";
+	this->ui.tableWidget_emailcontents->setRowCount(10);
+	this->ui.tableWidget_emailcontents->setRowHeight(1, 5);
+	this->ui.tableWidget_emailcontents->setHorizontalHeaderLabels(horizontalHeader);
+	this->ui.tableWidget_emailcontents->horizontalHeader()->setStretchLastSection(true);
+	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate.get());
+	this->ui.tableWidget_emailcontents->setItem(1, 1, new QTableWidgetItem());
 	showEvent(nullptr);
 	connectslots();
 	

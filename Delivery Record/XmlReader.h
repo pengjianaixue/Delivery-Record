@@ -10,12 +10,12 @@ class XmlReader : public QObject
 public:
 	using VALUEPAIRLIST = QList<QList<std::pair<QString, QString>>>;
 public:
-	XmlReader(QObject *parent);
+	XmlReader(QObject *parent = nullptr);
 	~XmlReader();
 	//API
 	bool openFile(const QString	&FileName);
 	bool setRootName(const QString &RootName = "root");
-	bool getAnSpecialCategoryValue(const QString	&categoryName, const QString  &childName, const QStringList &attriNameList, VALUEPAIRLIST &valueList);
+	bool getAnSpecialCategoryValue(const QString &categoryName, const QString  &childName, const QStringList &attriNameList, VALUEPAIRLIST &valueList);
 private:
 	pugi::xml_document					m_PugiXmlDocument;
 	QString								m_strRootName;
