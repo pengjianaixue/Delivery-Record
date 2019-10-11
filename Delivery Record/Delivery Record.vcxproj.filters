@@ -96,4 +96,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\release-notes.ico" />
+  </ItemGroup>
 </Project>
