@@ -20,6 +20,21 @@ void DeliveryRecord::resizeEvent(QResizeEvent *event)
 	
 }
 
+bool DeliveryRecord::eventFilter(QObject * target, QEvent * event)
+{
+	if (target == this->ui.tablewideget_deliverytable && event->type() == QEvent::Leave)
+	{
+		this->ui.tablewideget_deliverytable->unsetCursor();
+		this->ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+		return true;//will 
+	}
+	else
+	{
+		return QWidget::eventFilter(target, event);
+	}
+	return false;
+}
+
 void DeliveryRecord::initUI()
 {
 	ui.progressBar_update->hide();
@@ -66,6 +81,7 @@ void DeliveryRecord::initUI()
 }
 void DeliveryRecord::init()
 {
+	this->ui.tablewideget_deliverytable->installEventFilter(this);
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
 	m_pyCallProcess->moveToThread(&m_pyRunThread);
 	m_pyRunThread.start();
@@ -95,10 +111,6 @@ bool DeliveryRecord::saveTableContents()
 
 		cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_note_record.exe");
 		callUpdateWikiPyScript();
-		/*if (configurUi->isEnableEmail())
-		{
-			cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
-		}*/
 		emit s_runCallPyScriptSolt(cmdStringList);
 		ui.progressBar_update->show();
 	}
@@ -120,10 +132,11 @@ void DeliveryRecord::connectSlots()
 	connect(this->ui.pushButton_update, &QPushButton::clicked, this, &DeliveryRecord::saveTableContents);
 	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_processMsgReaded, this, &DeliveryRecord::readPyScriptOutputToDisplay);
 	connect(this, &DeliveryRecord::s_runCallPyScriptSolt, this->m_pyCallProcess.get(), &subProcessRunner::run);
-	connect(this->ui.pushButton_logview, &QPushButton::clicked, this, [=] {this->ui.widget_displayinfor->show(); this->ui.pushButton_logview->hide(); });
+	connect(this->ui.pushButton_logview, &QPushButton::clicked, this, [&] {this->ui.widget_displayinfor->show(); this->ui.pushButton_logview->hide(); });
 	connect(this->ui.pushButton_hidedispaly, &QPushButton::clicked, this, &DeliveryRecord::hideDisplayTextBrowse);
 	connect(this->ui.actionclean_contents, &QAction::triggered, this, &DeliveryRecord::cleanTableContents);
 	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_runFinished, this, &DeliveryRecord::fetchPyScriptRunResult);
+	connect(this->ui.tablewideget_deliverytable, &QTableWidget::itemClicked, this, &DeliveryRecord::setEditRowWidth);
 }
 
 bool DeliveryRecord::callUpdateWikiPyScript()
@@ -172,6 +185,7 @@ void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
 			else
 			{
 				this->ui.progressBar_update->setValue(100);
+				this->ui.progressBar_update->setFormat("Update done");
 			}
 		}
 		else
@@ -185,6 +199,7 @@ void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
 		if (this->ui.textBrowser_updateInfor->toPlainText().contains(QStringRef(&QString("mail send success"))))
 		{
 			this->ui.progressBar_update->setValue(100);
+			this->ui.progressBar_update->setFormat("Update done");
 
 		}
 		else
@@ -194,6 +209,16 @@ void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
 		}
 	}
 	
+}
+
+void DeliveryRecord::setEditRowWidth()
+{
+	this->ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Custom);
+	for (size_t i = 0; i < this->ui.tablewideget_deliverytable->rowCount(); i++)
+	{
+		this->ui.tablewideget_deliverytable->setRowHeight(i, 50);
+	}
+	this->ui.tablewideget_deliverytable->setRowHeight(this->ui.tablewideget_deliverytable->currentRow(), 150);
 }
 
 

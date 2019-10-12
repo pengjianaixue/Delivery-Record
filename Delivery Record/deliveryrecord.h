@@ -18,6 +18,7 @@ public:
 	~DeliveryRecord();
 protected:
 	void resizeEvent(QResizeEvent * event) override;
+	bool eventFilter(QObject *target, QEvent *event) override;
 private:
 	void initUI();
 	void init();
@@ -32,6 +33,7 @@ private slots:
 	void hideDisplayTextBrowse();
 	void cleanTableContents();
 	void fetchPyScriptRunResult(const QString &cmditem);
+	void setEditRowWidth();
 	
 private:
 	Ui::DeliveryRecordClass					ui;

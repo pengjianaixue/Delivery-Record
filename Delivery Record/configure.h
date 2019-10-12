@@ -16,6 +16,8 @@ public:
 	bool isEnableEmail() const;
 protected:
 	void showEvent(QShowEvent *showevent) override;
+	bool eventFilter(QObject *target, QEvent *event) override ;
+	
 private slots:
 	void initUi();
 	void connectslots();
@@ -26,6 +28,8 @@ private slots:
 	void removeEmailRecvier();
 	void addEmailRecvier();
 	void emialRadioPushbuttonCliked();
+	void setEditRowWidth();
+	
 private:
 	Ui::Configure ui;
 	std::map<QString,QString>				m_editSubmitContentsMap;

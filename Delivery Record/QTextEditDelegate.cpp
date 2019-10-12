@@ -13,8 +13,9 @@ QTextEditDelegate::~QTextEditDelegate()
 
 }
 
-QWidget * QTextEditDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
+QWidget * QTextEditDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+	 
 	QTextEdit *editor = new QTextEdit(parent);
 	editor->setPlaceholderText(m_InputMask);
 	//editor->setValidator(m_InputValidator);
@@ -32,10 +33,11 @@ QWidget * QTextEditDelegate::createEditor(QWidget * parent, const QStyleOptionVi
 		
 		editor->setClearButtonEnabled(true);
 	}*/
+	
 	return editor;
 }
 
-void QTextEditDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
+void QTextEditDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
 	QString value = index.model()->data(index, Qt::EditRole).toString();
 	QTextEdit *textEditor = static_cast<QTextEdit*>(editor);
@@ -43,14 +45,14 @@ void QTextEditDelegate::setEditorData(QWidget * editor, const QModelIndex & inde
 	textEditor->setText(value);
 }
 
-void QTextEditDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
+void QTextEditDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
 	QTextEdit *textEditor = static_cast<QTextEdit*>(editor);
 	QString value = textEditor->toPlainText();
 	model->setData(index, value, Qt::EditRole);
 }
 
-void QTextEditDelegate::updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const
+void QTextEditDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 	editor->setGeometry(option.rect);
 }

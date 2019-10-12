@@ -57,6 +57,21 @@ void dialog_UserConfigure::showEvent(QShowEvent *showevent)
 
 }
 
+bool dialog_UserConfigure::eventFilter(QObject *target, QEvent *event)
+{
+	if (target == this->ui.tableWidget_emailcontents && event->type() == QEvent::Leave)
+	{
+		this->ui.tableWidget_emailcontents->unsetCursor();
+		this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+		return true;//will 
+	}
+	else
+	{
+		return QWidget::eventFilter(target, event);
+	}
+	return false;
+}
+
 void dialog_UserConfigure::connectslots()
 {
 	this->connect(this->ui.okButton,&QPushButton::clicked,this, &dialog_UserConfigure::submitButtonClick);
@@ -64,6 +79,7 @@ void dialog_UserConfigure::connectslots()
 	this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &dialog_UserConfigure::removeEmailRecvier);
 	this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &dialog_UserConfigure::addEmailRecvier);
 	this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &dialog_UserConfigure::emialRadioPushbuttonCliked);
+	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &dialog_UserConfigure::setEditRowWidth);
 	
 }
 
@@ -186,9 +202,20 @@ void dialog_UserConfigure::emialRadioPushbuttonCliked()
 	}
 }
 
+void dialog_UserConfigure::setEditRowWidth()
+{
+	this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Custom);
+	for (size_t i = 0; i < this->ui.tableWidget_emailcontents->rowCount(); i++)
+	{
+		this->ui.tableWidget_emailcontents->setRowHeight(i, 40);
+	}
+	this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(), 100);
+}
+
 
 void dialog_UserConfigure::initUi()
 {
+	this->ui.tableWidget_emailcontents->installEventFilter(this);
 	ui.widget_email->hide();
 	ui.splitter->setStretchFactor(0,1);
 	ui.splitter->setStretchFactor(1, 9);
@@ -213,7 +240,7 @@ void dialog_UserConfigure::initUi()
 	QStringList horizontalHeader;
 	horizontalHeader << "Email Title" << "Email Contents";
 	this->ui.tableWidget_emailcontents->setRowCount(10);
-	this->ui.tableWidget_emailcontents->setRowHeight(1, 5);
+	this->ui.tableWidget_emailcontents->setRowHeight(1, 10);
 	this->ui.tableWidget_emailcontents->setHorizontalHeaderLabels(horizontalHeader);
 	this->ui.tableWidget_emailcontents->horizontalHeader()->setStretchLastSection(true);
 	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate.get());
