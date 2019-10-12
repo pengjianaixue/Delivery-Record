@@ -8,7 +8,7 @@ class XmlWirter : public QObject
 	Q_OBJECT
 	
 public:
-	XmlWirter(QObject *parent = nullptr);
+	explicit XmlWirter(QObject *parent = nullptr);
 	~XmlWirter();
 	//API
 	bool emptyXmlDoc();

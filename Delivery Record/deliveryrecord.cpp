@@ -44,7 +44,6 @@ void DeliveryRecord::initUI()
 	this->ui.widget_displayinfor->hide();
 	ui.horizontalLayout_2->insertSpacerItem(1,new QSpacerItem(20, 20, QSizePolicy::Expanding));
 	IniFileProcesser initIniReader("./RecordTemp.ini");
-	IniFileProcesser::VALUELISTDIC iniFileValue =  initIniReader.fetchValueDictFromIni();
 	QStringList deliveryKeyWords;
 	QStringList deliveryInfoWords;
 	XmlReader::VALUEPAIRLIST deliveryInfo;

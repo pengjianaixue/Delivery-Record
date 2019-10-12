@@ -11,7 +11,7 @@ class dialog_UserConfigure : public QDialog
 	Q_OBJECT
 
 public:
-	dialog_UserConfigure(QWidget *parent = Q_NULLPTR);
+	explicit dialog_UserConfigure(QWidget *parent = Q_NULLPTR);
 	~dialog_UserConfigure();
 	bool isEnableEmail() const;
 protected:

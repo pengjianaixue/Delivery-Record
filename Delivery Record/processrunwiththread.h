@@ -7,7 +7,7 @@ class subProcessRunner : public QObject
 	Q_OBJECT
 
 public:
-	subProcessRunner(QObject *parent = nullptr);
+	explicit subProcessRunner(QObject *parent = nullptr);
 	~subProcessRunner();
 	void terminateProcess();
 	//void registerrunCommandList(const QList<QString> &cmdList);

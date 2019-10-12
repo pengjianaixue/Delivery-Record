@@ -3,8 +3,9 @@
 
 
 IniFileProcesser::IniFileProcesser(QString iniFilePath)
+	:m_SettingsFile(std::make_shared<QSettings>(iniFilePath, QSettings::IniFormat))
 {
-	m_SettingsFile = std::make_shared<QSettings>(iniFilePath, QSettings::IniFormat);
+	
 }
 
 IniFileProcesser::~IniFileProcesser()

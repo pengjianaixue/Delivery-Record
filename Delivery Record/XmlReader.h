@@ -10,7 +10,7 @@ class XmlReader : public QObject
 public:
 	using VALUEPAIRLIST = QList<QList<std::pair<QString, QString>>>;
 public:
-	XmlReader(QObject *parent = nullptr);
+	explicit XmlReader(QObject *parent = nullptr);
 	~XmlReader();
 	//API
 	bool openFile(const QString	&FileName);

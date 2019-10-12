@@ -3,7 +3,7 @@
 
 QTextEditDelegate::QTextEditDelegate(QWidget *parent, const QString  &InputMask,const QStringList  &PreInputContents, bool IsEnableClearButton)
 	: QItemDelegate(parent), m_InputMask(InputMask), m_PreInputContents(PreInputContents),
-	  m_ClearButtonIsEnable(IsEnableClearButton)
+	  m_ClearButtonIsEnable(IsEnableClearButton), m_InputValidator(nullptr)
 {
 	
 }

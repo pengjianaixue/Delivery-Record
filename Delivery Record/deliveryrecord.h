@@ -14,7 +14,7 @@ class DeliveryRecord : public QMainWindow
 	Q_OBJECT
 
 public:
-	DeliveryRecord(QWidget *parent = Q_NULLPTR);
+	explicit DeliveryRecord(QWidget *parent = Q_NULLPTR);
 	~DeliveryRecord();
 protected:
 	void resizeEvent(QResizeEvent * event) override;

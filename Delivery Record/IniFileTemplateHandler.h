@@ -8,7 +8,7 @@ class IniFileProcesser :public QObject
 public:
 	using VALUELISTDIC = QMap<QString, std::list<std::pair<QString, QString>>>;
 public:
-	IniFileProcesser(QString iniFilePath = "./Template.ini");
+	explicit IniFileProcesser(QString iniFilePath = "./Template.ini");
 	~IniFileProcesser();
 	VALUELISTDIC fetchValueDictFromIni();
 	bool writeDictValueToIni(const VALUELISTDIC &valueDict);
