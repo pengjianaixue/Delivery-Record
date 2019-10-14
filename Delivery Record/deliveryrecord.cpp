@@ -140,6 +140,9 @@ void DeliveryRecord::connectSlots()
 
 bool DeliveryRecord::callUpdateWikiPyScript()
 {
+	this->ui.progressBar_update->reset();
+	this->ui.progressBar_update->resetFormat();
+	this->ui.progressBar_update->setValue(27);
 	this->ui.textBrowser_updateInfor->clear();
 	this->ui.textBrowser_updateInfor->insertPlainText("Start run python script...\r\n");
 	return true;

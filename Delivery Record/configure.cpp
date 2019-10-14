@@ -67,7 +67,7 @@ bool dialog_UserConfigure::eventFilter(QObject *target, QEvent *event)
 	}
 	else
 	{
-		return QWidget::eventFilter(target, event);
+		return QDialog::eventFilter(target, event);
 	}
 	return false;
 }
