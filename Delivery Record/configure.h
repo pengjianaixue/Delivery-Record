@@ -6,13 +6,13 @@
 #include "XmlReader.h"
 #include "IniFileTemplateHandler.h"
 #include "QTextEditDelegate.h"
-class dialog_UserConfigure : public QDialog
+class UserConfigureDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
-	explicit dialog_UserConfigure(QWidget *parent = Q_NULLPTR);
-	~dialog_UserConfigure();
+	explicit UserConfigureDialog(QWidget *parent = Q_NULLPTR);
+	~UserConfigureDialog();
 	bool isEnableEmail() const;
 protected:
 	void showEvent(QShowEvent *showevent) override;
@@ -29,6 +29,7 @@ private slots:
 	void addEmailRecvier();
 	void emialRadioPushbuttonCliked();
 	void setEditRowWidth();
+	void rowAdd(int row, int cloumu);
 	
 private:
 	Ui::Configure ui;

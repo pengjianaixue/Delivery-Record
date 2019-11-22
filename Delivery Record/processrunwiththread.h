@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-
+#include <thread>
 class subProcessRunner : public QObject
 {
 	Q_OBJECT

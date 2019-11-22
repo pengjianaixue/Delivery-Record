@@ -7,7 +7,11 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	qRegisterMetaType<QList<QString>>();
-	QApplication::setStyle(QStyleFactory::create("Fusion"));
+	QFile qss(":/qdarkstyle/style.qss");
+	qss.open(QFile::ReadOnly);
+	a.setStyleSheet(qss.readAll());
+	qss.close();
+	QApplication::setStyle("Fusion");
 	a.setWindowIcon(QIcon(":/DeliveryRecord/Resources/release-notes.png"));
 	DeliveryRecord w;
 	w.setWindowTitle("Delivery Record");

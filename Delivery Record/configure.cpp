@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "configure.h"
 
-dialog_UserConfigure::dialog_UserConfigure(QWidget *parent)
+UserConfigureDialog::UserConfigureDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
 	initUi();
 }
 
-dialog_UserConfigure::~dialog_UserConfigure()
+UserConfigureDialog::~UserConfigureDialog()
 {
 	if (!m_lineEditEmialRecvierAdd)
 	{
@@ -17,12 +17,12 @@ dialog_UserConfigure::~dialog_UserConfigure()
 	}
 }
 
-bool dialog_UserConfigure::isEnableEmail() const
+bool UserConfigureDialog::isEnableEmail() const
 {
 	return m_isSendEmail;
 }
 
-void dialog_UserConfigure::showEvent(QShowEvent *showevent)
+void UserConfigureDialog::showEvent(QShowEvent *showevent)
 {
 	XmlReader::VALUEPAIRLIST emailInforList;
 	if(m_xmlReader.openFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
@@ -33,7 +33,7 @@ void dialog_UserConfigure::showEvent(QShowEvent *showevent)
 		if (!emailInforList.isEmpty())
 		{
 			int rowconunter = 0;
-			int colcounter = 0;
+			int colcounter = 0; 
 			for (auto &item: emailInforList)
 			{
 				for (auto &childitem : item)
@@ -57,7 +57,7 @@ void dialog_UserConfigure::showEvent(QShowEvent *showevent)
 
 }
 
-bool dialog_UserConfigure::eventFilter(QObject *target, QEvent *event)
+bool UserConfigureDialog::eventFilter(QObject *target, QEvent *event)
 {
 	if (target == this->ui.tableWidget_emailcontents && event->type() == QEvent::Leave)
 	{
@@ -72,18 +72,19 @@ bool dialog_UserConfigure::eventFilter(QObject *target, QEvent *event)
 	return false;
 }
 
-void dialog_UserConfigure::connectslots()
+void UserConfigureDialog::connectslots()
 {
-	this->connect(this->ui.okButton,&QPushButton::clicked,this, &dialog_UserConfigure::submitButtonClick);
-	this->connect(this->ui.cancelButton, &QPushButton::clicked, this, &dialog_UserConfigure::cancelButtonClick);
-	this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &dialog_UserConfigure::removeEmailRecvier);
-	this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &dialog_UserConfigure::addEmailRecvier);
-	this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &dialog_UserConfigure::emialRadioPushbuttonCliked);
-	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &dialog_UserConfigure::setEditRowWidth);
+	this->connect(this->ui.okButton,&QPushButton::clicked,this, &UserConfigureDialog::submitButtonClick);
+	this->connect(this->ui.cancelButton, &QPushButton::clicked, this, &UserConfigureDialog::cancelButtonClick);
+	this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::removeEmailRecvier);
+	this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::addEmailRecvier);
+	//this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &UserConfigureDialog::emialRadioPushbuttonCliked);
+	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &UserConfigureDialog::setEditRowWidth);
+	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::cellChanged, this, &UserConfigureDialog::rowAdd);
 	
 }
 
-void dialog_UserConfigure::submitButtonClick()
+void UserConfigureDialog::submitButtonClick()
 {
 	if (!m_xmlWirter.loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
 	{
@@ -141,19 +142,19 @@ void dialog_UserConfigure::submitButtonClick()
 	this->close();
 }
 
-void dialog_UserConfigure::cancelButtonClick()
+void UserConfigureDialog::cancelButtonClick()
 {
 	this->close();
 }
 
-bool dialog_UserConfigure::passwordEncryptionProcess(QString &paswordstr)
+bool UserConfigureDialog::passwordEncryptionProcess(QString &paswordstr)
 {
 	QByteArray passwordbyte  = paswordstr.toUtf8();
 	paswordstr = QString(passwordbyte.toBase64());
 	return true;
 }
 
-bool dialog_UserConfigure::passwordDecodeProcess(QString &paswordstr)
+bool UserConfigureDialog::passwordDecodeProcess(QString &paswordstr)
 {
 
 	QByteArray passwordbyte = QByteArray::fromBase64(paswordstr.toUtf8());
@@ -161,48 +162,65 @@ bool dialog_UserConfigure::passwordDecodeProcess(QString &paswordstr)
 	return true;
 }
 
-void dialog_UserConfigure::removeEmailRecvier()
+void UserConfigureDialog::removeEmailRecvier()
 {
 	ui.comboBox_emailrecviers->removeItem(ui.comboBox_emailrecviers->currentIndex());
+	ui.comboBox_emailrecviers->update();
 }
 
-void dialog_UserConfigure::addEmailRecvier()
+void UserConfigureDialog::addEmailRecvier()
 {
-	ui.comboBox_emailrecviers->lineEdit()->text();
-	ui.comboBox_emailrecviers->addItem(ui.comboBox_emailrecviers->lineEdit()->text());
-}
-
-
-void dialog_UserConfigure::emialRadioPushbuttonCliked()
-{
-	if (ui.radioButton_enableSendEmail->isChecked())
+	if (!ui.comboBox_emailrecviers->lineEdit()->text().isEmpty())
 	{
-		m_isSendEmail = true;
-		this->resize(900, 700);
-		QRect rect = (static_cast<QWidget*>(parent()))->geometry();
-		int x = rect.x() + rect.width() / 2 - this->width() / 2;
-		int y = rect.y() + rect.height() / 2 - this->height()/2;
-		this->move(x,y);
-		ui.widget_email->show();
-		
+		for (size_t i = 0; i < ui.comboBox_emailrecviers->count(); i++)
+		{
+			if (ui.comboBox_emailrecviers->itemText(i) == ui.comboBox_emailrecviers->lineEdit()->text())
+			{
+				QMessageBox::warning(this, "add warning", QString("The email address %1 have exist in the list ,please don't repeat add the email address").arg(ui.comboBox_emailrecviers->lineEdit()->text()));
+				return;
+			}
+		}
+		ui.comboBox_emailrecviers->addItem(ui.comboBox_emailrecviers->lineEdit()->text());
+		ui.comboBox_emailrecviers->update();
+		//ui.comboBox_emailrecviers->lineEdit()->setText(QString());
 	}
 	else
 	{
-		m_isSendEmail = false;
-		ui.widget_email->hide();
-		this->resize(300, 50);
-		//QRect emailFrame;
-		//emailFrame.setHeight(50);
-		//emailFrame.setWidth(300);
-		//this->setGeometry(emailFrame);
-		QRect rect = (static_cast<QWidget*>(parent()))->geometry();
-		int x = rect.x() + rect.width() / 2 - this->width() / 2;
-		int y = rect.y() + rect.height() / 2 - this->height() / 2;
-		this->move(x, y);
+		QMessageBox::warning(this, "add warning", "can't add empty content,please input email address");
 	}
 }
 
-void dialog_UserConfigure::setEditRowWidth()
+
+void UserConfigureDialog::emialRadioPushbuttonCliked()
+{
+	//if (ui.radioButton_enableSendEmail->isChecked())
+	//{
+	//	m_isSendEmail = true;
+	//	this->resize(900, 700);
+	//	QRect rect = (static_cast<QWidget*>(parent()))->geometry();
+	//	int x = rect.x() + rect.width() / 2 - this->width() / 2;
+	//	int y = rect.y() + rect.height() / 2 - this->height()/2;
+	//	this->move(x,y);
+	//	ui.widget_email->show();
+	//	
+	//}
+	//else
+	//{
+	//	m_isSendEmail = false;
+	//	ui.widget_email->hide();
+	//	this->resize(300, 50);
+	//	//QRect emailFrame;
+	//	//emailFrame.setHeight(50);
+	//	//emailFrame.setWidth(300);
+	//	//this->setGeometry(emailFrame);
+	//	QRect rect = (static_cast<QWidget*>(parent()))->geometry();
+	//	int x = rect.x() + rect.width() / 2 - this->width() / 2;
+	//	int y = rect.y() + rect.height() / 2 - this->height() / 2;
+	//	this->move(x, y);
+	//}
+}
+
+void UserConfigureDialog::setEditRowWidth()
 {
 	this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Custom);
 	for (size_t i = 0; i < this->ui.tableWidget_emailcontents->rowCount(); i++)
@@ -212,19 +230,26 @@ void dialog_UserConfigure::setEditRowWidth()
 	this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(), 100);
 }
 
-
-void dialog_UserConfigure::initUi()
+void UserConfigureDialog::rowAdd(int row, int cloumu)
 {
+	if (row == this->ui.tableWidget_emailcontents->rowCount()-1)
+	{
+		this->ui.tableWidget_emailcontents->insertRow(row+1);
+	}
+}
+
+void UserConfigureDialog::initUi()
+{
+	this->setModal(true);
+	this->ui.tableWidget_emailcontents->setStyle(QStyleFactory::create("windowsvista"));
 	this->ui.tableWidget_emailcontents->installEventFilter(this);
-	ui.widget_email->hide();
 	ui.splitter->setStretchFactor(0,1);
 	ui.splitter->setStretchFactor(1, 9);
-	this->resize(300, 50);
 	ui.comboBox_emailrecviers->setEditable(true);
 	ui.lineEdit_password->setEchoMode(QLineEdit::Password);
 	ui.lineEdit_password->setPlaceholderText("please input password");
 	ui.lineEdit_username->setPlaceholderText("please input username");
-	ui.lineEdit_editsection->setPlaceholderText("Pelse input table order");
+	ui.lineEdit_editsection->setPlaceholderText("please input table name");
 	IniFileProcesser initIniReader("./RecordTemp.ini");
 	IniFileProcesser::VALUELISTDIC iniFileValue = initIniReader.fetchValueDictFromIni();
 	for (auto &item : iniFileValue["user_configure"])

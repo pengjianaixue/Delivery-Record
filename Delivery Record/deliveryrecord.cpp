@@ -2,7 +2,7 @@
 #include "deliveryrecord.h"
 
 DeliveryRecord::DeliveryRecord(QWidget *parent)
-	: QMainWindow(parent), configurUi(new dialog_UserConfigure(this))
+	: QMainWindow(parent), configurUi(new UserConfigureDialog(this))
 {
 	ui.setupUi(this);
 	init();
@@ -24,9 +24,13 @@ bool DeliveryRecord::eventFilter(QObject * target, QEvent * event)
 {
 	if (target == this->ui.tablewideget_deliverytable && event->type() == QEvent::Leave)
 	{
-		this->ui.tablewideget_deliverytable->unsetCursor();
+		//this->ui.tablewideget_deliverytable->unsetCursor();
+		if (this->ui.tablewideget_deliverytable->currentRow()== this->ui.tablewideget_deliverytable->rowCount()-1)
+		{
+			this->ui.tablewideget_deliverytable->setRowHeight(this->ui.tablewideget_deliverytable->currentRow(), 50);
+		}
 		this->ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-		return true;//will 
+		//return true;//will 
 	}
 	else
 	{
@@ -38,6 +42,7 @@ bool DeliveryRecord::eventFilter(QObject * target, QEvent * event)
 void DeliveryRecord::initUI()
 {
 	ui.progressBar_update->hide();
+	this->ui.pushButton_sendemail->hide();
 	this->ui.progressBar_update->setRange(0, 100);
 	this->ui.progressBar_update->setStyle(QStyleFactory::create("WindowsVista"));
 	this->configurUi->hide();
@@ -59,11 +64,12 @@ void DeliveryRecord::initUI()
 		deliveryKeyWords.append(temp[0]);
 		i<deliveryInfo.length() ? deliveryInfoWords.append(deliveryInfo[i][0].second) : deliveryInfoWords.append("");
 	}
+	ui.tablewideget_deliverytable->setStyle(QStyleFactory::create("windowsvista"));
 	ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	ui.tablewideget_deliverytable->setColumnCount(1);
 	ui.tablewideget_deliverytable->setRowCount(deliveryKeyWords.size());
 	ui.tablewideget_deliverytable->setVerticalHeaderLabels(deliveryKeyWords);
-	ui.tablewideget_deliverytable->horizontalHeader()->setVisible(true);
+	ui.tablewideget_deliverytable->horizontalHeader()->setVisible(false);
 	ui.tablewideget_deliverytable->setHorizontalHeaderLabels(QStringList(""));
 	ui.tablewideget_deliverytable->verticalHeader()->setVisible(true); 
 	ui.tablewideget_deliverytable->setItemDelegateForColumn(0, m_pInputTextEditorDelegate.get());
@@ -75,11 +81,25 @@ void DeliveryRecord::initUI()
 		item->setText(deliveryInfoWords[i]);
 		ui.tablewideget_deliverytable->setItem(i, 0, item);
 	}
+	
+	QTableWidgetItem * header = ui.tablewideget_deliverytable->verticalHeaderItem(deliveryKeyWords.size()-1);
+	if (header->text()=="External DB")
+	{
+		header->setText("* " + header->text());
+		header->setForeground(QBrush(QColor(204, 51, 51)));
+		ui.tablewideget_deliverytable->setVerticalHeaderItem(deliveryKeyWords.size() - 1, header);
+	}
+	else
+	{
+		QMessageBox::critical(this, "information loss", "the delivery table must contain External DB item,please add this item");
+		exit(0);
+	}
 	connectSlots();
 
 }
 void DeliveryRecord::init()
 {
+	this->setStyleSheet("QMainWindow:{background-color: #1464A0;}");
 	this->ui.tablewideget_deliverytable->installEventFilter(this);
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
 	m_pyCallProcess->moveToThread(&m_pyRunThread);
@@ -88,7 +108,16 @@ void DeliveryRecord::init()
 }
 bool DeliveryRecord::saveTableContents()
 {
-	QStringList valueList;
+	if (this->ui.pushButton_update->text()=="Give up send email")
+	{
+		this->ui.pushButton_update->setText("Update");
+		this->ui.pushButton_update->setIcon(QIcon(":/DeliveryRecord/Resources/update.png"));
+		this->ui.pushButton_sendemail->hide();
+		this->ui.progressBar_update->setValue(100);
+		this->ui.progressBar_update->setFormat("Update done");
+		return true;
+	}
+	/*QStringList valueList;
 	QList<QStringList> valueStringList;
 	for (size_t i = 0; i < ui.tablewideget_deliverytable->rowCount(); i++)
 	{
@@ -104,13 +133,18 @@ bool DeliveryRecord::saveTableContents()
 	m_XmlWirter->setCurrentNode("root");
 	m_XmlWirter->removeChild("Delivery_Infor");
 	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList("Value"), valueStringList);
-	QList<QString> cmdStringList;
 	if (m_XmlWirter->saveToFile(m_strXmlFilePath))
 	{
 
+		
+	}*/
+	if (saveToFile())
+	{
+		QList<QString> cmdStringList;
 		cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_note_record.exe");
 		callUpdateWikiPyScript();
 		emit s_runCallPyScriptSolt(cmdStringList);
+		this->ui.pushButton_update->setEnabled(false);
 		ui.progressBar_update->show();
 	}
 	else
@@ -119,6 +153,8 @@ bool DeliveryRecord::saveTableContents()
 		return false;
 	}
 	return true;
+	
+	
 }
 void DeliveryRecord::openConfigurDialog(bool open)
 {
@@ -136,6 +172,10 @@ void DeliveryRecord::connectSlots()
 	connect(this->ui.actionclean_contents, &QAction::triggered, this, &DeliveryRecord::cleanTableContents);
 	connect(this->m_pyCallProcess.get(), &subProcessRunner::s_runFinished, this, &DeliveryRecord::fetchPyScriptRunResult);
 	connect(this->ui.tablewideget_deliverytable, &QTableWidget::itemClicked, this, &DeliveryRecord::setEditRowWidth);
+	connect(this->ui.pushButton_sendemail, &QPushButton::clicked, this, &DeliveryRecord::sendEmail);
+	connect(this->ui.tablewideget_deliverytable, &QTableWidget::itemChanged, this, [&] {this->ui.progressBar_update->hide(); });
+	connect(this->ui.actionsave, &QAction::triggered, this, [&] {this->saveToFile(); });
+
 }
 
 bool DeliveryRecord::callUpdateWikiPyScript()
@@ -175,26 +215,41 @@ void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
 	
 	if (cmditem.contains(QStringRef(&QString("Delivery_note_record.exe"))))
 	{
+	//contentjuedement: 
 		if (this->ui.textBrowser_updateInfor->toPlainText().contains(QStringRef(&QString("Update success"))))
 		{
-			QList<QString> cmdStringList;
-			if (configurUi->isEnableEmail())
-			{
-				this->ui.progressBar_update->setValue(ui.progressBar_update->value() + 50);
-				cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
-				emit s_runCallPyScriptSolt(cmdStringList);
-			}
-			else
-			{
-				this->ui.progressBar_update->setValue(100);
-				this->ui.progressBar_update->setFormat("Update done");
-			}
+			IniFileProcesser initIniReader("./RecordTemp.ini");
+			QString pageinfo  = initIniReader.fetchSpecGroupAndKeyValue("wikipage_configure", "loginjumptopage");
+			this->ui.progressBar_update->setValue(74);
+			//if (configurUi->isEnableEmail())
+			//{
+
+			//	/*this->ui.progressBar_update->setValue(ui.progressBar_update->value() + 50);
+			//	cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
+			//	emit s_runCallPyScriptSolt(cmdStringList);*/
+			//}
+			//else
+			//{
+			//	this->ui.progressBar_update->setValue(100);
+			//	this->ui.progressBar_update->setFormat("Update done");
+			//}
+			this->ui.pushButton_sendemail->show();
+			this->ui.pushButton_update->setText("Give up send email");
+			this->ui.pushButton_update->setIcon(QIcon(":/DeliveryRecord/Resources/give-up.png"));
+			this->ui.pushButton_sendemail->setEnabled(true);
+			QDesktopServices::openUrl(QUrl("https://lte-wiki.rnd.ki.sw.ericsson.se/w/index.php?title=" + pageinfo));
 		}
 		else
 		{
+			/*QTime dieTime = QTime::currentTime().addMSecs(1000);
+			while (QTime::currentTime() < dieTime)
+				QCoreApplication::processEvents(QEventLoop::AllEvents, 100);*/
 			QMessageBox::critical(this, "update error", "update the wiki website failed,please contact administrator");
+		
+			this->ui.progressBar_update->reset();
 			this->ui.progressBar_update->hide();
 		}
+		this->ui.pushButton_update->setEnabled(true);
 	}
 	if (cmditem.contains(QStringRef(&QString("Delivery_Record_Notify_EmailSend.exe"))))
 	{
@@ -202,13 +257,17 @@ void DeliveryRecord::fetchPyScriptRunResult(const QString &cmditem)
 		{
 			this->ui.progressBar_update->setValue(100);
 			this->ui.progressBar_update->setFormat("Update done");
-
 		}
 		else
 		{
 			QMessageBox::critical(this, "update error", "send email failed,please contact administrator");
+			this->ui.progressBar_update->reset();
 			this->ui.progressBar_update->hide();
 		}
+		this->ui.pushButton_update->setEnabled(true);
+		this->ui.pushButton_update->setText("Update");
+		this->ui.pushButton_update->setIcon(QIcon(":/DeliveryRecord/Resources/update.png"));
+		this->ui.pushButton_sendemail->hide();
 	}
 	
 }
@@ -221,6 +280,43 @@ void DeliveryRecord::setEditRowWidth()
 		this->ui.tablewideget_deliverytable->setRowHeight(i, 50);
 	}
 	this->ui.tablewideget_deliverytable->setRowHeight(this->ui.tablewideget_deliverytable->currentRow(), 150);
+}
+
+void DeliveryRecord::sendEmail()
+{
+	this->ui.pushButton_sendemail->setEnabled(false);
+	this->ui.pushButton_update->setEnabled(false);
+	QList<QString> cmdStringList;
+	cmdStringList.append(R"(")" + QApplication::applicationDirPath() + R"(")" + "/Delivery_Record_Notify_EmailSend.exe");
+	emit s_runCallPyScriptSolt(cmdStringList);
+
+}
+
+bool DeliveryRecord::saveToFile()
+{
+	QStringList valueList;
+	QList<QStringList> valueStringList;
+	for (size_t i = 0; i < ui.tablewideget_deliverytable->rowCount(); i++)
+	{
+		valueList.append(ui.tablewideget_deliverytable->item(i, 0)->text());
+		valueStringList.append(valueList);
+		valueList.clear();
+	}
+	if (!m_XmlWirter->loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	{
+		m_XmlWirter->emptyXmlDoc();
+		m_XmlWirter->fileStructInit("root");
+	}
+	m_XmlWirter->setCurrentNode("root");
+	m_XmlWirter->removeChild("Delivery_Infor");
+	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList("Value"), valueStringList);
+	if (!m_XmlWirter->saveToFile(m_strXmlFilePath))
+	{
+		QMessageBox::critical(this, "save information", "save to file failed!");
+		return false;
+	}
+	return true;
+
 }
 
 

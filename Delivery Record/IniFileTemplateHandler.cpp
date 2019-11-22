@@ -10,6 +10,7 @@ IniFileProcesser::IniFileProcesser(QString iniFilePath)
 
 IniFileProcesser::~IniFileProcesser()
 {
+
 }
 
 bool IniFileProcesser::writeDictValueToIni(const VALUELISTDIC &valueDict)

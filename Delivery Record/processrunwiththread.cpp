@@ -39,6 +39,7 @@ void subProcessRunner::run(const QList<QString>& cmdList)
 	{
 		m_runCmdProcess->start(cmditem);
 		m_runCmdProcess->waitForFinished();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));//wait the script stdout display to textbrowser
 		emit s_runFinished(cmditem);
 	}
 	return;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1020</width>
-    <height>775</height>
+    <width>1038</width>
+    <height>811</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -88,6 +88,17 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_sendemail">
+        <property name="text">
+         <string>Send email</string>
+        </property>
+        <property name="icon">
+         <iconset resource="deliveryrecord.qrc">
+          <normaloff>:/DeliveryRecord/Resources/send_email.png</normaloff>:/DeliveryRecord/Resources/send_email.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton_logview">
         <property name="text">
          <string>Logview</string>
@@ -101,7 +112,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_update">
         <property name="text">
-         <string>update</string>
+         <string>Update</string>
         </property>
         <property name="icon">
          <iconset resource="deliveryrecord.qrc">
@@ -118,7 +129,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1020</width>
+     <width>1038</width>
      <height>21</height>
     </rect>
    </property>
@@ -128,6 +139,7 @@
     </property>
     <addaction name="actionclean_contents"/>
     <addaction name="actionconfiguration"/>
+    <addaction name="actionsave"/>
    </widget>
    <addaction name="menuOperation"/>
   </widget>
@@ -140,6 +152,7 @@
    </attribute>
    <addaction name="actionconfiguration"/>
    <addaction name="actionclean_contents"/>
+   <addaction name="actionsave"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionclean_contents">
@@ -158,6 +171,18 @@
    </property>
    <property name="text">
     <string>configuration</string>
+   </property>
+  </action>
+  <action name="actionsave">
+   <property name="icon">
+    <iconset resource="deliveryrecord.qrc">
+     <normaloff>:/DeliveryRecord/Resources/save.png</normaloff>:/DeliveryRecord/Resources/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

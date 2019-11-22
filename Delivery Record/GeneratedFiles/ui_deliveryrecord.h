@@ -36,6 +36,7 @@ class Ui_DeliveryRecordClass
 public:
     QAction *actionclean_contents;
     QAction *actionconfiguration;
+    QAction *actionsave;
     QWidget *centralWidget;
     QGridLayout *gridLayout_2;
     QTableWidget *tablewideget_deliverytable;
@@ -48,6 +49,7 @@ public:
     QTextBrowser *textBrowser_updateInfor;
     QHBoxLayout *horizontalLayout_2;
     QProgressBar *progressBar_update;
+    QPushButton *pushButton_sendemail;
     QPushButton *pushButton_logview;
     QPushButton *pushButton_update;
     QMenuBar *menuBar;
@@ -59,7 +61,7 @@ public:
     {
         if (DeliveryRecordClass->objectName().isEmpty())
             DeliveryRecordClass->setObjectName(QStringLiteral("DeliveryRecordClass"));
-        DeliveryRecordClass->resize(1020, 775);
+        DeliveryRecordClass->resize(1038, 811);
         actionclean_contents = new QAction(DeliveryRecordClass);
         actionclean_contents->setObjectName(QStringLiteral("actionclean_contents"));
         QIcon icon;
@@ -70,6 +72,11 @@ public:
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/DeliveryRecord/Resources/configure.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionconfiguration->setIcon(icon1);
+        actionsave = new QAction(DeliveryRecordClass);
+        actionsave->setObjectName(QStringLiteral("actionsave"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/DeliveryRecord/Resources/save.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionsave->setIcon(icon2);
         centralWidget = new QWidget(DeliveryRecordClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_2 = new QGridLayout(centralWidget);
@@ -109,9 +116,9 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(pushButton_hidedispaly->sizePolicy().hasHeightForWidth());
         pushButton_hidedispaly->setSizePolicy(sizePolicy1);
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/DeliveryRecord/Resources/hide.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_hidedispaly->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/DeliveryRecord/Resources/hide.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_hidedispaly->setIcon(icon3);
 
         horizontalLayout->addWidget(pushButton_hidedispaly);
 
@@ -143,19 +150,27 @@ public:
 
         horizontalLayout_2->addWidget(progressBar_update);
 
+        pushButton_sendemail = new QPushButton(centralWidget);
+        pushButton_sendemail->setObjectName(QStringLiteral("pushButton_sendemail"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/DeliveryRecord/Resources/send_email.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_sendemail->setIcon(icon4);
+
+        horizontalLayout_2->addWidget(pushButton_sendemail);
+
         pushButton_logview = new QPushButton(centralWidget);
         pushButton_logview->setObjectName(QStringLiteral("pushButton_logview"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/DeliveryRecord/Resources/visual.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_logview->setIcon(icon3);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/DeliveryRecord/Resources/visual.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_logview->setIcon(icon5);
 
         horizontalLayout_2->addWidget(pushButton_logview);
 
         pushButton_update = new QPushButton(centralWidget);
         pushButton_update->setObjectName(QStringLiteral("pushButton_update"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/DeliveryRecord/Resources/update.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_update->setIcon(icon4);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/DeliveryRecord/Resources/update.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_update->setIcon(icon6);
 
         horizontalLayout_2->addWidget(pushButton_update);
 
@@ -165,7 +180,7 @@ public:
         DeliveryRecordClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(DeliveryRecordClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1020, 21));
+        menuBar->setGeometry(QRect(0, 0, 1038, 21));
         menuOperation = new QMenu(menuBar);
         menuOperation->setObjectName(QStringLiteral("menuOperation"));
         DeliveryRecordClass->setMenuBar(menuBar);
@@ -179,8 +194,10 @@ public:
         menuBar->addAction(menuOperation->menuAction());
         menuOperation->addAction(actionclean_contents);
         menuOperation->addAction(actionconfiguration);
+        menuOperation->addAction(actionsave);
         mainToolBar->addAction(actionconfiguration);
         mainToolBar->addAction(actionclean_contents);
+        mainToolBar->addAction(actionsave);
 
         retranslateUi(DeliveryRecordClass);
 
@@ -192,9 +209,14 @@ public:
         DeliveryRecordClass->setWindowTitle(QApplication::translate("DeliveryRecordClass", "DeliveryRecord", Q_NULLPTR));
         actionclean_contents->setText(QApplication::translate("DeliveryRecordClass", "clean contents", Q_NULLPTR));
         actionconfiguration->setText(QApplication::translate("DeliveryRecordClass", "configuration", Q_NULLPTR));
+        actionsave->setText(QApplication::translate("DeliveryRecordClass", "save", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionsave->setShortcut(QApplication::translate("DeliveryRecordClass", "Ctrl+S", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         pushButton_hidedispaly->setText(QString());
+        pushButton_sendemail->setText(QApplication::translate("DeliveryRecordClass", "Send email", Q_NULLPTR));
         pushButton_logview->setText(QApplication::translate("DeliveryRecordClass", "Logview", Q_NULLPTR));
-        pushButton_update->setText(QApplication::translate("DeliveryRecordClass", "update", Q_NULLPTR));
+        pushButton_update->setText(QApplication::translate("DeliveryRecordClass", "Update", Q_NULLPTR));
         menuOperation->setTitle(QApplication::translate("DeliveryRecordClass", "Operation", Q_NULLPTR));
     } // retranslateUi
 
