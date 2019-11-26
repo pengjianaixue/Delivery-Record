@@ -175,6 +175,8 @@ void DeliveryRecord::connectSlots()
 	connect(this->ui.pushButton_sendemail, &QPushButton::clicked, this, &DeliveryRecord::sendEmail);
 	connect(this->ui.tablewideget_deliverytable, &QTableWidget::itemChanged, this, [&] {this->ui.progressBar_update->hide(); });
 	connect(this->ui.actionsave, &QAction::triggered, this, [&] {this->saveToFile(); });
+	connect(this->ui.actionHelp, &QAction::triggered, this, &DeliveryRecord::helpFileOpen);
+	connect(this->ui.actionVersion, &QAction::triggered, this, &DeliveryRecord::versionDialog);
 
 }
 
@@ -317,6 +319,18 @@ bool DeliveryRecord::saveToFile()
 	}
 	return true;
 
+}
+
+bool DeliveryRecord::versionDialog()
+{
+	QMessageBox::about(this, "About", "© 2019 Ericcson\nVersion:R1A\nAuthor: jian.peng@ericsson.com\r\n\r\nBuild with Qt");
+	return true;
+}
+
+bool DeliveryRecord::helpFileOpen()
+{
+	QString GuideFileDir = QCoreApplication::applicationDirPath() + "/Delivery Record Tool Guide.chm";
+	return QDesktopServices::openUrl(QUrl::fromLocalFile(GuideFileDir));
 }
 
 

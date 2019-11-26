@@ -37,6 +37,8 @@ public:
     QAction *actionclean_contents;
     QAction *actionconfiguration;
     QAction *actionsave;
+    QAction *actionHelp;
+    QAction *actionVersion;
     QWidget *centralWidget;
     QGridLayout *gridLayout_2;
     QTableWidget *tablewideget_deliverytable;
@@ -54,6 +56,7 @@ public:
     QPushButton *pushButton_update;
     QMenuBar *menuBar;
     QMenu *menuOperation;
+    QMenu *menuAoubt;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -77,6 +80,10 @@ public:
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/DeliveryRecord/Resources/save.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionsave->setIcon(icon2);
+        actionHelp = new QAction(DeliveryRecordClass);
+        actionHelp->setObjectName(QStringLiteral("actionHelp"));
+        actionVersion = new QAction(DeliveryRecordClass);
+        actionVersion->setObjectName(QStringLiteral("actionVersion"));
         centralWidget = new QWidget(DeliveryRecordClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_2 = new QGridLayout(centralWidget);
@@ -180,9 +187,11 @@ public:
         DeliveryRecordClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(DeliveryRecordClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1038, 21));
+        menuBar->setGeometry(QRect(0, 0, 1038, 31));
         menuOperation = new QMenu(menuBar);
         menuOperation->setObjectName(QStringLiteral("menuOperation"));
+        menuAoubt = new QMenu(menuBar);
+        menuAoubt->setObjectName(QStringLiteral("menuAoubt"));
         DeliveryRecordClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(DeliveryRecordClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -192,12 +201,15 @@ public:
         DeliveryRecordClass->setStatusBar(statusBar);
 
         menuBar->addAction(menuOperation->menuAction());
+        menuBar->addAction(menuAoubt->menuAction());
         menuOperation->addAction(actionclean_contents);
         menuOperation->addAction(actionconfiguration);
         menuOperation->addAction(actionsave);
+        menuAoubt->addAction(actionHelp);
+        menuAoubt->addAction(actionVersion);
         mainToolBar->addAction(actionconfiguration);
-        mainToolBar->addAction(actionclean_contents);
         mainToolBar->addAction(actionsave);
+        mainToolBar->addAction(actionclean_contents);
 
         retranslateUi(DeliveryRecordClass);
 
@@ -213,11 +225,14 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionsave->setShortcut(QApplication::translate("DeliveryRecordClass", "Ctrl+S", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
+        actionHelp->setText(QApplication::translate("DeliveryRecordClass", "Help", Q_NULLPTR));
+        actionVersion->setText(QApplication::translate("DeliveryRecordClass", "Version", Q_NULLPTR));
         pushButton_hidedispaly->setText(QString());
         pushButton_sendemail->setText(QApplication::translate("DeliveryRecordClass", "Send email", Q_NULLPTR));
         pushButton_logview->setText(QApplication::translate("DeliveryRecordClass", "Logview", Q_NULLPTR));
         pushButton_update->setText(QApplication::translate("DeliveryRecordClass", "Update", Q_NULLPTR));
         menuOperation->setTitle(QApplication::translate("DeliveryRecordClass", "Operation", Q_NULLPTR));
+        menuAoubt->setTitle(QApplication::translate("DeliveryRecordClass", "About", Q_NULLPTR));
     } // retranslateUi
 
 };

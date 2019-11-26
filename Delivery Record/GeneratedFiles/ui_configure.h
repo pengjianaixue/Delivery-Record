@@ -275,8 +275,8 @@ public:
         Lable_email_sender->setText(QString());
         Lable_editsection_DelieveryComments->setText(QString());
         Lable_editsection_EmailRecviers->setText(QString());
-        pushButton_addEmailRecvier->setText(QApplication::translate("Configure", "AddRecvier", Q_NULLPTR));
-        pushButton_removeEmailRecvier->setText(QApplication::translate("Configure", "RemoveRecvier", Q_NULLPTR));
+        pushButton_addEmailRecvier->setText(QApplication::translate("Configure", "AddReceiver", Q_NULLPTR));
+        pushButton_removeEmailRecvier->setText(QApplication::translate("Configure", "RemoveReceiver", Q_NULLPTR));
         okButton->setText(QApplication::translate("Configure", "OK", Q_NULLPTR));
         cancelButton->setText(QApplication::translate("Configure", "Cancel", Q_NULLPTR));
     } // retranslateUi

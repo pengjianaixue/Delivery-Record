@@ -2,7 +2,7 @@
 #include "configure.h"
 
 UserConfigureDialog::UserConfigureDialog(QWidget *parent)
-	: QDialog(parent)
+	: QDialog(parent), m_pInputTextEditorDelegate(new QTextEditDelegate(this))
 {
 	ui.setupUi(this);
 	initUi();
@@ -15,6 +15,7 @@ UserConfigureDialog::~UserConfigureDialog()
 		delete m_lineEditEmialRecvierAdd;
 		m_lineEditEmialRecvierAdd = nullptr;
 	}
+	ui.tableWidget_emailcontents->clearContents();
 }
 
 bool UserConfigureDialog::isEnableEmail() const
@@ -72,15 +73,17 @@ bool UserConfigureDialog::eventFilter(QObject *target, QEvent *event)
 	return false;
 }
 
-void UserConfigureDialog::connectslots()
+bool UserConfigureDialog::connectslots()
 {
-	this->connect(this->ui.okButton,&QPushButton::clicked,this, &UserConfigureDialog::submitButtonClick);
-	this->connect(this->ui.cancelButton, &QPushButton::clicked, this, &UserConfigureDialog::cancelButtonClick);
-	this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::removeEmailRecvier);
-	this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::addEmailRecvier);
-	//this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &UserConfigureDialog::emialRadioPushbuttonCliked);
-	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &UserConfigureDialog::setEditRowWidth);
-	this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::cellChanged, this, &UserConfigureDialog::rowAdd);
+	return this->connect(this->ui.okButton, &QPushButton::clicked, this, &UserConfigureDialog::submitButtonClick)
+		&& this->connect(this->ui.cancelButton, &QPushButton::clicked, this, &UserConfigureDialog::cancelButtonClick)
+		&& this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::removeEmailRecvier)
+		&& this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::addEmailRecvier)
+		//this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &UserConfigureDialog::emialRadioPushbuttonCliked);
+		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &UserConfigureDialog::setEditRowWidth)
+		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::cellChanged, this, &UserConfigureDialog::rowAdd)
+		;
+	//this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::customContextMenuRequested, this, &UserConfigureDialog::rowOperationMenu);
 	
 }
 
@@ -238,11 +241,45 @@ void UserConfigureDialog::rowAdd(int row, int cloumu)
 	}
 }
 
+void UserConfigureDialog::rowOperationMenu(const QPoint &pos)
+{
+	int row = this->ui.tableWidget_emailcontents->indexAt(pos).row();
+	int column = this->ui.tableWidget_emailcontents->indexAt(pos).column();
+	QMenu  popMenu(this->ui.tableWidget_emailcontents);
+	QList<QAction*> actionlist;
+	if (row < this->ui.tableWidget_emailcontents->rowCount() && row != -1 && column == 1)
+	{
+
+		QAction *addTable = new QAction(tr("Add a table"));
+		addTable->setProperty("row", row);
+		addTable->setIcon(QIcon(":/DeliveryRecord/Resources/table.png"));
+		connect(addTable, &QAction::triggered, this, &UserConfigureDialog::addTableInCell);
+		actionlist.append(addTable);
+		popMenu.addActions(actionlist);
+		popMenu.exec(QCursor::pos());
+		return;
+	}
+}
+
+void UserConfigureDialog::addTableInCell()
+{
+	/*QAction *act = qobject_cast<QAction*>(QObject::sender());
+	int row = act->property("row").toInt();
+	QTableView *emailContentsTable = new QTableView(this->ui.tableWidget_emailcontents);
+	QStandardItemModel *emailContentsTableModel = new QStandardItemModel(this->ui.tableWidget_emailcontents);
+	emailContentsTable->setModel(emailContentsTableModel);
+	emailContentsTableModel->setColumnCount(3);
+	emailContentsTableModel->setRowCount(5);
+	emailContentsTable->setWindowTitle("Email Internal Table Editor");
+	emailContentsTable->show();*/
+}
+
 void UserConfigureDialog::initUi()
 {
 	this->setModal(true);
 	this->ui.tableWidget_emailcontents->setStyle(QStyleFactory::create("windowsvista"));
 	this->ui.tableWidget_emailcontents->installEventFilter(this);
+	this->ui.tableWidget_emailcontents->setContextMenuPolicy(Qt::CustomContextMenu);
 	ui.splitter->setStretchFactor(0,1);
 	ui.splitter->setStretchFactor(1, 9);
 	ui.comboBox_emailrecviers->setEditable(true);
@@ -268,9 +305,13 @@ void UserConfigureDialog::initUi()
 	this->ui.tableWidget_emailcontents->setRowHeight(1, 10);
 	this->ui.tableWidget_emailcontents->setHorizontalHeaderLabels(horizontalHeader);
 	this->ui.tableWidget_emailcontents->horizontalHeader()->setStretchLastSection(true);
-	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate.get());
+	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate);
 	this->ui.tableWidget_emailcontents->setItem(1, 1, new QTableWidgetItem());
 	showEvent(nullptr);
-	connectslots();
+	if (!connectslots())
+	{
+		QMessageBox::critical(this, "internal Error", "Connect slots fail");
+		exit(-1);
+	}
 	
 }

@@ -187,7 +187,7 @@
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>AddRecvier</string>
+              <string>AddReceiver</string>
              </property>
              <property name="icon">
               <iconset resource="deliveryrecord.qrc">
@@ -207,7 +207,7 @@
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>RemoveRecvier</string>
+              <string>RemoveReceiver</string>
              </property>
              <property name="icon">
               <iconset resource="deliveryrecord.qrc">

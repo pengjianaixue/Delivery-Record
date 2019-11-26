@@ -1,27 +1,28 @@
 <RCC>
-  <qresource prefix="/DeliveryRecord">
-    <file>Resources/save.png</file>
-    <file>Resources/give-up.png</file>
-    <file>Resources/send_email.png</file>
-    <file>Resources/release-notes.png</file>
-    <file>Resources/visual.png</file>
-    <file>Resources/Subject one.png</file>
-    <file>Resources/email_send.png</file>
-    <file>Resources/add.png</file>
-    <file>Resources/remove.png</file>
-    <file>Resources/comments.png</file>
-    <file>Resources/delivery note.png</file>
-    <file>Resources/Email Connect.png</file>
-    <file>Resources/email_account_suser.png</file>
-    <file>Resources/hide.png</file>
-    <file>Resources/configure.png</file>
-    <file>Resources/clean.png</file>
-    <file>Resources/section.png</file>
-    <file>Resources/password normal.png</file>
-    <file>Resources/update.png</file>
-    <file>Resources/user-name.png</file>
-  </qresource>
-  <qresource prefix="/style">
-    <file>Resources/style.qss</file>
-  </qresource>
+    <qresource prefix="/DeliveryRecord">
+        <file>Resources/save.png</file>
+        <file>Resources/give-up.png</file>
+        <file>Resources/send_email.png</file>
+        <file>Resources/release-notes.png</file>
+        <file>Resources/visual.png</file>
+        <file>Resources/Subject one.png</file>
+        <file>Resources/email_send.png</file>
+        <file>Resources/add.png</file>
+        <file>Resources/remove.png</file>
+        <file>Resources/comments.png</file>
+        <file>Resources/delivery note.png</file>
+        <file>Resources/Email Connect.png</file>
+        <file>Resources/email_account_suser.png</file>
+        <file>Resources/hide.png</file>
+        <file>Resources/configure.png</file>
+        <file>Resources/clean.png</file>
+        <file>Resources/section.png</file>
+        <file>Resources/password normal.png</file>
+        <file>Resources/update.png</file>
+        <file>Resources/user-name.png</file>
+        <file>Resources/table.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file>Resources/style.qss</file>
+    </qresource>
 </RCC>

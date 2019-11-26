@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QAbstractItemModel>
 #include "ui_configure.h"
 #include "XmlWirter.h"
 #include "XmlReader.h"
@@ -20,7 +21,7 @@ protected:
 	
 private slots:
 	void initUi();
-	void connectslots();
+	bool connectslots();
 	void submitButtonClick();
 	void cancelButtonClick();
 	bool passwordEncryptionProcess(QString &paswordstr);
@@ -30,13 +31,15 @@ private slots:
 	void emialRadioPushbuttonCliked();
 	void setEditRowWidth();
 	void rowAdd(int row, int cloumu);
+	void rowOperationMenu(const QPoint &pos);
+	void addTableInCell();
 	
 private:
 	Ui::Configure ui;
 	std::map<QString,QString>				m_editSubmitContentsMap;
 	QLineEdit								*m_lineEditEmialRecvierAdd	= {nullptr};
 	bool									m_isSendEmail				= { false };
-	std::shared_ptr<QTextEditDelegate>		m_pInputTextEditorDelegate  = std::make_shared<QTextEditDelegate>(this);
+	QTextEditDelegate						*m_pInputTextEditorDelegate = {nullptr};
 	XmlWirter								m_xmlWirter;
 	XmlReader								m_xmlReader;
 	

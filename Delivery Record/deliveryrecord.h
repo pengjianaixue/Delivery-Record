@@ -36,10 +36,12 @@ private slots:
 	void setEditRowWidth();
 	void sendEmail();
 	bool saveToFile();
+	bool versionDialog();
+	bool helpFileOpen();
 	
 private:
 	Ui::DeliveryRecordClass					ui;
-	UserConfigureDialog					*configurUi = {nullptr};
+	UserConfigureDialog						*configurUi = {nullptr};
 	std::shared_ptr<QTextEditDelegate>		m_pInputTextEditorDelegate = std::make_shared<QTextEditDelegate>(this);
 	std::shared_ptr<XmlWirter>				m_XmlWirter = std::make_shared<XmlWirter>(this);
 	std::shared_ptr<XmlReader>				m_XmlReader = std::make_shared<XmlReader>(this);
