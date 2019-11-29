@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<root>
+	<Delivery_Email_Infor>
+		<Delivery_Email_Content Title="Release app for 2460/2479 B8,B20,B28.B.please fetch the WLM. Any issue please feedback" Contents="Version: R80KK10 " />
+		<Delivery_Email_Content Title="40/50/60D" Contents="http://ki81fw4.rnd.ki.sw.ericsson.se/executions/1155692/results/439/ngr2.xlf/ElvisRegression.xml/JCAT_logs/#/suite" />
+		<Delivery_Email_Content Title="Pick address" Contents="APP: ngr2_app-CXP9013268_15-R80KK10.xlf( Fetch the WLM on share point ) &#10;G2:   g2_ngr2_app-CXP9024578_15-R80KK10.cxp &#10;G1:   g1_ngr2_app-CXP9025871_15-R80KK10.tgz https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM" />
+		<Delivery_Email_Content Title="Limitation" Contents="Below database didn’t merged into R80JA track,will cause function “Disable SBPS at low DCDC input voltage”  disable. &#10;/72x/id_ruType_1.40.x/extendedVoltagesbpsDisable      U8                   1    /* Disable SBPS in extended voltage range. 1 = Yes; 0 = No */ " />
+		<Delivery_Email_Content Title="Build report" Contents="https://ki81fw4.rnd.ki.sw.ericsson.se/resultweb/build_reports/19093&#10;Lib     Delivery Report&#10;TrxCtrl  TrxCtrl_14.11.24.0&#10;XP        XP_SW_9.18.4.0&#10;XCS   plf.CXS101639_1-R1DFD&#10;NGRICR ngricr.CXS101658_1-R1DBC&#10;RICR_MAIN ricr.CXS101715_1-R14FJ&#10;Tokelau  API version: 2.0.5.8  ARM version: 2.0.5.7 is loaded. the ADRV9010 Device silicon revision: 176 Product ID: 8&#10;DRT R1A&#10;Basic function update  1.HNS:5829532 fix vswr problem for multiband  2.[MT:0021598] Change dcBias mapping fro 2460/2479 3.HNS:5809179 add DB temp DB for 2460 4.HNS:5829560 2460 updata txVva db&#10;&#10;&#10;&#10;&#10;&#10;" />
+		<Delivery_Email_Content Title="External database update" Contents="phmDataFormat, fmcMode and B78K temp table added.  &#10;Rru2460 &amp; Rru2479: rx3 config and high/lowLevelDetectionModeMap updated&#10;https://gerrit.ericsson.se/gitweb? p=radio/xRU/database/rxCalib.git;a=commit;h=7b3c2ba955e233d17f4972b8171005b634679375&#10;" />
+		<Delivery_Email_Content Title="Baseline" Contents="R80KK10" />
+	</Delivery_Email_Infor>
+	<!--Delivery_Infor-->
+	<Delivery_Infor>
+		<DliveryInfo Value="R80LA08" />
+		<DliveryInfo Value="daily update&#10;2019/11/29" />
+		<DliveryInfo Value="[http://ki81fw4.rnd.ki.sw.ericsson.se/executions/1166039/results/439/ngr2.xlf/ElvisRegression.xml/JCAT_logs/#/suite 60D]" />
+		<DliveryInfo Value="[https://ki81fw4.rnd.ki.sw.ericsson.se/resultweb/build_reports/19157 BuildReport]" />
+		<DliveryInfo Value="&#10;[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM R80LA08WLM]" />
+		<DliveryInfo Value="[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM   g2_ngr2_app-CXP9024578_15-R80LA08.cxp]" />
+		<DliveryInfo Value="[https://gerrit.ericsson.se/#/c/6488619/ HNS:5809179  Delete DB from SW DB]" />
+		<DliveryInfo Value="" />
+		<DliveryInfo Value="[https://gerrit.ericsson.se/#/c/6458599/ Update 1 - HNS:5809179 add/delete DB temp DB for 2460/2479]&#10;[https://gerrit.ericsson.se/#/c/6459693/ Update 2 - HNS:5829560 add a db for rampdown init ]&#10;[https://gerrit.ericsson.se/#/c/6486902/ Update 3 - [MT:0021598] Change resistence sw 2460/2479 ]" />
+		<DliveryInfo Value="N/A" />
+		<DliveryInfo Value="R80LA08" />
+		<DliveryInfo Value="[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/txCalib.git;a=commit;h=2cbb9fa0c1ad66bb4610cf44d54f3328f612fe44 Ver4 txCalibRru2460.txt,Ver4 txCalibRru2479.txt ]&#10;[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/temperatureSupervision.git;a=commit;h=31799b8ae888fc28684fb0eb4dc7d3488570fdf5 Update for AIR6488, AIR6449, RRU2460, RRU2479 ]&#10;[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/rxSwDb.git;a=commit;h=d8d53c16d90dde6d05c6b0d527e0319b99536fc1        Rru4408: initFreq, freqOffset added for B40U. Rru2460... ]" />
+	</Delivery_Infor>
+</root>

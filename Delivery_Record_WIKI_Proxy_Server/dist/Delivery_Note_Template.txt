@@ -1,0 +1,11 @@
+@|INT56007.xlf
+@|Release SW Drop 5 version 7 for 2460 B8,B20,B28.B, please fetch the WLM and verify. Any issue please 
+@|NO
+@|NA
+@|[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&id=%2Fsites%2FGriffin%2FOslo%2FShared%20Documents%2FOslo%20Triple%20band%202460%2FSW%20release%2FWLM/ INT56007]<br>
+@|NO
+@|NA
+@|TrxCtrl<br>TrxCtrl_14.11.15.0_beta3<br>DRT<br>NA<br>Basic function support<br>Update TrxCtrl version to TrxCtrl_14.11.15.0_beta3
+@|SSI  case<br>[https://sthhub-proj.rnd.ki.sw.ericsson.se/proj/terass_func/JcatResult/eaxliji/jcat/logs/201908/20190805160620/index.html/ testSingleUlDlCarrierAllFullBandwidthsMaxPower]
+@|NA
+@|RU_SW_R80BF

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Editing User:Eijpnae (section) - LTE-Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"User","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":2,"wgPageName":"User:Eijpnae","wgTitle":"Eijpnae","wgCurRevisionId":1267513,"wgRevisionId":0,"wgArticleId":70166,"wgIsArticle":false,"wgIsRedirect":false,"wgAction":"edit","wgUserName":"Eijpnae","wgUserGroups":["*","user","autoconfirmed"],"wgCategories":[],"wgBreakFrames":true,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"User:Eijpnae","wgRelevantArticleId":70166,"wgRequestId":"XVynBYaKkhEAAEBG3koAAAAm","wgUserId":24297,"wgUserEditCount":8,"wgUserRegistration":1563430938000,"wgUserNewMsgRevisionId":null,"wgIsProbablyEditable":true,"wgRelevantPageIsProbablyEditable":true,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgRelevantUserName":"Eijpnae","wgWikiEditorEnabledModules":{"toolbar":true,"preview":false,"publish":false},"wgEchoEventLoggingSchemas":{"Echo":{"enabled":false,"revision":7731316,"client":false},"EchoMail":{"enabled":false,"revision":5467650,"client":false},"EchoInteraction":{"enabled":false,"revision":15823738,"client":true}},"wgEchoEventLoggingVersion":"1.12","wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgEditMessage":"editingsection","wgAjaxEditStash":true,"wgEchoSeenTime":{"alert":"1970-01-01T00:00:01Z","notice":"1970-01-01T00:00:01Z"}});mw.loader.state({"site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"loading","user.tokens":"loading","ext.wikiEditor.styles":"ready","mediawiki.action.edit.styles":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","oojs-ui.styles.textures":"ready","mediawiki.widgets.styles":"ready","oojs-ui.styles.icons-content":"ready","oojs-ui.styles.icons-alerts":"ready","oojs-ui.styles.icons-interactions":"ready","ext.echo.styles.badge":"ready","ext.echo.badgeicons":"ready","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.sectionAnchor":"ready","mediawiki.skinning.interface":"ready","skins.vector.styles":"ready"});mw.loader.implement("user.options@1hvpwrc",function($,jQuery,require,module){mw.user.options.set({"echo-subscriptions-email-edit-user-talk":1});});mw.loader.implement("user.tokens@1ac7q83",function ( $, jQuery, require, module ) {
+mw.user.tokens.set({"editToken":"719673ce661f9bbe566afc67519a33f65d5ca705+\\","patrolToken":"8aa1f1abd182ef2f0f10cd6b5da398ab5d5ca705+\\","watchToken":"11ba247f913a2c2b0bec0631f9c220735d5ca705+\\","csrfToken":"719673ce661f9bbe566afc67519a33f65d5ca705+\\"});/*@nomin*/
+
+});mw.loader.load(["ext.wikiEditor","mediawiki.action.edit","mediawiki.toolbar","mediawiki.action.edit.editWarning","mediawiki.action.edit.collapsibleFooter","site","mediawiki.page.startup","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","jquery.makeCollapsible","mediawiki.searchSuggest","mediawiki.page.watch.ajax","ext.CodeMirror","ext.echo.init","skins.vector.js"]);});</script>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=ext.echo.badgeicons%7Cext.echo.styles.badge%7Cmediawiki.action.edit.styles%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.styles%7Coojs-ui.styles.icons-alerts%2Cicons-content%2Cicons-interactions%2Cindicators%2Ctextures%7Cskins.vector.styles&amp;only=styles&amp;skin=vector"/>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=ext.wikiEditor.styles&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/w/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.30.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="alternate" type="application/x-wiki" title="Edit" href="/w/index.php?title=User:Eijpnae&amp;action=edit"/>
+<link rel="edit" title="Edit" href="/w/index.php?title=User:Eijpnae&amp;action=edit"/>
+<link rel="shortcut icon" href="/w/images/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="LTE-Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://lte-wiki.rnd.ki.sw.ericsson.se/w/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="LTE-Wiki Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+<!--[if lt IE 9]><script src="/resources/lib/html5shiv/html5shiv.min.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-2 ns-subject page-User_Eijpnae rootpage-User_Eijpnae skin-vector action-edit">		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice" class="mw-body-content"><div id="localNotice" lang="en" dir="ltr"><table class="plainlinks imbox imbox-content" role="presentation"><tr><td class="mbox-image"><img alt="" src="/w/images/thumb/d/d6/Ambox_important.png/40px-Ambox_important.png" width="40" height="40" srcset="/w/images/thumb/d/d6/Ambox_important.png/60px-Ambox_important.png 1.5x, /w/images/thumb/d/d6/Ambox_important.png/80px-Ambox_important.png 2x" /></td><td class="mbox-text"><b>Performance Issues:</b> Some users are experiencing time-out issues when saving updates. Hit the save button again and it usually works.</td></tr></table>
+<table class="plainlinks imbox imbox-notice" role="presentation"><tr><td class="mbox-image"><img alt="" src="/w/images/thumb/c/c7/Information_icon4.png/40px-Information_icon4.png" width="40" height="40" srcset="/w/images/thumb/c/c7/Information_icon4.png/60px-Information_icon4.png 1.5x, /w/images/thumb/c/c7/Information_icon4.png/80px-Information_icon4.png 2x" /></td><td class="mbox-text"><b>EriColl/Sharepoint Link Issues:</b> If you find that old EriColl links do not work for documents, it is likely becase the "Documents" folder is now "Shared Documents".</td></tr></table>
+</div></div>
+						<div class="mw-indicators mw-body-content">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Editing User:Eijpnae (section)</h1>
+									<div id="bodyContent" class="mw-body-content">
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text"><div id="wikiPreview" class="ontop" style="display: none;"><div lang="en" dir="ltr" class="mw-content-ltr"></div></div><form class="mw-editform" id="editform" name="editform" method="post" action="/w/index.php?title=User:Eijpnae&amp;action=submit" enctype="multipart/form-data"><input type="hidden" value="ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ" name="wpUnicodeCheck"/><div id="antispam-container" style="display: none;"><label for="wpAntispam">Anti-spam check.
+Do <strong>not</strong> fill this in!</label><input type="text" name="wpAntispam" id="wpAntispam" value="" /></div><input type="hidden" name="editingStatsId" id="editingStatsId" value="d5e95d11ff8dd921840fdcb40f5bf5d0" /><input type="hidden" value="2" name="wpSection"/><input type="hidden" value="20190821020557" name="wpStarttime"/><input type="hidden" value="20190820070815" name="wpEdittime"/><input type="hidden" value="1267513" name="editRevId"/><input id="wpScrolltop" type="hidden" name="wpScrolltop"/><input type="hidden" value="cd0be94bf3957779134b1dcb0c1d9df8" name="wpAutoSummary"/><input type="hidden" value="0" name="oldid"/><input type="hidden" value="1267513" name="parentRevId"/><input type="hidden" value="text/x-wiki" name="format"/><input type="hidden" value="wikitext" name="model"/><div class="wikiEditor-oldToolbar"><div id="toolbar"></div></div><textarea tabindex="1" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" class="mw-editfont-monospace" lang="en" dir="ltr" name="wpTextbox1">=== 2460 ===
+{| class="mw-collapsible wikitable"
+! style="background:#4682B4; color:white" |Version&lt;br>(xlf)
+! style="background:#4682B4; color:white" |Comments
+! style="background:#4682B4; color:white" |40/50/60D
+! style="background:#4682B4; color:white" |Build report
+! style="background:#4682B4; color:white" |APP Fetch Link
+! style="background:#4682B4; color:white" |G2 APP
+! style="background:#4682B4; color:white" |Limitation
+! style="background:#4682B4; color:white" |Submodule Version
+! style="background:#4682B4; color:white" |Gerrit link
+! style="background:#4682B4; color:white" |Chang
+! style="background:#4682B4; color:white" |Baseline
+|-
+|INT56007.xlf
+|Release SW Drop 5 version 7 for 2460 B8,B20,B28.B, please fetch the WLM and verify. Any issue please 
+|NO
+|NA
+|[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=%2Fsites%2FGriffin%2FOslo%2FShared%20Documents%2FOslo%20Triple%20band%202460%2FSW%20release%2FWLM/ INT56007]&lt;br>
+|NO
+|NA
+|TrxCtrl&lt;br>TrxCtrl_14.11.15.0_beta3&lt;br>DRT&lt;br>NA&lt;br>Basic function support&lt;br>Update TrxCtrl version to TrxCtrl_14.11.15.0_beta3
+|SSI case &lt;br>[https://sthhub-proj.rnd.ki.sw.ericsson.se/proj/terass_func/JcatResult/eaxliji/jcat/logs/201908/20190805160620/index.html/ testSingleUlDlCarrierAllFullBandwidthsMaxPower]
+|NA
+|RU_SW_R80BF(Some changes will merge into next tag )
+|}
+</textarea><div class='editOptions'>
+<div id='wpSummaryLabel' class='mw-summary oo-ui-layout oo-ui-labelElement oo-ui-fieldLayout oo-ui-fieldLayout-align-top'><div class='oo-ui-fieldLayout-body'><span class='oo-ui-fieldLayout-header'><label for='wpSummary' class='oo-ui-labelElement-label'>Summary:</label></span><div class='oo-ui-fieldLayout-field'><div id='wpSummaryWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-textInputWidget oo-ui-textInputWidget-type-text oo-ui-textInputWidget-php' data-ooui='{"_":"OO.ui.TextInputWidget","maxLength":"200","name":"wpSummary","value":"\/* 2460 *\/ ","inputId":"wpSummary","tabIndex":1,"title":"Enter a short summary","accessKey":"b"}'><input type='text' tabindex='1' aria-disabled='false' title='Enter a short summary [b]' accesskey='b' name='wpSummary' value='/* 2460 */ ' id='wpSummary' maxlength='200' class='oo-ui-inputWidget-input' /><span class='oo-ui-iconElement-icon'></span><span class='oo-ui-indicatorElement-indicator'></span></div></div></div></div><div class='editCheckboxes'><div class='oo-ui-layout oo-ui-horizontalLayout'><div id='mw-editpage-minoredit' class='oo-ui-layout oo-ui-labelElement oo-ui-fieldLayout oo-ui-fieldLayout-align-inline'><div class='oo-ui-fieldLayout-body'><span class='oo-ui-fieldLayout-field'><span id='wpMinoreditWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-checkboxInputWidget' data-ooui='{"_":"OO.ui.CheckboxInputWidget","name":"wpMinoredit","inputId":"wpMinoredit","tabIndex":3,"accessKey":"i"}'><input type='checkbox' tabindex='3' aria-disabled='false' accesskey='i' name='wpMinoredit' value='' id='wpMinoredit' class='oo-ui-inputWidget-input' /><span></span></span></span><span class='oo-ui-fieldLayout-header'><label title='Mark this as a minor edit [i]' for='wpMinoredit' class='oo-ui-labelElement-label'>This is a minor edit</label></span></div></div><div id='mw-editpage-watch' class='oo-ui-layout oo-ui-labelElement oo-ui-fieldLayout oo-ui-fieldLayout-align-inline'><div class='oo-ui-fieldLayout-body'><span class='oo-ui-fieldLayout-field'><span id='wpWatchthisWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-checkboxInputWidget' data-ooui='{"_":"OO.ui.CheckboxInputWidget","selected":true,"name":"wpWatchthis","inputId":"wpWatchthis","tabIndex":4,"accessKey":"w"}'><input type='checkbox' tabindex='4' aria-disabled='false' accesskey='w' name='wpWatchthis' value='' id='wpWatchthis' checked='checked' class='oo-ui-inputWidget-input' /><span></span></span></span><span class='oo-ui-fieldLayout-header'><label title='Add this page to your watchlist [w]' for='wpWatchthis' class='oo-ui-labelElement-label'>Watch this page</label></span></div></div></div></div>
+<div id="editpage-copywarn">
+<p>Please note that all contributions to LTE-Wiki may be edited, altered, or removed by other contributors.
+If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see <a href="/wiki/LTE-Wiki:Copyrights" title="LTE-Wiki:Copyrights">LTE-Wiki:Copyrights</a> for details).
+<strong>Do not submit copyrighted work without permission!</strong>
+</p>
+</div>
+<div class='editButtons'>
+<span id='wpSaveWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-flaggedElement-constructive oo-ui-flaggedElement-primary oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget' data-ooui='{"_":"OO.ui.ButtonInputWidget","useInputTag":true,"type":"submit","name":"wpSave","inputId":"wpSave","flags":["constructive","primary"],"tabIndex":5,"title":"Save your changes","accessKey":"s","label":"Save changes"}'><input type='submit' tabindex='5' aria-disabled='false' title='Save your changes [s]' accesskey='s' name='wpSave' id='wpSave' value='Save changes' class='oo-ui-inputWidget-input oo-ui-buttonElement-button' /></span>
+<span id='wpPreviewWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget' data-ooui='{"_":"OO.ui.ButtonInputWidget","useInputTag":true,"type":"submit","name":"wpPreview","inputId":"wpPreview","tabIndex":6,"title":"Preview your changes. Please use this before saving.","accessKey":"p","label":"Show preview"}'><input type='submit' tabindex='6' aria-disabled='false' title='Preview your changes. Please use this before saving. [p]' accesskey='p' name='wpPreview' id='wpPreview' value='Show preview' class='oo-ui-inputWidget-input oo-ui-buttonElement-button' /></span>
+<span id='wpDiffWidget' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-buttonInputWidget' data-ooui='{"_":"OO.ui.ButtonInputWidget","useInputTag":true,"type":"submit","name":"wpDiff","inputId":"wpDiff","tabIndex":7,"title":"Show which changes you made to the text","accessKey":"v","label":"Show changes"}'><input type='submit' tabindex='7' aria-disabled='false' title='Show which changes you made to the text [v]' accesskey='v' name='wpDiff' id='wpDiff' value='Show changes' class='oo-ui-inputWidget-input oo-ui-buttonElement-button' /></span>
+	<span class='cancelLink'><span id='mw-editform-cancel' aria-disabled='false' class='oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-frameless oo-ui-labelElement oo-ui-flaggedElement-destructive oo-ui-buttonWidget' data-ooui='{"_":"OO.ui.ButtonWidget","href":"\/wiki\/User:Eijpnae","framed":false,"label":{"html":"Cancel"},"flags":["destructive"]}'><a role='button' tabindex='0' aria-disabled='false' href='/wiki/User:Eijpnae' rel='nofollow' class='oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-image-destructive'></span><span class='oo-ui-labelElement-label'>Cancel</span><span class='oo-ui-indicatorElement-indicator oo-ui-image-destructive'></span></a></span><span class="mw-editButtons-pipe-separator"> | </span></span>
+	<span class='editHelp'><a target="helpwindow" href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Editing_pages">Editing help</a> (opens in new window)</span>
+</div><!-- editButtons -->
+</div><!-- editOptions -->
+
+<input type="hidden" value="719673ce661f9bbe566afc67519a33f65d5ca705+\" name="wpEditToken"/>
+<div class="mw-editTools"></div>
+<div class="templatesUsed"></div><div class="hiddencats"></div><div class="limitreport"></div><input id="mw-edit-mode" type="hidden" value="text" name="mode"/><input type="hidden" value="1" name="wpUltimateParam"/>
+</form>
+</div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://lte-wiki.rnd.ki.sw.ericsson.se/wiki/User:Eijpnae">https://lte-wiki.rnd.ki.sw.ericsson.se/wiki/User:Eijpnae</a>"					</div>
+				<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>				<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-userpage" class="active"><a href="/wiki/User:Eijpnae" dir="auto" title="Your user page [.]" accesskey=".">Eijpnae</a></li><li id="pt-notifications-alert"><a href="/wiki/Special:Notifications" class="mw-echo-notifications-badge mw-echo-notification-badge-nojs mw-echo-notifications-badge-all-read" data-counter-num="0" data-counter-text="0" title="Your alerts">Alerts (0)</a></li><li id="pt-notifications-notice"><a href="/wiki/Special:Notifications" class="mw-echo-notifications-badge mw-echo-notification-badge-nojs mw-echo-unseen-notifications" data-counter-num="1" data-counter-text="1" title="Your notices">Notice (1)</a></li><li id="pt-mytalk"><a href="/wiki/User_talk:Eijpnae" class="new" title="Your talk page [n]" accesskey="n">Talk</a></li><li id="pt-preferences"><a href="/wiki/Special:Preferences" title="Your preferences">Preferences</a></li><li id="pt-watchlist"><a href="/wiki/Special:Watchlist" title="A list of pages you are monitoring for changes [l]" accesskey="l">Watchlist</a></li><li id="pt-mycontris"><a href="/wiki/Special:Contributions/Eijpnae" title="A list of your contributions [y]" accesskey="y">Contributions</a></li><li id="pt-logout"><a href="/w/index.php?title=Special:UserLogout&amp;returnto=User%3AEijpnae&amp;returntoquery=action%3Dedit%26section%3D2" title="Log out">Log out</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+														<li id="ca-nstab-user" class="selected"><span><a href="/wiki/User:Eijpnae" title="View the user page [c]" accesskey="c">User page</a></span></li>
+							<li id="ca-talk" class="new"><span><a href="/w/index.php?title=User_talk:Eijpnae&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+						</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label">
+							<span>Variants</span>
+						</h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+														<li id="ca-view"><span><a href="/wiki/User:Eijpnae">Read</a></span></li>
+							<li id="ca-edit" class="selected"><span><a href="/w/index.php?title=User:Eijpnae&amp;action=edit" title="Edit this page">Edit</a></span></li>
+							<li id="ca-history" class="collapsible"><span><a href="/w/index.php?title=User:Eijpnae&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+							<li id="ca-unwatch" class="icon mw-watchlink"><span><a href="/w/index.php?title=User:Eijpnae&amp;action=unwatch" data-mw="interface" title="Remove this page from your watchlist">Unwatch</a></span></li>
+						</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu" aria-labelledby="p-cactions-label">
+						<h3 id="p-cactions-label"><span>More</span></h3>
+
+						<div class="menu">
+							<ul>
+																<li id="ca-delete"><a href="/w/index.php?title=User:Eijpnae&amp;action=delete" title="Delete this page [d]" accesskey="d">Delete</a></li>
+								<li id="ca-move"><a href="/wiki/Special:MovePage/User:Eijpnae" title="Move this page [m]" accesskey="m">Move</a></li>
+							</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/w/index.php" id="searchform">
+							<div id="simpleSearch">
+							<input type="search" name="search" placeholder="Search LTE-Wiki" title="Search LTE-Wiki [f]" accesskey="f" id="searchInput"/><input type="hidden" value="Special:Search" name="title"/><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton"/>							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/wiki/Main_Page"  title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+			<h3 id='p-Navigation-label'>Navigation</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-mainpage"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main Page</a></li><li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li><li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" target="_blank" title="The place to find out">Help</a></li><li id="n-Dictionary"><a href="/wiki/LTE-Wiki:Dictionary">Dictionary</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Organizations' aria-labelledby='p-Organizations-label'>
+			<h3 id='p-Organizations-label'>Organizations</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-Product-Development-Baseband"><a href="/wiki/PD_BB">Product Development Baseband</a></li><li id="n-Product-Development-Traffic-Control"><a href="/wiki/PD_TC">Product Development Traffic Control</a></li><li id="n-RAN-Systems-Management"><a href="/wiki/RSM">RAN Systems Management</a></li><li id="n-Product-Integration-.26-Relese"><a href="/wiki/PIR">Product Integration &amp; Relese</a></li><li id="n-Product-Line-Maintenance"><a href="/wiki/Product_Line_Maintenance">Product Line Maintenance</a></li><li id="n-Baseband-Infrastructure"><a href="https://bbi-wiki.rnd.ki.sw.ericsson.se/mediawiki/index.php/Main_Page">Baseband Infrastructure</a></li><li id="n-BID"><a href="/wiki/BID">BID</a></li><li id="n-Customer-Adaptation"><a href="/wiki/LTE_Customer_Adaptations">Customer Adaptation</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Programs' aria-labelledby='p-Programs-label'>
+			<h3 id='p-Programs-label'>Programs</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-RA-Customer-Operational-Efficiency"><a href="/wiki/RA_COE">RA Customer Operational Efficiency</a></li><li id="n-RA-Mobile-Broadband"><a href="/wiki/RA_Mobile_Broadband">RA Mobile Broadband</a></li><li id="n-RA-Services-.26-Mobility"><a href="/wiki/RA_Services_%26_Mobility">RA Services &amp; Mobility</a></li><li id="n-LRAT-CI"><a href="/wiki/LRAT_CI">LRAT CI</a></li><li id="n-Radio-SW"><a href="/wiki/RA_Radio">Radio SW</a></li><li id="n-IODT"><a href="/wiki/Interoperability_Design_Test">IODT</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Areas' aria-labelledby='p-Areas-label'>
+			<h3 id='p-Areas-label'>Areas</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-Design"><a href="/wiki/Design">Design</a></li><li id="n-System"><a href="/wiki/System">System</a></li><li id="n-RAN-I.26V"><a href="/wiki/RAN_I%26V">RAN I&amp;V</a></li><li id="n-MBB-FV"><a href="/wiki/MBB_FV_Wiki">MBB FV</a></li><li id="n-Systems-Management"><a href="/wiki/Systems_Management">Systems Management</a></li><li id="n-PD-CAT"><a href="/wiki/PD_CAT">PD CAT</a></li><li id="n-HW-Radio-Design"><a href="/wiki/HW_Radio_Design">HW Radio Design</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Quick_Links' aria-labelledby='p-Quick_Links-label'>
+			<h3 id='p-Quick_Links-label'>Quick Links</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-Guardians-.26-COP"><a href="/wiki/Guardian_and_COP">Guardians &amp; COP</a></li><li id="n-WoW"><a href="/wiki/Way_of_Working">WoW</a></li><li id="n-Trouble-Reports"><a href="/wiki/TroubleReports">Trouble Reports</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Special_Projects' aria-labelledby='p-Special_Projects-label'>
+			<h3 id='p-Special_Projects-label'>Special Projects</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-Verizon-5G-Technology-Forum"><a href="/wiki/VTF">Verizon 5G Technology Forum</a></li><li id="n-High-Band-SW"><a href="/wiki/High_Band_SW">High Band SW</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+			<h3 id='p-tb-label'>Tools</h3>
+
+			<div class="body">
+									<ul>
+						<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/User:Eijpnae" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/User:Eijpnae" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-contributions"><a href="/wiki/Special:Contributions/Eijpnae" title="A list of contributions by this user">User contributions</a></li><li id="t-log"><a href="/wiki/Special:Log/Eijpnae">Logs</a></li><li id="t-userrights"><a href="/wiki/Special:UserRights/Eijpnae">View user groups</a></li><li id="t-upload"><a href="/wiki/Special:Upload" title="Upload files [u]" accesskey="u">Upload file</a></li><li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-info"><a href="/w/index.php?title=User:Eijpnae&amp;action=info" title="More information about this page">Page information</a></li>					</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/wiki/LTE-Wiki:Privacy_policy" title="LTE-Wiki:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/wiki/LTE-Wiki:About" title="LTE-Wiki:About">About LTE-Wiki</a></li>
+											<li id="footer-places-disclaimer"><a href="/wiki/LTE-Wiki:General_disclaimer" title="LTE-Wiki:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-poweredbyico">
+							<a href="//www.mediawiki.org/" target="_blank"><img src="/w/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /w/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u = (("https:" == document.location.protocol) ? "https" : "http") + "://"+"matomo-developer.internal.ericsson.com/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "4"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+
+<!-- Piwik Image Tracker -->
+<noscript><img src="https://matomo-developer.internal.ericsson.com/piwik.php?idsite=4&rec=1" style="border:0" alt="" /></noscript>
+<!-- End Piwik --><script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":725});});</script>
+	</body>
+</html>

@@ -323,7 +323,7 @@ bool DeliveryRecord::saveToFile()
 
 bool DeliveryRecord::versionDialog()
 {
-	QMessageBox::about(this, "About", "© 2019 Ericcson\nVersion:R1A\nAuthor: jian.peng@ericsson.com\r\n\r\nBuild with Qt");
+	QMessageBox::about(this, "About", "© 2019 Ericcson\nVersion:R1-19.11.26\nAuthor: jian.peng@ericsson.com\r\n\r\nBuild with Qt");
 	return true;
 }
 
