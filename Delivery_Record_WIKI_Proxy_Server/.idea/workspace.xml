@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="471aac51-efe3-4163-a907-897428704dce" name="Default Changelist" comment="" />
+    <list default="true" id="471aac51-efe3-4163-a907-897428704dce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/RecordTemp.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/RecordTemp.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Delivery Record/configure.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/configure.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +24,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1Pm7tqtqlx2oda2S7Y7C967bLsk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
@@ -44,6 +59,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Configruation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -65,6 +81,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:\Users\eijpnae\Documents\Visual Studio 2015\Projects\Delivery Record\Win32\Debug\Delivery_Record_WIKI_Proxy_Server\Delivery_Record_Notify_EmailSend.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -86,6 +103,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -107,6 +125,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Delivery_note_record.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -128,6 +147,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PageInfoFecth.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -157,8 +177,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565924411594</updated>
+      <workItem from="1575174010637" duration="394000" />
+      <workItem from="1575174497892" duration="2884000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -14,9 +14,15 @@ public:
 	~XmlReader();
 	//API
 	bool openFile(const QString	&FileName);
-	bool setRootName(const QString &RootName = "root");
+	//bool setRootName(const QString &RootName = "root");
+	void setCurrentNode(const QString &nodeName);
 	bool getAnSpecialCategoryValue(const QString &categoryName, const QString  &childName, const QStringList &attriNameList, VALUEPAIRLIST &valueList);
 private:
 	pugi::xml_document					m_PugiXmlDocument;
-	QString								m_strRootName;
+	QString								m_strRootName = {"root"};
+	pugi::xml_node						m_currentNode;
+
+
+
+
 };

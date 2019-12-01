@@ -48,46 +48,44 @@ void DeliveryRecord::initUI()
 	this->configurUi->hide();
 	this->ui.widget_displayinfor->hide();
 	ui.horizontalLayout_2->insertSpacerItem(1,new QSpacerItem(20, 20, QSizePolicy::Expanding));
-	IniFileProcesser initIniReader("./RecordTemp.ini");
-	QStringList deliveryKeyWords;
-	QStringList deliveryInfoWords;
-	XmlReader::VALUEPAIRLIST deliveryInfo;
-	m_XmlReader->openFile(m_strXmlFilePath);
-	m_XmlReader->setRootName();
-	m_XmlReader->getAnSpecialCategoryValue("Delivery_Infor", "DliveryInfo", QStringList("Value"), deliveryInfo);
-	int count = initIniReader.getGroupKeycount("Dilivery_table_configure");
-	for (int i = 0;i < count;++i)
+	DeliveryTableInfor deliveryTableInfor;
+	QFileInfo fileInfo(m_deliveryInformationXmlfileName);
+	if (fileInfo.isFile())
 	{
-		QString keyword = "Word_" + QString(std::to_string(i+1).c_str());
-		QStringList temp = initIniReader.fetchSpecGroupAndKeyValue("Dilivery_table_configure", keyword).split("@=");
-
-		deliveryKeyWords.append(temp[0]);
-		i<deliveryInfo.length() ? deliveryInfoWords.append(deliveryInfo[i][0].second) : deliveryInfoWords.append("");
+		deliveryTableInfor = loadInformationFromXml(m_deliveryInformationXmlfileName);
+	}
+	else
+	{
+		deliveryTableInfor = loadInformationofLegacy(m_strXmlFilePath);
 	}
 	ui.tablewideget_deliverytable->setStyle(QStyleFactory::create("windowsvista"));
 	ui.tablewideget_deliverytable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	ui.tablewideget_deliverytable->setColumnCount(1);
-	ui.tablewideget_deliverytable->setRowCount(deliveryKeyWords.size());
-	ui.tablewideget_deliverytable->setVerticalHeaderLabels(deliveryKeyWords);
+	ui.tablewideget_deliverytable->setRowCount(deliveryTableInfor.size());
 	ui.tablewideget_deliverytable->horizontalHeader()->setVisible(false);
 	ui.tablewideget_deliverytable->setHorizontalHeaderLabels(QStringList(""));
-	ui.tablewideget_deliverytable->verticalHeader()->setVisible(true); 
+	ui.tablewideget_deliverytable->verticalHeader()->setVisible(true);
 	ui.tablewideget_deliverytable->setItemDelegateForColumn(0, m_pInputTextEditorDelegate.get());
 	ui.tablewideget_deliverytable->horizontalHeader()->setStretchLastSection(true);
 	ui.tablewideget_deliverytable->verticalHeader()->setStretchLastSection(true);
-	for (size_t i = 0; i < deliveryInfoWords.length(); i++)
+	QStringList deliveryHeaderLabel;
+	for (size_t i = 0; i < deliveryTableInfor.length(); i++)
 	{
+		deliveryHeaderLabel << deliveryTableInfor.at(i).first;
 		QTableWidgetItem *item = new QTableWidgetItem();
-		item->setText(deliveryInfoWords[i]);
+		item->setText(deliveryTableInfor.at(i).second);
 		ui.tablewideget_deliverytable->setItem(i, 0, item);
 	}
-	
-	QTableWidgetItem * header = ui.tablewideget_deliverytable->verticalHeaderItem(deliveryKeyWords.size()-1);
-	if (header->text()=="External DB")
+	ui.tablewideget_deliverytable->setVerticalHeaderLabels(deliveryHeaderLabel);
+	QTableWidgetItem * header = ui.tablewideget_deliverytable->verticalHeaderItem(deliveryHeaderLabel.size() - 1);
+	if (header && header->text() == "* External DB" || header->text() == "External DB")
 	{
-		header->setText("* " + header->text());
+		if (!header->text().startsWith("* "))
+		{
+			header->setText("* " + header->text());
+		}
 		header->setForeground(QBrush(QColor(204, 51, 51)));
-		ui.tablewideget_deliverytable->setVerticalHeaderItem(deliveryKeyWords.size() - 1, header);
+		ui.tablewideget_deliverytable->setVerticalHeaderItem(deliveryHeaderLabel.size() - 1, header);
 	}
 	else
 	{
@@ -99,6 +97,7 @@ void DeliveryRecord::initUI()
 }
 void DeliveryRecord::init()
 {
+	m_deliveryInformationXmlfileName = QApplication::applicationDirPath() + "/DeliveryInformation.xml";
 	this->setStyleSheet("QMainWindow:{background-color: #1464A0;}");
 	this->ui.tablewideget_deliverytable->installEventFilter(this);
 	m_strXmlFilePath = QApplication::applicationDirPath() + "/DeliveryInfor.xml";
@@ -300,19 +299,20 @@ bool DeliveryRecord::saveToFile()
 	QList<QStringList> valueStringList;
 	for (size_t i = 0; i < ui.tablewideget_deliverytable->rowCount(); i++)
 	{
+		valueList.append(ui.tablewideget_deliverytable->verticalHeaderItem(i)->text());
 		valueList.append(ui.tablewideget_deliverytable->item(i, 0)->text());
 		valueStringList.append(valueList);
 		valueList.clear();
 	}
-	if (!m_XmlWirter->loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	if (!m_XmlWirter->loadXmlFile(m_deliveryInformationXmlfileName))
 	{
 		m_XmlWirter->emptyXmlDoc();
 		m_XmlWirter->fileStructInit("root");
 	}
 	m_XmlWirter->setCurrentNode("root");
 	m_XmlWirter->removeChild("Delivery_Infor");
-	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList("Value"), valueStringList);
-	if (!m_XmlWirter->saveToFile(m_strXmlFilePath))
+	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList()<<"ItemTitle"<<"Value", valueStringList);
+	if (!m_XmlWirter->saveToFile(m_deliveryInformationXmlfileName))
 	{
 		QMessageBox::critical(this, "save information", "save to file failed!");
 		return false;
@@ -331,6 +331,58 @@ bool DeliveryRecord::helpFileOpen()
 {
 	QString GuideFileDir = QCoreApplication::applicationDirPath() + "/Delivery Record Tool Guide.chm";
 	return QDesktopServices::openUrl(QUrl::fromLocalFile(GuideFileDir));
+}
+
+DeliveryRecord::DeliveryTableInfor DeliveryRecord::loadInformationFromXml(const QString &fileName)
+{
+	DeliveryTableInfor tableinfor;
+	XmlReader::VALUEPAIRLIST deliveryInfo;
+	m_XmlReader->openFile(fileName);
+	//m_XmlReader->setRootName();
+	m_XmlReader->getAnSpecialCategoryValue("Delivery_Infor", "DliveryInfo", QStringList()<<"ItemTitle"<<"Value", deliveryInfo);
+	for (const auto &item: deliveryInfo)
+	{
+		QString ItemTitle;
+		QString Value;
+		for (const auto &attributeitem : item)
+		{
+			if (attributeitem.first == "ItemTitle")
+			{
+				ItemTitle = attributeitem.second;
+			}
+			else if (attributeitem.first == "Value")
+			{
+				Value = attributeitem.second;
+			}
+		}
+		tableinfor.append({ ItemTitle ,Value });
+	}
+	return tableinfor;
+
+}
+
+DeliveryRecord::DeliveryTableInfor DeliveryRecord::loadInformationofLegacy(const QString &fileName)
+{
+	DeliveryTableInfor tableinfor;
+	IniFileProcesser initIniReader("./RecordTemp.ini");
+	QStringList deliveryKeyWords;
+	QStringList deliveryInfoWords;
+	XmlReader::VALUEPAIRLIST deliveryInfo;
+	m_XmlReader->openFile(fileName);
+	//m_XmlReader->setRootName();
+	m_XmlReader->getAnSpecialCategoryValue("Delivery_Infor", "DliveryInfo", QStringList("Value"), deliveryInfo);
+	int count = initIniReader.getGroupKeycount("Dilivery_table_configure");
+	for (int i = 0; i < count; ++i)
+	{
+		QString keyword = "Word_" + QString(std::to_string(i + 1).c_str());
+		QStringList temp = initIniReader.fetchSpecGroupAndKeyValue("Dilivery_table_configure", keyword).split("@=");
+		deliveryKeyWords.append(temp[0]);
+		/*i < deliveryInfo.length() ? deliveryInfoWords.append(deliveryInfo[i][0].second) : deliveryInfoWords.append("");*/
+		i < deliveryInfo.length() ? tableinfor.append({ temp[0], deliveryInfo[i][0].second }): tableinfor.append({ temp[0], "" });
+		
+	}
+	return tableinfor;
+	
 }
 
 

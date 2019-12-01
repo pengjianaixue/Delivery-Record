@@ -33,7 +33,8 @@ private slots:
 	void rowAdd(int row, int cloumu);
 	void rowOperationMenu(const QPoint &pos);
 	void addTableInCell();
-	
+	void loadInformationFromXml(const QString &fileName);
+	void loadEmailContentsfromOldXml();
 private:
 	Ui::Configure ui;
 	std::map<QString,QString>				m_editSubmitContentsMap;
@@ -42,5 +43,7 @@ private:
 	QTextEditDelegate						*m_pInputTextEditorDelegate = {nullptr};
 	XmlWirter								m_xmlWirter;
 	XmlReader								m_xmlReader;
+	QString									m_deliveryInformationXmlfileName = {};
+	XmlReader::VALUEPAIRLIST				m_emailContentsList;
 	
 };
