@@ -308,8 +308,10 @@ bool DeliveryRecord::saveToFile()
 	{
 		m_XmlWirter->emptyXmlDoc();
 		m_XmlWirter->fileStructInit("root");
+		
 	}
 	m_XmlWirter->setCurrentNode("root");
+	writeWikiLinkAndColumnLimit();
 	m_XmlWirter->removeChild("Delivery_Infor");
 	m_XmlWirter->writeAncategoryData("Delivery_Infor", "DliveryInfo", QStringList()<<"ItemTitle"<<"Value", valueStringList);
 	if (!m_XmlWirter->saveToFile(m_deliveryInformationXmlfileName))
@@ -331,6 +333,16 @@ bool DeliveryRecord::helpFileOpen()
 {
 	QString GuideFileDir = QCoreApplication::applicationDirPath() + "/Delivery Record Tool Guide.chm";
 	return QDesktopServices::openUrl(QUrl::fromLocalFile(GuideFileDir));
+}
+
+bool DeliveryRecord::writeWikiLinkAndColumnLimit()
+{
+	QList<QStringList> valueStringList;
+	valueStringList.append(QStringList() << "tablecolumnlimt" <<  QString::number(this->ui.tablewideget_deliverytable->verticalHeader()->count()));
+	valueStringList.append(QStringList() << "loginjumptopage" << "RA_Radio/release-note");
+	m_XmlWirter->removeChild("Wiki_Infor");
+	m_XmlWirter->writeAncategoryData("Wiki_Infor", "WikiInfor", QStringList() << "Item" << "Value", valueStringList);
+	return false;
 }
 
 DeliveryRecord::DeliveryTableInfor DeliveryRecord::loadInformationFromXml(const QString &fileName)

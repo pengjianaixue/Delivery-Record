@@ -41,6 +41,7 @@ private slots:
 	bool helpFileOpen();
 	DeliveryTableInfor loadInformationFromXml(const QString &fileName);
 	DeliveryTableInfor loadInformationofLegacy(const QString &fileName);
+	bool writeWikiLinkAndColumnLimit();
 	
 private:
 	Ui::DeliveryRecordClass					ui;

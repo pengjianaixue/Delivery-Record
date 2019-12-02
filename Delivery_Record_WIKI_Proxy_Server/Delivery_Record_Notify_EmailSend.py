@@ -1,4 +1,4 @@
-# import  sys
+import  re
 import Configruation
 import   XmlReader
 from email.mime.text import MIMEText

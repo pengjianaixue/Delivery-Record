@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471aac51-efe3-4163-a907-897428704dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/RecordTemp.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/RecordTemp.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/configure.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/configure.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -215,21 +209,6 @@
           <url>file://$PROJECT_DIR$/PageInfoFecth.py</url>
           <line>65</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Delivery_note_record.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Delivery_note_record.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Delivery_note_record.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
