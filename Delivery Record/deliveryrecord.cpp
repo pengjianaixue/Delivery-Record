@@ -281,7 +281,7 @@ void DeliveryRecord::setEditRowWidth()
 	{
 		this->ui.tablewideget_deliverytable->setRowHeight(i, 50);
 	}
-	this->ui.tablewideget_deliverytable->setRowHeight(this->ui.tablewideget_deliverytable->currentRow(), 150);
+	this->ui.tablewideget_deliverytable->resizeRowToContents(this->ui.tablewideget_deliverytable->currentRow());
 }
 
 void DeliveryRecord::sendEmail()

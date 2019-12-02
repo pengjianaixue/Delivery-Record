@@ -66,6 +66,10 @@ bool UserConfigureDialog::eventFilter(QObject *target, QEvent *event)
 		this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 		return true;//will 
 	}
+	else if (target == this->ui.tableWidget_emailcontents && event->type() == QEvent::Enter)
+	{
+		setEditRowWidth();
+	}
 	else
 	{
 		return QDialog::eventFilter(target, event);
@@ -80,7 +84,7 @@ bool UserConfigureDialog::connectslots()
 		&& this->connect(this->ui.pushButton_removeEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::removeEmailRecvier)
 		&& this->connect(this->ui.pushButton_addEmailRecvier, &QPushButton::clicked, this, &UserConfigureDialog::addEmailRecvier)
 		//this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &UserConfigureDialog::emialRadioPushbuttonCliked);
-		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemSelectionChanged, this, &UserConfigureDialog::setEditRowWidth)
+		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemClicked, this, &UserConfigureDialog::setEditRowWidth)
 		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::cellChanged, this, &UserConfigureDialog::rowAdd)
 		;
 	//this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::customContextMenuRequested, this, &UserConfigureDialog::rowOperationMenu);
@@ -230,7 +234,9 @@ void UserConfigureDialog::setEditRowWidth()
 	{
 		this->ui.tableWidget_emailcontents->setRowHeight(i, 40);
 	}
-	this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(), 100);
+	/*this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(), 100);*/
+	this->ui.tableWidget_emailcontents->resizeRowToContents(this->ui.tableWidget_emailcontents->currentRow());
+
 }
 
 void UserConfigureDialog::rowAdd(int row, int cloumu)
