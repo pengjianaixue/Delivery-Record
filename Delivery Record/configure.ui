@@ -159,7 +159,7 @@
             <widget class="QLineEdit" name="lineEdit_emailsender"/>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_emailcomments"/>
+            <widget class="QLineEdit" name="lineEdit_emailsubject"/>
            </item>
           </layout>
          </item>

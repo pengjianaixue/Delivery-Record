@@ -12,7 +12,7 @@ account =  Configruation.USERNAME + '@ericsson.com'
 sender = Configruation.EMAILSENDER #'jian.peng@ericsson.com'
 receivers = Configruation.EMAILRECVIERS
 passwd = str(Configruation.USERPASSWORD,'utf-8')
-mailcontents = Configruation.EMAILCOMMENTS
+mailcontents = Configruation.EMAILSUJECT
 mailserver = 'se-smtp.ericsson.se'
 sub = 'Product Delivery Update Notify'
 try:
@@ -45,7 +45,7 @@ try:
     tableContents = ''
     contentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'DliveryInfo','Value')
     for contentitem in contentList:
-        contentitem = str(contentitem).replace('\n','<br>')
+        contentitem = str(contentitem[1]).replace('\n','<br>')
         if '[' in contentitem:
             contentitemlinklist =  contentitem.split(']')
             for contentitemlink in contentitemlinklist:
@@ -57,8 +57,8 @@ try:
     emailCommentsTitleList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'Delivery_Email_Content','Title')
     emailCommentsContentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'Delivery_Email_Content', 'Contents')
     for i in range(len(emailCommentsTitleList)):
-        emailComments = emailComments + emailCommentsTemplate.format(str(emailCommentsTitleList[i]).replace('\n', '<br>') ,
-                                                                     str(emailCommentsContentList[i]).replace('\n','<br>&nbsp&nbsp'))
+        emailComments = emailComments + emailCommentsTemplate.format(str(emailCommentsTitleList[i][0]).replace('\n', '<br>') ,
+                                                                     str(emailCommentsContentList[i][0]).replace('\n','<br>&nbsp&nbsp'))
         # commentsContentsSpilt = str(emailCommentsContentList[i]).replace('\n','<br>')
         # commentsContents = ''
         # for row in emailCommentsContentList[i].split('\n'):

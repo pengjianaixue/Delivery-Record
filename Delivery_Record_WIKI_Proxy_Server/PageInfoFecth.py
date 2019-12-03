@@ -15,11 +15,11 @@ def appendContentTotheTable(ContentList = [],TableContent=''):
     newDeliveryContent = ''
     newDeliveryTable = ''
     for i in range(len(ContentList)):
-        print('delivery content item:{0}'.format(ContentList[i]),flush=True)
+        print('delivery content item:{0}'.format(ContentList[i][0]),flush=True)
         splitstr = '|{0}\n'
         if i == len(ContentList) -1:
             splitstr ='|{0}'
-        newDeliveryContent = newDeliveryContent + '|{0}\n'.format(str(ContentList[i]).replace('\n','<br>'))
+        newDeliveryContent = newDeliveryContent + '|{0}\n'.format(str(ContentList[i][0]).replace('\n','<br>'))
         # newDeliveryContent = newDeliveryContent + '|{0}'.format(str(i))
     splitstrlist = re.split('\|-',TableContent)
     if len(splitstrlist)>0:

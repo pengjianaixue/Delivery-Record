@@ -50,7 +50,7 @@ public:
     QVBoxLayout *verticalLayout_8;
     QVBoxLayout *verticalLayout_5;
     QLineEdit *lineEdit_emailsender;
-    QLineEdit *lineEdit_emailcomments;
+    QLineEdit *lineEdit_emailsubject;
     QHBoxLayout *horizontalLayout_5;
     QComboBox *comboBox_emailrecviers;
     QPushButton *pushButton_addEmailRecvier;
@@ -178,10 +178,10 @@ public:
 
         verticalLayout_5->addWidget(lineEdit_emailsender);
 
-        lineEdit_emailcomments = new QLineEdit(layoutWidget);
-        lineEdit_emailcomments->setObjectName(QString::fromUtf8("lineEdit_emailcomments"));
+        lineEdit_emailsubject = new QLineEdit(layoutWidget);
+        lineEdit_emailsubject->setObjectName(QString::fromUtf8("lineEdit_emailsubject"));
 
-        verticalLayout_5->addWidget(lineEdit_emailcomments);
+        verticalLayout_5->addWidget(lineEdit_emailsubject);
 
 
         verticalLayout_8->addLayout(verticalLayout_5);

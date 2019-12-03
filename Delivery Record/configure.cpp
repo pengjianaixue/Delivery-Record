@@ -46,7 +46,7 @@ void UserConfigureDialog::showEvent(QShowEvent *showevent)
 	passwordDecodeProcess(passwordDecodestr);
 	ui.lineEdit_password->setText(passwordDecodestr);
 	ui.lineEdit_editsection->setText(m_editSubmitContentsMap["editsection"]);
-	ui.lineEdit_emailcomments->setText(m_editSubmitContentsMap["emailcomments"]);
+	ui.lineEdit_emailsubject->setText(m_editSubmitContentsMap["emailsubject"]);
 	ui.lineEdit_emailsender->setText(m_editSubmitContentsMap["emailsender"]);
 	ui.lineEdit_username->setText(m_editSubmitContentsMap["username"]);
 
@@ -122,7 +122,7 @@ void UserConfigureDialog::submitButtonClick()
 	passwordEncryptionProcess(passwordEncStr);
 	m_editSubmitContentsMap.insert({ "password",passwordEncStr });
 	m_editSubmitContentsMap.insert({ "editsection",ui.lineEdit_editsection->text() });
-	m_editSubmitContentsMap.insert({ "emailcomments",ui.lineEdit_emailcomments->text() });
+	m_editSubmitContentsMap.insert({ "emailsubject",ui.lineEdit_emailsubject->text() });
 	m_editSubmitContentsMap.insert({ "emailsender",ui.lineEdit_emailsender->text() });
 #ifdef _DEBUG
 	qDebug() << ui.comboBox_emailrecviers->count();
