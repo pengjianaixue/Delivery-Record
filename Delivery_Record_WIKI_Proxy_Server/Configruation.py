@@ -11,20 +11,20 @@ EDITSECTION=''
 LOGINJUMPTOPAGE = ''
 CONTENTCOLUMNLIMT=''
 if len(configurationFile)>0:
-    userInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml','Delivery_configure_Infor',['Item','Value'])
+    userInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml','Delivery_Configure_Item',['Item','Value'])
     # cf.read('./RecordTemp.ini', encoding='utf-8')
     # Filed name
     for informationItem in userInformation:
-        if informationItem.index(0) == 'username':
-            USERNAME = informationItem.index(1)
-        elif informationItem.index(0) == 'password':
-            USERPASSWORD = base64.b64decode(informationItem.index(1))
-        elif informationItem.index(0) == 'editsection':
-            EDITSECTION = informationItem.index(1)
-        elif informationItem.index(0) == 'emailsubject':
-            EMAILSUJECT = informationItem.index(1)
-        elif informationItem.index(0) == 'emailsender':
-            EMAILSENDER = informationItem.index(1)
+        if informationItem[0] == 'username':
+            USERNAME = informationItem[1]
+        elif informationItem[0] == 'password':
+            USERPASSWORD = base64.b64decode(informationItem[1])
+        elif informationItem[0] == 'editsection':
+            EDITSECTION = informationItem[1]
+        elif informationItem[0] == 'emailsubject':
+            EMAILSUJECT = informationItem[1]
+        elif informationItem[0] == 'emailsender':
+            EMAILSENDER = informationItem[1]
     # USERNAME = cf.get('user_configure', 'username')
     # USERPASSWORD = base64.b64decode(cf.get('user_configure', 'password'))
     # EDITSECTION = cf.get('user_configure', 'editsection')
@@ -32,22 +32,22 @@ if len(configurationFile)>0:
     # EMAILSENDER = cf.get('user_configure', 'emailsender')
     EMAILRECVIERS = []
     DELIVERY_TABLE_HEAD = []
-    emailReceiverInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'Delivery_EmailReceiver_Infor',
+    emailReceiverInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'Delivery_Receiver_Item',
                                                           ['Receiver_Number', 'Receiver_Address'])
     # items = cf.options('user_configure')
     # recviercount = len(items) - 5
     for reveiver in emailReceiverInformation:
-        EMAILRECVIERS.append(reveiver.index(1))
+        EMAILRECVIERS.append(reveiver[1])
     wikiInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml',
-                                                                   'Wiki_Infor',
+                                                                   'WikiInfor',
                                                                    ['Item', 'Value'])
     for wikiItem in wikiInformation:
-        if wikiItem.index(0)  == 'loginjumptopage':
-            LOGINJUMPTOPAGE = wikiItem.index(1)
-        elif wikiItem.index(0) == 'tablecolumnlimt':
-            CONTENTCOLUMNLIMT = wikiItem.index(1)
+        if wikiItem[0]  == 'loginjumptopage':
+            LOGINJUMPTOPAGE = wikiItem[1]
+        elif wikiItem[0] == 'tablecolumnlimt':
+            CONTENTCOLUMNLIMT = wikiItem[1]
     deliveryTableInformation = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml',
-                                                          'Delivery_Infor',
+                                                          'DliveryInfo',
                                                           ['ItemTitle', 'Value'])
     for deliveryTableItem in deliveryTableInformation:
         DELIVERY_TABLE_HEAD.append(deliveryTableItem[0])

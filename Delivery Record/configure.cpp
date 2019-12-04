@@ -277,8 +277,13 @@ void UserConfigureDialog::setEditRowWidth()
 	{
 		this->ui.tableWidget_emailcontents->setRowHeight(i, 40);
 	}
+	
 	/*this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(), 100);*/
 	this->ui.tableWidget_emailcontents->resizeRowToContents(this->ui.tableWidget_emailcontents->currentRow());
+	if (this->ui.tableWidget_emailcontents->rowHeight(this->ui.tableWidget_emailcontents->currentRow()) < 60)
+	{
+		this->ui.tableWidget_emailcontents->setRowHeight(this->ui.tableWidget_emailcontents->currentRow(),60);
+	}
 
 }
 
@@ -446,6 +451,7 @@ void UserConfigureDialog::initUi()
 	this->ui.tableWidget_emailcontents->horizontalHeader()->setStretchLastSection(true);
 	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate);
 	this->ui.tableWidget_emailcontents->setItem(1, 1, new QTableWidgetItem());
+	this->ui.tableWidget_emailcontents->setMinimumHeight(40);
 	// Change all the information save to xml file.
 	QFileInfo fileInfo(m_deliveryInformationXmlfileName);
 	if (fileInfo.isFile())

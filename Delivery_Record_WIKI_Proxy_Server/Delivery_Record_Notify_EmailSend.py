@@ -43,19 +43,20 @@ try:
     for head in Configruation.DELIVERY_TABLE_HEAD:
         tableHeads = tableHeads + tableHeadTemplate.format(head)
     tableContents = ''
-    contentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'DliveryInfo','Value')
+    contentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'DliveryInfo',['Value'])
     for contentitem in contentList:
-        contentitem = str(contentitem[1]).replace('\n','<br>')
+        contentitem = str(contentitem[0]).replace('\n','<br>')
+
         if '[' in contentitem:
             contentitemlinklist =  contentitem.split(']')
             for contentitemlink in contentitemlinklist:
                 if '[' in contentitemlink:
-                    contentlist = contentitemlink.replace('[','').replace(']','').split(' ')
+                    contentlist = contentitemlink. replace('[','').replace(']','').split(' ')
                     tablecellcontents = ''.join(contentlist[1:])
                     contentitem = tableContentsLinkTemplate.format(contentlist[0],tablecellcontents)
         tableContents = tableContents + tableContentsTemplate.format(contentitem)
-    emailCommentsTitleList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'Delivery_Email_Content','Title')
-    emailCommentsContentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInfor.xml', 'Delivery_Email_Content', 'Contents')
+    emailCommentsTitleList = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'Delivery_Email_Content',['Title'])
+    emailCommentsContentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'Delivery_Email_Content', ['Contents'])
     for i in range(len(emailCommentsTitleList)):
         emailComments = emailComments + emailCommentsTemplate.format(str(emailCommentsTitleList[i][0]).replace('\n', '<br>') ,
                                                                      str(emailCommentsContentList[i][0]).replace('\n','<br>&nbsp&nbsp'))

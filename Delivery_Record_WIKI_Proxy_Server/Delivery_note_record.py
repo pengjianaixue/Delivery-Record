@@ -78,7 +78,7 @@ if __name__ == '__main__':
             #change html element fetch use bs4 lib
             wpTextbox1 = getHtmlTagValue(Response.text, 'textarea', 'wpTextbox1','text')
             try:
-                ContentList = getAnSpecialCategoryValue('./DeliveryInfor.xml', 'DliveryInfo','Value')
+                ContentList = getAnSpecialCategoryValue('./DeliveryInformation.xml', 'DliveryInfo',['Value'])
                 if len(ContentList) != int(CONTENTCOLUMNLIMT):
                     print('the Delivery content column in Delivery_Note_Template.txt is max than for the limit ,please check column or format ')
                     raise Exception('the Delivery content column in Delivery_Note_Template.txt is max than for the limit ,please check column or format')

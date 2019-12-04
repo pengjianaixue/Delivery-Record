@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Delivery_Record_Notify_EmailSend.py'],
-             pathex=['C:\\Users\\eijpnae\\Documents\\Visual Studio 2015\\Projects\\Delivery Record\\Win32\\Debug\\Delivery_Record_WIKI_Proxy_Server'],
+             pathex=['C:\\Users\\eijpnae\\Documents\\Visual Studio 2015\\Projects\\Delivery Record\\Delivery_Record_WIKI_Proxy_Server'],
              binaries=[],
              datas=[],
              hiddenimports=[],

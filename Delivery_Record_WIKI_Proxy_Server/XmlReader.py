@@ -10,7 +10,7 @@ class XmlReader(object):
         pass
 
     def GetElementAllSiblingattrib(self, ElementName,AttribName=[]):
-        ElmentItemList = [()]
+        ElmentItemList = []
         for Elementitem in self.XmlRoot.iter(ElementName):
             attribtuple = []
             for AttribItem in AttribName:
