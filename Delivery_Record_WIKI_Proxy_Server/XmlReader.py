@@ -9,15 +9,18 @@ class XmlReader(object):
         self.XmlRoot = self.Tree.getroot()
         pass
 
-    def GetElementAllSiblingattrib(self, ElementName,AttribName):
-        ElmentItemList = []
+    def GetElementAllSiblingattrib(self, ElementName,AttribName=[]):
+        ElmentItemList = [()]
         for Elementitem in self.XmlRoot.iter(ElementName):
-            ElmentItemList.append(Elementitem.attrib[AttribName])
+            attribtuple = []
+            for AttribItem in AttribName:
+                attribtuple.append(Elementitem.attrib[AttribItem])
             pass
+            ElmentItemList.append(tuple(attribtuple))
         return ElmentItemList
         pass
     pass
-def getAnSpecialCategoryValue(XmlName='',categoryName = '',AttribName = ''):
+def getAnSpecialCategoryValue(XmlName='',categoryName = '',AttribName = []):
     XmlReaderInstance = XmlReader(XmlName)
     return XmlReaderInstance.GetElementAllSiblingattrib(categoryName,AttribName)
     pass

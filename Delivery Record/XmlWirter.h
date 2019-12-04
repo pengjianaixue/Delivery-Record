@@ -20,6 +20,6 @@ public:
 	bool removeChild(const QString &childName);
 private:
 	pugi::xml_document					m_PugiXmlDocument;
-	pugi::xml_node						m_RootNode ;
+	pugi::xml_node						m_currentNode ;
 	QString								m_strRootName;
 };

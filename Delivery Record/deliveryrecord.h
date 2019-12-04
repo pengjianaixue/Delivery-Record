@@ -15,6 +15,7 @@ class DeliveryRecord : public QMainWindow
 	Q_OBJECT
 
 public:
+	using DeliveryTableInfor = QList<std::pair<QString, QString>>;
 	explicit DeliveryRecord(QWidget *parent = Q_NULLPTR);
 	~DeliveryRecord();
 protected:
@@ -39,6 +40,9 @@ private slots:
 	bool saveToFile();
 	bool versionDialog();
 	bool helpFileOpen();
+	DeliveryTableInfor loadInformationFromXml(const QString &fileName);
+	DeliveryTableInfor loadInformationofLegacy(const QString &fileName);
+	bool writeWikiLinkAndColumnLimit();
 	
 private:
 	Ui::DeliveryRecordClass					ui;
@@ -51,5 +55,6 @@ private:
 	QString									m_strXmlFilePath;
 	volatile bool							m_updateisfinied = {false};
 	QThread									m_pyRunThread;
+	QString									m_deliveryInformationXmlfileName = {};
 
 };

@@ -25,26 +25,20 @@ bool UserConfigureDialog::isEnableEmail() const
 
 void UserConfigureDialog::showEvent(QShowEvent *showevent)
 {
-	XmlReader::VALUEPAIRLIST emailInforList;
-	if(m_xmlReader.openFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+
+	if (!m_emailContentsList.isEmpty())
 	{
-		m_xmlReader.setRootName();
-		m_xmlReader.getAnSpecialCategoryValue("Delivery_Email_Infor", "Delivery_Email_Content", 
-			QStringList() << "Title" << "Contents", emailInforList);
-		if (!emailInforList.isEmpty())
+		int rowconunter = 0;
+		int colcounter = 0;
+		for (auto &item : m_emailContentsList)
 		{
-			int rowconunter = 0;
-			int colcounter = 0; 
-			for (auto &item: emailInforList)
+			for (auto &childitem : item)
 			{
-				for (auto &childitem : item)
-				{
-					this->ui.tableWidget_emailcontents->setItem(rowconunter, colcounter,new QTableWidgetItem(childitem.second));
-					++colcounter;
-				}
-				++rowconunter;
-				colcounter = 0;
+				this->ui.tableWidget_emailcontents->setItem(rowconunter, colcounter, new QTableWidgetItem(childitem.second));
+				++colcounter;
 			}
+			++rowconunter;
+			colcounter = 0;
 		}
 	}
 	ui.lineEdit_username->setText(m_editSubmitContentsMap["username"]);
@@ -52,7 +46,7 @@ void UserConfigureDialog::showEvent(QShowEvent *showevent)
 	passwordDecodeProcess(passwordDecodestr);
 	ui.lineEdit_password->setText(passwordDecodestr);
 	ui.lineEdit_editsection->setText(m_editSubmitContentsMap["editsection"]);
-	ui.lineEdit_emailcomments->setText(m_editSubmitContentsMap["emailcomments"]);
+	ui.lineEdit_emailsubject->setText(m_editSubmitContentsMap["emailsubject"]);
 	ui.lineEdit_emailsender->setText(m_editSubmitContentsMap["emailsender"]);
 	ui.lineEdit_username->setText(m_editSubmitContentsMap["username"]);
 
@@ -94,7 +88,8 @@ bool UserConfigureDialog::connectslots()
 
 void UserConfigureDialog::submitButtonClick()
 {
-	if (!m_xmlWirter.loadXmlFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	
+	if (!m_xmlWirter.loadXmlFile(m_deliveryInformationXmlfileName))
 	{
 		m_xmlWirter.emptyXmlDoc();
 		m_xmlWirter.fileStructInit("root");
@@ -103,6 +98,7 @@ void UserConfigureDialog::submitButtonClick()
 	QStringList attruiItemList;
 	attruiItemList << "Title" <<"Contents";
 	QList<QStringList> vauleList;
+	m_emailContentsList.clear();
 	for (size_t i = 0; i < ui.tableWidget_emailcontents->rowCount(); i++)
 	{
 		if (ui.tableWidget_emailcontents->item(i,0) 
@@ -114,19 +110,24 @@ void UserConfigureDialog::submitButtonClick()
 			QStringList itemtext;
 			itemtext << ui.tableWidget_emailcontents->item(i, 0)->text();
 			itemtext << ui.tableWidget_emailcontents->item(i, 1)->text();
+			QList<std::pair<QString, QString>> contentspair;
+			contentspair.append({"Title",itemtext[0]});
+			m_emailContentsList.append(contentspair);
+			m_emailContentsList.clear();
+			contentspair.append({"Contents",itemtext[1] });
+			m_emailContentsList.append(contentspair);
 			vauleList.append(itemtext);
 		}
 	}
 	m_xmlWirter.removeChild("Delivery_Email_Infor");
 	m_xmlWirter.writeAncategoryData("Delivery_Email_Infor","Delivery_Email_Content", attruiItemList, vauleList);
-	m_xmlWirter.saveToFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml");
 	m_editSubmitContentsMap.clear();
-	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text()});
+	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text() });
 	QString passwordEncStr = ui.lineEdit_password->text();
 	passwordEncryptionProcess(passwordEncStr);
-	m_editSubmitContentsMap.insert({ "password",passwordEncStr});
+	m_editSubmitContentsMap.insert({ "password",passwordEncStr });
 	m_editSubmitContentsMap.insert({ "editsection",ui.lineEdit_editsection->text() });
-	m_editSubmitContentsMap.insert({"emailcomments",ui.lineEdit_emailcomments->text()});
+	m_editSubmitContentsMap.insert({ "emailsubject",ui.lineEdit_emailsubject->text() });
 	m_editSubmitContentsMap.insert({ "emailsender",ui.lineEdit_emailsender->text() });
 #ifdef _DEBUG
 	qDebug() << ui.comboBox_emailrecviers->count();
@@ -137,16 +138,57 @@ void UserConfigureDialog::submitButtonClick()
 #ifdef _DEBUG
 		qDebug() << ui.comboBox_emailrecviers->count();
 #endif // _DEBUG
-		m_editSubmitContentsMap.insert({QString("recvier_")+ QString::number(i),ui.comboBox_emailrecviers->itemText(i)});
+		m_editSubmitContentsMap.insert({ QString("recvier_") + QString::number(i),ui.comboBox_emailrecviers->itemText(i) });
 	}
-	QList<std::pair<QString, QString>> iniList;
-	for (auto  &item : m_editSubmitContentsMap)
+	vauleList.clear();
+	for (const auto &item: m_editSubmitContentsMap)
 	{
-		iniList.append({ item.first ,item.second });
+		if (!item.first.startsWith("recvier_"))
+		{
+			vauleList.append(QStringList() << item.first << item.second);
+		}
 	}
-	IniFileProcesser iniFileWirter("./RecordTemp.ini");
-	iniFileWirter.deleteGroupContents("user_configure");
-	iniFileWirter.writeGroupValueToIni("user_configure", iniList);
+	m_xmlWirter.removeChild("Delivery_configure_Infor");
+	m_xmlWirter.writeAncategoryData("Delivery_configure_Infor","Delivery_Configure_Item", QStringList() << "Item" << "Value", vauleList);
+	vauleList.clear();
+	for (const auto &item : m_editSubmitContentsMap)
+	{
+		if (item.first.startsWith("recvier_"))
+		{
+			vauleList.append(QStringList() << item.first << item.second);
+		}
+	}
+	m_xmlWirter.removeChild("Delivery_EmailReceiver_Infor");
+	m_xmlWirter.writeAncategoryData("Delivery_EmailReceiver_Infor", "Delivery_Receiver_Item",
+		QStringList() << "Receiver_Number" << "Receiver_Address", vauleList);
+	m_xmlWirter.saveToFile(m_deliveryInformationXmlfileName);
+//	m_editSubmitContentsMap.clear();
+//	m_editSubmitContentsMap.insert({ "username",ui.lineEdit_username->text()});
+//	QString passwordEncStr = ui.lineEdit_password->text();
+//	passwordEncryptionProcess(passwordEncStr);
+//	m_editSubmitContentsMap.insert({ "password",passwordEncStr});
+//	m_editSubmitContentsMap.insert({ "editsection",ui.lineEdit_editsection->text() });
+//	m_editSubmitContentsMap.insert({"emailcomments",ui.lineEdit_emailcomments->text()});
+//	m_editSubmitContentsMap.insert({ "emailsender",ui.lineEdit_emailsender->text() });
+//#ifdef _DEBUG
+//	qDebug() << ui.comboBox_emailrecviers->count();
+//#endif // _DEBUG
+//	for (size_t i = 0; i < ui.comboBox_emailrecviers->count(); i++)
+//	{
+//
+//#ifdef _DEBUG
+//		qDebug() << ui.comboBox_emailrecviers->count();
+//#endif // _DEBUG
+//		m_editSubmitContentsMap.insert({QString("recvier_")+ QString::number(i),ui.comboBox_emailrecviers->itemText(i)});
+//	}
+//	QList<std::pair<QString, QString>> iniList;
+//	for (auto  &item : m_editSubmitContentsMap)
+//	{
+//		iniList.append({ item.first ,item.second });
+//	}
+//	IniFileProcesser iniFileWirter("./RecordTemp.ini");
+//	iniFileWirter.deleteGroupContents("user_configure");
+//	iniFileWirter.writeGroupValueToIni("user_configure", iniList);
 	this->close();
 }
 
@@ -281,6 +323,63 @@ void UserConfigureDialog::addTableInCell()
 	emailContentsTable->show();*/
 }
 
+void UserConfigureDialog::loadInformationFromXml(const QString &fileName)
+{
+	if (!m_xmlReader.openFile(fileName))
+	{
+		return;
+	}
+	m_emailContentsList.clear();
+	m_xmlReader.getAnSpecialCategoryValue("Delivery_Email_Infor", "Delivery_Email_Content",
+		QStringList() << "Title" << "Contents", m_emailContentsList);
+	XmlReader::VALUEPAIRLIST InforList;
+	InforList.clear();
+	m_xmlReader.getAnSpecialCategoryValue("Delivery_configure_Infor", "Delivery_Configure_Item",
+		QStringList() << "Item" << "Value", InforList);
+	if ((!InforList.isEmpty()))
+	{
+		for (auto &item : InforList)
+		{
+			QString  key;
+			QString  value;
+			for (auto &childitem : item)
+			{
+				if (childitem.first == "Item")
+				{
+					key = childitem.second;
+				}
+				else if (childitem.first == "Value")
+				{
+					value = childitem.second;
+				}
+			}
+			if (!(key.isEmpty() || value.isEmpty()))
+			{
+				m_editSubmitContentsMap[key] = value;
+			}
+		}
+	}
+	InforList.clear();
+	//m_xmlReader.setCurrentNode("Delivery_configure_Infor");
+	m_xmlReader.getAnSpecialCategoryValue("Delivery_EmailReceiver_Infor", "Delivery_Receiver_Item",
+		QStringList() << "Receiver_Number" << "Receiver_Address", InforList);
+	if ((!InforList.isEmpty()))
+	{
+		for (auto &item : InforList)
+		{
+			for (auto &childitem : item)
+			{
+				if (childitem.first == "Receiver_Address")
+				{
+					ui.comboBox_emailrecviers->addItem(childitem.second);
+				}
+			}
+		}
+	}
+	m_xmlReader.setCurrentNode("root");
+	return;
+}
+
 bool UserConfigureDialog::loadEmailAddressFromFile()
 {
 	bool loadFlag = false;
@@ -310,9 +409,22 @@ bool UserConfigureDialog::loadEmailAddressFromFile()
 	return true;
 }
 
+void UserConfigureDialog::loadEmailContentsfromOldXml()
+{
+	m_emailContentsList.clear();
+	if (m_xmlReader.openFile(QApplication::applicationDirPath() + "/DeliveryInfor.xml"))
+	{
+		//m_xmlReader.setRootName();
+		m_xmlReader.getAnSpecialCategoryValue("Delivery_Email_Infor", "Delivery_Email_Content",
+			QStringList() << "Title" << "Contents", m_emailContentsList);
+		return;
+	}
+}
+
 void UserConfigureDialog::initUi()
 {
 	m_emailAddressFile = QApplication::applicationDirPath() + "/Email address configure.txt";
+	m_deliveryInformationXmlfileName = QApplication::applicationDirPath() + "/DeliveryInformation.xml";
 	this->setModal(true);
 	this->ui.tableWidget_emailcontents->setStyle(QStyleFactory::create("windowsvista"));
 	this->ui.tableWidget_emailcontents->installEventFilter(this);
@@ -324,16 +436,6 @@ void UserConfigureDialog::initUi()
 	ui.lineEdit_password->setPlaceholderText("please input password");
 	ui.lineEdit_username->setPlaceholderText("please input username");
 	ui.lineEdit_editsection->setPlaceholderText("please input table name");
-	IniFileProcesser initIniReader("./RecordTemp.ini");
-	IniFileProcesser::VALUELISTDIC iniFileValue = initIniReader.fetchValueDictFromIni();
-	for (auto &item : iniFileValue["user_configure"])
-	{
-		m_editSubmitContentsMap.insert({item.first,item.second });
-	}
-	for (size_t i = 0; i < (m_editSubmitContentsMap.size() - 5); i++)
-	{
-		ui.comboBox_emailrecviers->addItem(m_editSubmitContentsMap[QString("recvier_") + QString::number(i)]);
-	}
 	this->ui.tableWidget_emailcontents->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	this->ui.tableWidget_emailcontents->setColumnCount(2);
 	QStringList horizontalHeader;
@@ -344,6 +446,26 @@ void UserConfigureDialog::initUi()
 	this->ui.tableWidget_emailcontents->horizontalHeader()->setStretchLastSection(true);
 	this->ui.tableWidget_emailcontents->setItemDelegateForColumn(1, m_pInputTextEditorDelegate);
 	this->ui.tableWidget_emailcontents->setItem(1, 1, new QTableWidgetItem());
+	// Change all the information save to xml file.
+	QFileInfo fileInfo(m_deliveryInformationXmlfileName);
+	if (fileInfo.isFile())
+	{
+		loadInformationFromXml(m_deliveryInformationXmlfileName);
+	}
+	else
+	{
+		IniFileProcesser initIniReader("./RecordTemp.ini");
+		IniFileProcesser::VALUELISTDIC iniFileValue = initIniReader.fetchValueDictFromIni();
+		for (auto &item : iniFileValue["user_configure"])
+		{
+			m_editSubmitContentsMap.insert({ item.first,item.second });
+		}
+		for (size_t i = 0; i < (m_editSubmitContentsMap.size() - 5); i++)
+		{
+			ui.comboBox_emailrecviers->addItem(m_editSubmitContentsMap[QString("recvier_") + QString::number(i)]);
+		}
+		loadEmailContentsfromOldXml();
+	}
 	showEvent(nullptr);
 	if (!connectslots())
 	{

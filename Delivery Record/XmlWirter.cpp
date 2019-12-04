@@ -20,7 +20,7 @@ bool XmlWirter::emptyXmlDoc()
 
 void XmlWirter::fileStructInit(const QString &rootname)
 {
-	m_RootNode = m_PugiXmlDocument.append_child(rootname.toStdString().c_str());
+	m_currentNode = m_PugiXmlDocument.append_child(rootname.toStdString().c_str());
 	pugi::xml_node pre = m_PugiXmlDocument.prepend_child(pugi::node_declaration);
 	pre.append_attribute("version") = "1.0";
 	pre.append_attribute("encoding") = "utf-8";
@@ -28,8 +28,12 @@ void XmlWirter::fileStructInit(const QString &rootname)
 
 bool XmlWirter::setCurrentNode(const QString &nodeName)
 {
-
-	m_RootNode = m_PugiXmlDocument.child(nodeName.toStdString().c_str());
+	m_currentNode = m_PugiXmlDocument.child(nodeName.toStdString().c_str());
+	//m_currentNode = m_PugiXmlDocument.find_child([&](const pugi::xml_node &node) {if (node.name() != nodeName.toStdString().c_str()) { return false; } return true; });
+	if (m_currentNode.empty())
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -46,9 +50,9 @@ Return:bool
 */
 bool XmlWirter::writeAncategoryData(const QString &categoryName, const QString &childName, const QStringList &attriNameList, const QList<QStringList> &valueList)
 {
-	pugi::xml_node nodeCommentBooks = m_RootNode.append_child(pugi::node_comment);
+	pugi::xml_node nodeCommentBooks = m_currentNode.append_child(pugi::node_comment);
 	nodeCommentBooks.set_value(categoryName.toStdString().c_str());
-	pugi::xml_node node = m_RootNode.append_child(categoryName.toStdString().c_str());
+	pugi::xml_node node = m_currentNode.append_child(categoryName.toStdString().c_str());
 	for (auto &valueitem:valueList)
 	{
 		pugi::xml_node childnode = node.append_child(childName.toStdString().c_str());
@@ -78,7 +82,7 @@ bool XmlWirter::loadXmlFile(const QString &FilePath)
 
 bool XmlWirter::removeChild(const QString & childName)
 {
-	return m_RootNode.remove_child(childName.toStdString().c_str());;
+	return m_currentNode.remove_child(childName.toStdString().c_str());;
 }
 
 
