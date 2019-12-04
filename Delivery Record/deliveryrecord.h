@@ -9,6 +9,7 @@
 #include "XmlWirter.h"
 #include "XmlReader.h"
 #include "processRunWithThread.h"
+const QString Version = "R1A 19.12.3";
 class DeliveryRecord : public QMainWindow
 {
 	Q_OBJECT

@@ -56,6 +56,7 @@ public:
     QComboBox *comboBox_emailrecviers;
     QPushButton *pushButton_addEmailRecvier;
     QPushButton *pushButton_removeEmailRecvier;
+    QPushButton *pushButton_Loadfromfile;
     QTableWidget *tableWidget_emailcontents;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *spacer;
@@ -222,6 +223,17 @@ public:
 
         horizontalLayout_5->addWidget(pushButton_removeEmailRecvier);
 
+        pushButton_Loadfromfile = new QPushButton(layoutWidget);
+        pushButton_Loadfromfile->setObjectName(QStringLiteral("pushButton_Loadfromfile"));
+        sizePolicy1.setHeightForWidth(pushButton_Loadfromfile->sizePolicy().hasHeightForWidth());
+        pushButton_Loadfromfile->setSizePolicy(sizePolicy1);
+        pushButton_Loadfromfile->setStyleSheet(QStringLiteral(""));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/DeliveryRecord/Resources/load.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_Loadfromfile->setIcon(icon2);
+
+        horizontalLayout_5->addWidget(pushButton_Loadfromfile);
+
         horizontalLayout_5->setStretch(0, 8);
         horizontalLayout_5->setStretch(1, 1);
         horizontalLayout_5->setStretch(2, 1);
@@ -277,6 +289,7 @@ public:
         Lable_editsection_EmailRecviers->setText(QString());
         pushButton_addEmailRecvier->setText(QApplication::translate("Configure", "AddReceiver", Q_NULLPTR));
         pushButton_removeEmailRecvier->setText(QApplication::translate("Configure", "RemoveReceiver", Q_NULLPTR));
+        pushButton_Loadfromfile->setText(QApplication::translate("Configure", "LoadFromFile", Q_NULLPTR));
         okButton->setText(QApplication::translate("Configure", "OK", Q_NULLPTR));
         cancelButton->setText(QApplication::translate("Configure", "Cancel", Q_NULLPTR));
     } // retranslateUi

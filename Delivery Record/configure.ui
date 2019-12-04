@@ -164,7 +164,7 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="8,1,1">
+          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="8,1,1,0">
            <item>
             <widget class="QComboBox" name="comboBox_emailrecviers">
              <property name="sizePolicy">
@@ -212,6 +212,26 @@
              <property name="icon">
               <iconset resource="deliveryrecord.qrc">
                <normaloff>:/DeliveryRecord/Resources/remove.png</normaloff>:/DeliveryRecord/Resources/remove.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_Loadfromfile">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>LoadFromFile</string>
+             </property>
+             <property name="icon">
+              <iconset resource="deliveryrecord.qrc">
+               <normaloff>:/DeliveryRecord/Resources/load.png</normaloff>:/DeliveryRecord/Resources/load.png</iconset>
              </property>
             </widget>
            </item>

@@ -86,6 +86,7 @@ bool UserConfigureDialog::connectslots()
 		//this->connect(this->ui.radioButton_enableSendEmail, &QRadioButton::clicked, this, &UserConfigureDialog::emialRadioPushbuttonCliked);
 		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::itemClicked, this, &UserConfigureDialog::setEditRowWidth)
 		&& this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::cellChanged, this, &UserConfigureDialog::rowAdd)
+		&& this->connect(this->ui.pushButton_Loadfromfile,&QPushButton::clicked,this,&UserConfigureDialog::loadEmailAddressFromFile)
 		;
 	//this->connect(this->ui.tableWidget_emailcontents, &QTableWidget::customContextMenuRequested, this, &UserConfigureDialog::rowOperationMenu);
 	
@@ -280,8 +281,38 @@ void UserConfigureDialog::addTableInCell()
 	emailContentsTable->show();*/
 }
 
+bool UserConfigureDialog::loadEmailAddressFromFile()
+{
+	bool loadFlag = false;
+	QByteArray btyeAddress;
+	QFile emailAddressFile(m_emailAddressFile);
+	emailAddressFile.open(QFile::OpenModeFlag::ReadOnly);
+	if (emailAddressFile.isOpen())
+	{
+		btyeAddress = emailAddressFile.readAll();
+	}
+	QString emialAddress(btyeAddress);
+	QStringList emaillist =  emialAddress.split(";");
+	QRegularExpression emialPattern(R"(^[\w|\s]+<(.*@.*)>[\w|\s]?$)");
+	Q_FOREACH(QString emialItem ,emaillist)
+	{
+		QRegularExpressionMatch matchres =  emialPattern.match(emialItem);
+		if (matchres.hasMatch())
+		{
+			this->ui.comboBox_emailrecviers->addItem(matchres.captured(matchres.lastCapturedIndex()));
+			loadFlag = true;
+		}
+	}
+	if (loadFlag)
+	{
+		QMessageBox::information(this, "Load Information", "Load email address success !");
+	}
+	return true;
+}
+
 void UserConfigureDialog::initUi()
 {
+	m_emailAddressFile = QApplication::applicationDirPath() + "/Email address configure.txt";
 	this->setModal(true);
 	this->ui.tableWidget_emailcontents->setStyle(QStyleFactory::create("windowsvista"));
 	this->ui.tableWidget_emailcontents->installEventFilter(this);

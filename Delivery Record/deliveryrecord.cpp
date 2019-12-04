@@ -177,6 +177,7 @@ void DeliveryRecord::connectSlots()
 	connect(this->ui.actionsave, &QAction::triggered, this, [&] {this->saveToFile(); });
 	connect(this->ui.actionHelp, &QAction::triggered, this, &DeliveryRecord::helpFileOpen);
 	connect(this->ui.actionVersion, &QAction::triggered, this, &DeliveryRecord::versionDialog);
+	
 
 }
 
@@ -323,7 +324,7 @@ bool DeliveryRecord::saveToFile()
 
 bool DeliveryRecord::versionDialog()
 {
-	QMessageBox::about(this, "About", "© 2019 Ericcson\nVersion:R1-19.11.26\nAuthor: jian.peng@ericsson.com\r\n\r\nBuild with Qt");
+	QMessageBox::about(this, "About", QString("© 2019 Ericcson\nVersion:%1\nAuthor: jian.peng@ericsson.com\r\n\r\nBuild with Qt").arg(Version));
 	return true;
 }
 
