@@ -46,7 +46,6 @@ try:
     contentList = XmlReader.getAnSpecialCategoryValue('./DeliveryInformation.xml', 'DliveryInfo',['Value'])
     for contentitem in contentList:
         contentitem = str(contentitem[0]).replace('\n','<br>')
-
         if '[' in contentitem:
             contentitemlinklist =  contentitem.split(']')
             for contentitemlink in contentitemlinklist:

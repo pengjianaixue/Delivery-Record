@@ -112,8 +112,6 @@ void UserConfigureDialog::submitButtonClick()
 			itemtext << ui.tableWidget_emailcontents->item(i, 1)->text();
 			QList<std::pair<QString, QString>> contentspair;
 			contentspair.append({"Title",itemtext[0]});
-			m_emailContentsList.append(contentspair);
-			m_emailContentsList.clear();
 			contentspair.append({"Contents",itemtext[1] });
 			m_emailContentsList.append(contentspair);
 			vauleList.append(itemtext);

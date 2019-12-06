@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471aac51-efe3-4163-a907-897428704dce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_deliveryrecord.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/qrc_style.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_configure.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/GeneratedFiles/ui_deliveryrecord.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/configure.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/configure.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Delivery Record/deliveryrecord.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Delivery Record/deliveryrecord.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Configruation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Configruation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.spec" beforeDir="false" afterPath="$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Delivery_note_record.py" beforeDir="false" afterPath="$PROJECT_DIR$/Delivery_note_record.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Delivery_note_record.spec" beforeDir="false" afterPath="$PROJECT_DIR$/Delivery_note_record.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XmlReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/XmlReader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/Delivery_Record_Notify_EmailSend.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/Delivery_Record_Notify_EmailSend.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/Delivery_note_record.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/Delivery_note_record.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -193,6 +181,14 @@
       <workItem from="1575364026903" duration="277000" />
       <workItem from="1575364463067" duration="2414000" />
     </task>
+    <task id="LOCAL-00001" summary="fix the xml read issue">
+      <created>1575445987731</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575445987731</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +206,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix the xml read issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the xml read issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -241,8 +241,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Delivery_Record_Notify_EmailSend.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="32" />
+          <line>58</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

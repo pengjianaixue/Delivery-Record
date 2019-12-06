@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<root>
+	<Wiki_Infor>
+		<WikiInfor Item="tablecolumnlimt" Value="12" />
+		<WikiInfor Item="loginjumptopage" Value="RA_Radio/release-note" />
+	</Wiki_Infor>
+	<Delivery_Infor>
+		<DliveryInfo ItemTitle="Version" Value="R80KM_CUSTOM" />
+		<DliveryInfo ItemTitle="Comments" Value="daily update&#10;2019/12/06" />
+		<DliveryInfo ItemTitle="40/50/60D" Value="[http://ki81fw4.rnd.ki.sw.ericsson.se/executions/1175214/results/439/ngr2.xlf/ElvisRegression.xml/JCAT_logs/#/suite 60D]" />
+		<DliveryInfo ItemTitle="BuildReport" Value="[https://ki81fw4.rnd.ki.sw.ericsson.se/resultweb/build_reports/19235 BuildReport]" />
+		<DliveryInfo ItemTitle="APP Fetch Link" Value="[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM R80KM_CUSTOM]" />
+		<DliveryInfo ItemTitle="G2 App" Value="[https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM G2 App]" />
+		<DliveryInfo ItemTitle="Limitation" Value="NA" />
+		<DliveryInfo ItemTitle="Submodule Version" Value="" />
+		<DliveryInfo ItemTitle="Gerrit link" Value="[https://gerrit.ericsson.se/#/c/6458599/ DB]&#10;[https://gerrit.ericsson.se/#/c/6459693/ rampdown_init]&#10;[https://gerrit.ericsson.se/#/c/6486902/ change_resistence_sw]&#10;[https://gerrit.ericsson.se/#/c/6502966/ Clear_temperory_database]" />
+		<DliveryInfo ItemTitle="change" Value="N/A" />
+		<DliveryInfo ItemTitle="Baseline" Value="R80KM_CUSTOM" />
+		<DliveryInfo ItemTitle="* External DB" Value="[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/txCalib.git;a=commit;h=2cbb9fa0c1ad66bb4610cf44d54f3328f612fe44 CAH1092540_1-R1SY]&#10;[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/temperatureSupervision.git;a=commit;h=31799b8ae888fc28684fb0eb4dc7d3488570fdf5 CAH1611642_1-R5FH]&#10;[https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/rxSwDb.git;a=commit;h=d8d53c16d90dde6d05c6b0d527e0319b99536fc1 CAH1611716_1-R1HC]&#10;&#10;" />
+	</Delivery_Infor>
+	<!--Delivery_Email_Infor-->
+	<Delivery_Email_Infor>
+		<Delivery_Email_Content Title="• 40/50/60D" Contents="http://ki81fw4.rnd.ki.sw.ericsson.se/executions/1175214/results/439/ngr2.xlf/ElvisRegression.xml/JCAT_logs/#/suite " />
+		<Delivery_Email_Content Title="• Build report:  " Contents="https://ki81fw4.rnd.ki.sw.ericsson.se/resultweb/build_reports/19235" />
+		<Delivery_Email_Content Title="• Pick address" Contents="APP: ngr2_app-CXP9013268_15-R80KM_CUSTOM.xlf( Fetch the WLM on share point ) &#10;G2:   g2_ngr2_app-CXP9024578_15-R80KM_CUSTOM.cxp &#10;G1:   g1_ngr2_app-CXP9025871_15-R80KM_CUSTOM.tgz &#10;&#10;https://ericsson.sharepoint.com/sites/Griffin/Oslo/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x01200027C4F24DB95FFA468C6959FDBDD1D182&amp;id=/sites/Griffin/Oslo/Shared%20Documents/Oslo%20Triple%20band%202460/SW%20release/WLM " />
+		<Delivery_Email_Content Title="• Limitation" Contents="NA" />
+		<Delivery_Email_Content Title="•Build report:  " Contents="TrxCtrl  TrxCtrl_14.11.24.0&#10;XP  XP_SW_9.18.4.0&#10;XCS  plf.CXS101639_1-R1DFD&#10;NGRICR  ngricr.CXS101658_1-R1DBC&#10;RICR_MAIN  ricr.CXS101715_1-R14FJ&#10;Tokelau  API version: 2.0.5.8 /ARM version: 2.0.5.7 is loaded. /the ADRV9010 Device silicon revision: 176/Product ID: 8 &#10;DRT  R1A " />
+		<Delivery_Email_Content Title="•Basic function update：" Contents="1. HNS:5809179 add/delete DB temp DB for 2460/2479 &#10;    https://gerrit.ericsson.se/#/c/6458599/ &#10;&#10;2. HNS:5829560 add a db for rampdown init &#10;    https://gerrit.ericsson.se/#/c/6459693/ &#10;&#10;3. [MT:0021598] Change resistence sw 2460/2479 &#10;    https://gerrit.ericsson.se/#/c/6486902/ &#10;&#10;4. Clear temperory database for 2460 &#10;    https://gerrit.ericsson.se/#/c/6502966/ &#10;&#10;" />
+		<Delivery_Email_Content Title="•External DB: " Contents="1. txCalibRru2460/2479 update – CAH1092540_1-R1SY &#10;https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/txCalib.git;a=commit;h=2cbb9fa0c1ad66bb4610cf44d54f3328f612fe44 &#10;&#10;2. TemperatureSupervisionRru2460/2479 udpate – CAH1611642_1-R5FH &#10;https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/temperatureSupervision.git;a=commit;h=31799b8ae888fc28684fb0eb4dc7d3488570fdf5 &#10;&#10;3.rxSwDbRru2460/2479 update – CAH1611716_1-R1HC &#10;https://gerrit.ericsson.se/gitweb?p=radio/xRU/database/rxSwDb.git;a=commit;h=d8d53c16d90dde6d05c6b0d527e0319b99536fc1  &#10;" />
+	</Delivery_Email_Infor>
+	<!--Delivery_configure_Infor-->
+	<Delivery_configure_Infor>
+		<Delivery_Configure_Item Item="editsection" Value="Radio 2460/2479 B8,B20,B2 Release Notes" />
+		<Delivery_Configure_Item Item="emailsender" Value="jiangyuan.li@ericsson.com" />
+		<Delivery_Configure_Item Item="emailsubject" Value="SW App R80KM_CUSTOM for 2460 B8,B20,B28.B" />
+		<Delivery_Configure_Item Item="password" Value="Q2hlbmdkdTIxMw==" />
+		<Delivery_Configure_Item Item="username" Value="eaxliji" />
+	</Delivery_configure_Infor>
+	<!--Delivery_EmailReceiver_Infor-->
+	<Delivery_EmailReceiver_Infor>
+		<Delivery_Receiver_Item Receiver_Number="recvier_0" Receiver_Address="jason.t.tang@ericsson.com" />
+		<Delivery_Receiver_Item Receiver_Number="recvier_1" Receiver_Address="jian.peng@ericsson.com" />
+		<Delivery_Receiver_Item Receiver_Number="recvier_2" Receiver_Address="jiangyuan.li@ericsson.com" />
+	</Delivery_EmailReceiver_Infor>
+</root>
