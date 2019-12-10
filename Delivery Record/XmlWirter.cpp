@@ -39,7 +39,7 @@ bool XmlWirter::setCurrentNode(const QString &nodeName)
 
 /*
 
-Ref:wirte an category data to xml file
+Ref:write an category data to xml file
 Author:jian peng
 Date:2019/9/2
 Param:categoryName<QString>			- name of category name

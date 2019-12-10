@@ -38,8 +38,6 @@
 	</Delivery_configure_Infor>
 	<!--Delivery_EmailReceiver_Infor-->
 	<Delivery_EmailReceiver_Infor>
-		<Delivery_Receiver_Item Receiver_Number="recvier_0" Receiver_Address="jason.t.tang@ericsson.com" />
-		<Delivery_Receiver_Item Receiver_Number="recvier_1" Receiver_Address="jian.peng@ericsson.com" />
-		<Delivery_Receiver_Item Receiver_Number="recvier_2" Receiver_Address="jiangyuan.li@ericsson.com" />
+		<Delivery_Receiver_Item Receiver_Number="recvier_0" Receiver_Address="jian.peng@ericsson.com" />
 	</Delivery_EmailReceiver_Infor>
 </root>

@@ -394,6 +394,10 @@ bool UserConfigureDialog::loadEmailAddressFromFile()
 		btyeAddress = emailAddressFile.readAll();
 	}
 	QString emialAddress(btyeAddress);
+	if (emialAddress.contains(QRegExp("Cc:")))
+	{
+		emialAddress = emialAddress.replace("Cc:", ";", Qt::CaseSensitivity::CaseSensitive);
+	}
 	QStringList emaillist =  emialAddress.split(";");
 	QRegularExpression emialPattern(R"(^[\w|\s]+<(.*@.*)>[\w|\s]?$)");
 	Q_FOREACH(QString emialItem ,emaillist)
@@ -401,13 +405,23 @@ bool UserConfigureDialog::loadEmailAddressFromFile()
 		QRegularExpressionMatch matchres =  emialPattern.match(emialItem);
 		if (matchres.hasMatch())
 		{
-			this->ui.comboBox_emailrecviers->addItem(matchres.captured(matchres.lastCapturedIndex()));
+			for (size_t i = 1; i <=matchres.lastCapturedIndex(); i++)
+			{
+				if (this->ui.comboBox_emailrecviers->findText(matchres.captured(i)) == -1)
+				{
+					this->ui.comboBox_emailrecviers->addItem((matchres.captured(i)));
+				}
+			}
 			loadFlag = true;
 		}
 	}
 	if (loadFlag)
 	{
 		QMessageBox::information(this, "Load Information", "Load email address success !");
+	}
+	else
+	{
+		QMessageBox::critical(this, "Load Information", "Load email address failed !");
 	}
 	return true;
 }
@@ -426,6 +440,7 @@ void UserConfigureDialog::loadEmailContentsfromOldXml()
 
 void UserConfigureDialog::initUi()
 {
+	this->ui.comboBox_emailrecviers->setDuplicatesEnabled(false);
 	m_emailAddressFile = QApplication::applicationDirPath() + "/Email address configure.txt";
 	m_deliveryInformationXmlfileName = QApplication::applicationDirPath() + "/DeliveryInformation.xml";
 	this->setModal(true);
